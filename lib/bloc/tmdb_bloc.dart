@@ -10,8 +10,8 @@ part 'tmdb_state.dart';
 part 'tmdb_bloc.freezed.dart';
 
 class TmdbBloc extends Bloc<TmdbEvent, TmdbState> {
-  TmdbBloc() : super(const _TmdbCloneLoadingState()) {
-    on<_TmdbCloneOnAppStartedEvent>(_onTmdbCloneOnAppStartedEvent);
+  TmdbBloc() : super(const _TmdbLoadingState()) {
+    on<_TmdbOnAppStartedEvent>(_onTmdbOnAppStartedEvent);
   }
 
   final Dio dio = Dio(
@@ -26,20 +26,24 @@ class TmdbBloc extends Bloc<TmdbEvent, TmdbState> {
 
   late final TMDBApi tmdbApi = TMDBApi(dio);
 
-  FutureOr<void> _onTmdbCloneOnAppStartedEvent(_TmdbCloneOnAppStartedEvent event, Emitter<TmdbState> emit) async {
-    emit(const TmdbState.loading());
-    List<Movie> firstTenMovies = (await tmdbApi.getPopularMovies(1)).results;
+  List<Movie> addMovieGenres(List<Movie> movieList, List<MovieGenre> genreList) {
     List<Movie> listInUse = [];
-    List<MovieGenre> genres = (await tmdbApi.getMovieGenres()).genres;
-    for (int i = 0; i < firstTenMovies.length; i++) {
+    for (int i = 0; i < movieList.length; i++) {
       List<String> myList = [];
-      for (int j = 0; j < genres.length; j++) {
-        if (firstTenMovies[i].genreIds.contains(genres[j].id)) {
-          myList.add(genres[j].name);
+      for (int j = 0; j < genreList.length; j++) {
+        if (movieList[i].genreIds.contains(genreList[j].id)) {
+          myList.add(genreList[j].name);
         }
       }
-      listInUse.add(firstTenMovies[i].copyWith(genres: myList));
+      listInUse.add(movieList[i].copyWith(genres: myList));
     }
-    emit(TmdbState.loaded(popularMovies20: [...listInUse]));
+    return listInUse;
+  }
+
+  FutureOr<void> _onTmdbOnAppStartedEvent(_TmdbOnAppStartedEvent event, Emitter<TmdbState> emit) async {
+    emit(const TmdbState.loading());
+    List<Movie> firstTenMovies = (await tmdbApi.getPopularMovies(1)).results;
+    List<MovieGenre> genres = (await tmdbApi.getMovieGenres()).genres;
+    emit(TmdbState.loaded(popularMovies20: [...addMovieGenres(firstTenMovies, genres)]));
   }
 }

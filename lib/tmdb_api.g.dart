@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: unused_element
+// ignore_for_file: prefer_const_declarations, unused_element
 
 part of 'tmdb_api.dart';
 
@@ -27,7 +27,7 @@ class _TMDBApi implements TMDBApi {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiResponse>(Options(
       method: 'GET',
       headers: _headers,
@@ -49,7 +49,7 @@ class _TMDBApi implements TMDBApi {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiResponseGenres>(Options(
       method: 'GET',
       headers: _headers,

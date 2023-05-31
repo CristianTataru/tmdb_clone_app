@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_fade/image_fade.dart';
 
 // Common Widgets
 
@@ -51,3 +52,35 @@ const bottomPadding16 = EdgeInsets.only(bottom: 16.0);
 
 // Divider
 const divider = Divider(thickness: 1, color: Colors.grey);
+
+//LoadingSpinner
+const loadingSpinner = Center(
+  child: CircularProgressIndicator(
+    color: Colors.green,
+  ),
+);
+
+//TmdbImage
+class TmdbImage extends StatelessWidget {
+  final String path;
+  const TmdbImage(this.path, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ImageFade(
+      image: NetworkImage("https://image.tmdb.org/t/p/w400$path"),
+      fit: BoxFit.cover,
+      loadingBuilder: (context, progress, chunkEvent) => Center(
+        child: CircularProgressIndicator(
+          value: progress,
+          color: Colors.green,
+        ),
+      ),
+      errorBuilder: (context, error) => Container(
+        color: const Color(0xFF6F6D6A),
+        alignment: Alignment.center,
+        child: const Icon(Icons.warning, color: Colors.black26, size: 128.0),
+      ),
+    );
+  }
+}

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_fade/image_fade.dart';
 import 'package:tmdb_clone_app/bloc/tmdb_bloc.dart';
+import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/theme/custom_colors.dart';
 import 'package:tmdb_clone_app/widgets/common.dart';
 
@@ -61,74 +61,68 @@ class _HomePageState extends State<HomePage> {
               ...tmdbState.map(
                 loading: (state) => [
                   const Expanded(
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.green,
-                      ),
-                    ),
+                    child: loadingSpinner,
                   )
                 ],
-                loaded: (state) => [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: state.popularMovies20
-                          .map(
-                            (e) => Padding(
-                              padding: allPadding8,
-                              child: SizedBox(
-                                width: 110,
-                                height: 270,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.white,
-                                          width: 0.3,
-                                        ),
-                                      ),
-                                      child: ImageFade(
-                                        image: NetworkImage("https://image.tmdb.org/t/p/w400${e.posterPath}"),
-                                        fit: BoxFit.cover,
-                                        loadingBuilder: (context, progress, chunkEvent) => Center(
-                                            child: CircularProgressIndicator(
-                                          value: progress,
-                                          color: Colors.green,
-                                        )),
-                                        errorBuilder: (context, error) => Container(
-                                          color: const Color(0xFF6F6D6A),
-                                          alignment: Alignment.center,
-                                          child: const Icon(Icons.warning, color: Colors.black26, size: 128.0),
-                                        ),
-                                      ),
-                                    ),
-                                    verticalMargin8,
-                                    Text(
-                                      e.title,
-                                      style: const TextStyle(
-                                          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
-                                    ),
-                                    verticalMargin8,
-                                    Text(
-                                      e.genres.join(', '),
-                                      style: const TextStyle(color: Colors.grey),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  )
-                ],
+                loaded: (state) => [_PopularMoviesCarousel(state.popularMovies20)],
               ),
             ],
           ),
         );
       },
+    );
+  }
+}
+
+class _PopularMoviesCarousel extends StatefulWidget {
+  final List<Movie> movieList;
+  const _PopularMoviesCarousel(this.movieList, {super.key});
+
+  @override
+  State<_PopularMoviesCarousel> createState() => __PopularMoviesCarouselState();
+}
+
+class __PopularMoviesCarouselState extends State<_PopularMoviesCarousel> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: widget.movieList
+            .map(
+              (e) => Padding(
+                padding: allPadding8,
+                child: SizedBox(
+                  width: 110,
+                  height: 270,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 0.3,
+                            ),
+                          ),
+                          child: TmdbImage(e.posterPath)),
+                      verticalMargin8,
+                      Text(
+                        e.title,
+                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+                      ),
+                      verticalMargin8,
+                      Text(
+                        e.genres.join(', '),
+                        style: const TextStyle(color: Colors.grey),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }

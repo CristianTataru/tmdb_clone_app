@@ -34,17 +34,17 @@ mixin _$TmdbEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_TmdbCloneOnAppStartedEvent value) onAppStarted,
+    required TResult Function(_TmdbOnAppStartedEvent value) onAppStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_TmdbCloneOnAppStartedEvent value)? onAppStarted,
+    TResult? Function(_TmdbOnAppStartedEvent value)? onAppStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_TmdbCloneOnAppStartedEvent value)? onAppStarted,
+    TResult Function(_TmdbOnAppStartedEvent value)? onAppStarted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,27 +68,25 @@ class _$TmdbEventCopyWithImpl<$Res, $Val extends TmdbEvent>
 }
 
 /// @nodoc
-abstract class _$$_TmdbCloneOnAppStartedEventCopyWith<$Res> {
-  factory _$$_TmdbCloneOnAppStartedEventCopyWith(
-          _$_TmdbCloneOnAppStartedEvent value,
-          $Res Function(_$_TmdbCloneOnAppStartedEvent) then) =
-      __$$_TmdbCloneOnAppStartedEventCopyWithImpl<$Res>;
+abstract class _$$_TmdbOnAppStartedEventCopyWith<$Res> {
+  factory _$$_TmdbOnAppStartedEventCopyWith(_$_TmdbOnAppStartedEvent value,
+          $Res Function(_$_TmdbOnAppStartedEvent) then) =
+      __$$_TmdbOnAppStartedEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_TmdbCloneOnAppStartedEventCopyWithImpl<$Res>
-    extends _$TmdbEventCopyWithImpl<$Res, _$_TmdbCloneOnAppStartedEvent>
-    implements _$$_TmdbCloneOnAppStartedEventCopyWith<$Res> {
-  __$$_TmdbCloneOnAppStartedEventCopyWithImpl(
-      _$_TmdbCloneOnAppStartedEvent _value,
-      $Res Function(_$_TmdbCloneOnAppStartedEvent) _then)
+class __$$_TmdbOnAppStartedEventCopyWithImpl<$Res>
+    extends _$TmdbEventCopyWithImpl<$Res, _$_TmdbOnAppStartedEvent>
+    implements _$$_TmdbOnAppStartedEventCopyWith<$Res> {
+  __$$_TmdbOnAppStartedEventCopyWithImpl(_$_TmdbOnAppStartedEvent _value,
+      $Res Function(_$_TmdbOnAppStartedEvent) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_TmdbCloneOnAppStartedEvent implements _TmdbCloneOnAppStartedEvent {
-  const _$_TmdbCloneOnAppStartedEvent();
+class _$_TmdbOnAppStartedEvent implements _TmdbOnAppStartedEvent {
+  const _$_TmdbOnAppStartedEvent();
 
   @override
   String toString() {
@@ -98,8 +96,7 @@ class _$_TmdbCloneOnAppStartedEvent implements _TmdbCloneOnAppStartedEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_TmdbCloneOnAppStartedEvent);
+        (other.runtimeType == runtimeType && other is _$_TmdbOnAppStartedEvent);
   }
 
   @override
@@ -136,7 +133,7 @@ class _$_TmdbCloneOnAppStartedEvent implements _TmdbCloneOnAppStartedEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_TmdbCloneOnAppStartedEvent value) onAppStarted,
+    required TResult Function(_TmdbOnAppStartedEvent value) onAppStarted,
   }) {
     return onAppStarted(this);
   }
@@ -144,7 +141,7 @@ class _$_TmdbCloneOnAppStartedEvent implements _TmdbCloneOnAppStartedEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_TmdbCloneOnAppStartedEvent value)? onAppStarted,
+    TResult? Function(_TmdbOnAppStartedEvent value)? onAppStarted,
   }) {
     return onAppStarted?.call(this);
   }
@@ -152,7 +149,7 @@ class _$_TmdbCloneOnAppStartedEvent implements _TmdbCloneOnAppStartedEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_TmdbCloneOnAppStartedEvent value)? onAppStarted,
+    TResult Function(_TmdbOnAppStartedEvent value)? onAppStarted,
     required TResult orElse(),
   }) {
     if (onAppStarted != null) {
@@ -162,8 +159,8 @@ class _$_TmdbCloneOnAppStartedEvent implements _TmdbCloneOnAppStartedEvent {
   }
 }
 
-abstract class _TmdbCloneOnAppStartedEvent implements TmdbEvent {
-  const factory _TmdbCloneOnAppStartedEvent() = _$_TmdbCloneOnAppStartedEvent;
+abstract class _TmdbOnAppStartedEvent implements TmdbEvent {
+  const factory _TmdbOnAppStartedEvent() = _$_TmdbOnAppStartedEvent;
 }
 
 /// @nodoc
@@ -189,20 +186,20 @@ mixin _$TmdbState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_TmdbCloneLoadingState value) loading,
-    required TResult Function(_TmdbCloneLoadedState value) loaded,
+    required TResult Function(_TmdbLoadingState value) loading,
+    required TResult Function(_TmdbLoadedState value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_TmdbCloneLoadingState value)? loading,
-    TResult? Function(_TmdbCloneLoadedState value)? loaded,
+    TResult? Function(_TmdbLoadingState value)? loading,
+    TResult? Function(_TmdbLoadedState value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_TmdbCloneLoadingState value)? loading,
-    TResult Function(_TmdbCloneLoadedState value)? loaded,
+    TResult Function(_TmdbLoadingState value)? loading,
+    TResult Function(_TmdbLoadedState value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -226,25 +223,25 @@ class _$TmdbStateCopyWithImpl<$Res, $Val extends TmdbState>
 }
 
 /// @nodoc
-abstract class _$$_TmdbCloneLoadingStateCopyWith<$Res> {
-  factory _$$_TmdbCloneLoadingStateCopyWith(_$_TmdbCloneLoadingState value,
-          $Res Function(_$_TmdbCloneLoadingState) then) =
-      __$$_TmdbCloneLoadingStateCopyWithImpl<$Res>;
+abstract class _$$_TmdbLoadingStateCopyWith<$Res> {
+  factory _$$_TmdbLoadingStateCopyWith(
+          _$_TmdbLoadingState value, $Res Function(_$_TmdbLoadingState) then) =
+      __$$_TmdbLoadingStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_TmdbCloneLoadingStateCopyWithImpl<$Res>
-    extends _$TmdbStateCopyWithImpl<$Res, _$_TmdbCloneLoadingState>
-    implements _$$_TmdbCloneLoadingStateCopyWith<$Res> {
-  __$$_TmdbCloneLoadingStateCopyWithImpl(_$_TmdbCloneLoadingState _value,
-      $Res Function(_$_TmdbCloneLoadingState) _then)
+class __$$_TmdbLoadingStateCopyWithImpl<$Res>
+    extends _$TmdbStateCopyWithImpl<$Res, _$_TmdbLoadingState>
+    implements _$$_TmdbLoadingStateCopyWith<$Res> {
+  __$$_TmdbLoadingStateCopyWithImpl(
+      _$_TmdbLoadingState _value, $Res Function(_$_TmdbLoadingState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_TmdbCloneLoadingState implements _TmdbCloneLoadingState {
-  const _$_TmdbCloneLoadingState();
+class _$_TmdbLoadingState implements _TmdbLoadingState {
+  const _$_TmdbLoadingState();
 
   @override
   String toString() {
@@ -254,7 +251,7 @@ class _$_TmdbCloneLoadingState implements _TmdbCloneLoadingState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_TmdbCloneLoadingState);
+        (other.runtimeType == runtimeType && other is _$_TmdbLoadingState);
   }
 
   @override
@@ -294,8 +291,8 @@ class _$_TmdbCloneLoadingState implements _TmdbCloneLoadingState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_TmdbCloneLoadingState value) loading,
-    required TResult Function(_TmdbCloneLoadedState value) loaded,
+    required TResult Function(_TmdbLoadingState value) loading,
+    required TResult Function(_TmdbLoadedState value) loaded,
   }) {
     return loading(this);
   }
@@ -303,8 +300,8 @@ class _$_TmdbCloneLoadingState implements _TmdbCloneLoadingState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_TmdbCloneLoadingState value)? loading,
-    TResult? Function(_TmdbCloneLoadedState value)? loaded,
+    TResult? Function(_TmdbLoadingState value)? loading,
+    TResult? Function(_TmdbLoadedState value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -312,8 +309,8 @@ class _$_TmdbCloneLoadingState implements _TmdbCloneLoadingState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_TmdbCloneLoadingState value)? loading,
-    TResult Function(_TmdbCloneLoadedState value)? loaded,
+    TResult Function(_TmdbLoadingState value)? loading,
+    TResult Function(_TmdbLoadedState value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -323,25 +320,25 @@ class _$_TmdbCloneLoadingState implements _TmdbCloneLoadingState {
   }
 }
 
-abstract class _TmdbCloneLoadingState implements TmdbState {
-  const factory _TmdbCloneLoadingState() = _$_TmdbCloneLoadingState;
+abstract class _TmdbLoadingState implements TmdbState {
+  const factory _TmdbLoadingState() = _$_TmdbLoadingState;
 }
 
 /// @nodoc
-abstract class _$$_TmdbCloneLoadedStateCopyWith<$Res> {
-  factory _$$_TmdbCloneLoadedStateCopyWith(_$_TmdbCloneLoadedState value,
-          $Res Function(_$_TmdbCloneLoadedState) then) =
-      __$$_TmdbCloneLoadedStateCopyWithImpl<$Res>;
+abstract class _$$_TmdbLoadedStateCopyWith<$Res> {
+  factory _$$_TmdbLoadedStateCopyWith(
+          _$_TmdbLoadedState value, $Res Function(_$_TmdbLoadedState) then) =
+      __$$_TmdbLoadedStateCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Movie> popularMovies20});
 }
 
 /// @nodoc
-class __$$_TmdbCloneLoadedStateCopyWithImpl<$Res>
-    extends _$TmdbStateCopyWithImpl<$Res, _$_TmdbCloneLoadedState>
-    implements _$$_TmdbCloneLoadedStateCopyWith<$Res> {
-  __$$_TmdbCloneLoadedStateCopyWithImpl(_$_TmdbCloneLoadedState _value,
-      $Res Function(_$_TmdbCloneLoadedState) _then)
+class __$$_TmdbLoadedStateCopyWithImpl<$Res>
+    extends _$TmdbStateCopyWithImpl<$Res, _$_TmdbLoadedState>
+    implements _$$_TmdbLoadedStateCopyWith<$Res> {
+  __$$_TmdbLoadedStateCopyWithImpl(
+      _$_TmdbLoadedState _value, $Res Function(_$_TmdbLoadedState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -349,7 +346,7 @@ class __$$_TmdbCloneLoadedStateCopyWithImpl<$Res>
   $Res call({
     Object? popularMovies20 = null,
   }) {
-    return _then(_$_TmdbCloneLoadedState(
+    return _then(_$_TmdbLoadedState(
       popularMovies20: null == popularMovies20
           ? _value._popularMovies20
           : popularMovies20 // ignore: cast_nullable_to_non_nullable
@@ -360,8 +357,8 @@ class __$$_TmdbCloneLoadedStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TmdbCloneLoadedState implements _TmdbCloneLoadedState {
-  const _$_TmdbCloneLoadedState({required final List<Movie> popularMovies20})
+class _$_TmdbLoadedState implements _TmdbLoadedState {
+  const _$_TmdbLoadedState({required final List<Movie> popularMovies20})
       : _popularMovies20 = popularMovies20;
 
   final List<Movie> _popularMovies20;
@@ -381,7 +378,7 @@ class _$_TmdbCloneLoadedState implements _TmdbCloneLoadedState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TmdbCloneLoadedState &&
+            other is _$_TmdbLoadedState &&
             const DeepCollectionEquality()
                 .equals(other._popularMovies20, _popularMovies20));
   }
@@ -393,9 +390,8 @@ class _$_TmdbCloneLoadedState implements _TmdbCloneLoadedState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TmdbCloneLoadedStateCopyWith<_$_TmdbCloneLoadedState> get copyWith =>
-      __$$_TmdbCloneLoadedStateCopyWithImpl<_$_TmdbCloneLoadedState>(
-          this, _$identity);
+  _$$_TmdbLoadedStateCopyWith<_$_TmdbLoadedState> get copyWith =>
+      __$$_TmdbLoadedStateCopyWithImpl<_$_TmdbLoadedState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -431,8 +427,8 @@ class _$_TmdbCloneLoadedState implements _TmdbCloneLoadedState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_TmdbCloneLoadingState value) loading,
-    required TResult Function(_TmdbCloneLoadedState value) loaded,
+    required TResult Function(_TmdbLoadingState value) loading,
+    required TResult Function(_TmdbLoadedState value) loaded,
   }) {
     return loaded(this);
   }
@@ -440,8 +436,8 @@ class _$_TmdbCloneLoadedState implements _TmdbCloneLoadedState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_TmdbCloneLoadingState value)? loading,
-    TResult? Function(_TmdbCloneLoadedState value)? loaded,
+    TResult? Function(_TmdbLoadingState value)? loading,
+    TResult? Function(_TmdbLoadedState value)? loaded,
   }) {
     return loaded?.call(this);
   }
@@ -449,8 +445,8 @@ class _$_TmdbCloneLoadedState implements _TmdbCloneLoadedState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_TmdbCloneLoadingState value)? loading,
-    TResult Function(_TmdbCloneLoadedState value)? loaded,
+    TResult Function(_TmdbLoadingState value)? loading,
+    TResult Function(_TmdbLoadedState value)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -460,12 +456,12 @@ class _$_TmdbCloneLoadedState implements _TmdbCloneLoadedState {
   }
 }
 
-abstract class _TmdbCloneLoadedState implements TmdbState {
-  const factory _TmdbCloneLoadedState(
-      {required final List<Movie> popularMovies20}) = _$_TmdbCloneLoadedState;
+abstract class _TmdbLoadedState implements TmdbState {
+  const factory _TmdbLoadedState({required final List<Movie> popularMovies20}) =
+      _$_TmdbLoadedState;
 
   List<Movie> get popularMovies20;
   @JsonKey(ignore: true)
-  _$$_TmdbCloneLoadedStateCopyWith<_$_TmdbCloneLoadedState> get copyWith =>
+  _$$_TmdbLoadedStateCopyWith<_$_TmdbLoadedState> get copyWith =>
       throw _privateConstructorUsedError;
 }
