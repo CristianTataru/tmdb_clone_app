@@ -26,7 +26,9 @@ class TmdbBloc extends Bloc<TmdbEvent, TmdbState> {
 
   late final TMDBApi tmdbApi = TMDBApi(dio);
 
-  List<Movie> addMovieGenres(List<Movie> movieList, List<MovieGenre> genreList) {
+  Future<List<Movie>> addMovieGenres(int page) async {
+    List<Movie> movieList = (await tmdbApi.getPopularMovies(page)).results;
+    List<MovieGenre> genreList = (await tmdbApi.getMovieGenres()).genres;
     List<Movie> listInUse = [];
     for (int i = 0; i < movieList.length; i++) {
       List<String> myList = [];
@@ -42,8 +44,7 @@ class TmdbBloc extends Bloc<TmdbEvent, TmdbState> {
 
   FutureOr<void> _onTmdbOnAppStartedEvent(_TmdbOnAppStartedEvent event, Emitter<TmdbState> emit) async {
     emit(const TmdbState.loading());
-    List<Movie> firstTenMovies = (await tmdbApi.getPopularMovies(1)).results;
-    List<MovieGenre> genres = (await tmdbApi.getMovieGenres()).genres;
-    emit(TmdbState.loaded(popularMovies20: [...addMovieGenres(firstTenMovies, genres)]));
+    List<Movie> firstTwentyMovies = await addMovieGenres(1);
+    emit(TmdbState.loaded(movies: [...firstTwentyMovies]));
   }
 }

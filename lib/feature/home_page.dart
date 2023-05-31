@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                     child: loadingSpinner,
                   )
                 ],
-                loaded: (state) => [_PopularMoviesCarousel(state.popularMovies20)],
+                loaded: (state) => [_PopularMoviesCarousel(state.movies)],
               ),
             ],
           ),

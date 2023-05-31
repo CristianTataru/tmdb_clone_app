@@ -168,19 +168,19 @@ mixin _$TmdbState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Movie> popularMovies20) loaded,
+    required TResult Function(List<Movie> movies) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Movie> popularMovies20)? loaded,
+    TResult? Function(List<Movie> movies)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Movie> popularMovies20)? loaded,
+    TResult Function(List<Movie> movies)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -261,7 +261,7 @@ class _$_TmdbLoadingState implements _TmdbLoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Movie> popularMovies20) loaded,
+    required TResult Function(List<Movie> movies) loaded,
   }) {
     return loading();
   }
@@ -270,7 +270,7 @@ class _$_TmdbLoadingState implements _TmdbLoadingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Movie> popularMovies20)? loaded,
+    TResult? Function(List<Movie> movies)? loaded,
   }) {
     return loading?.call();
   }
@@ -279,7 +279,7 @@ class _$_TmdbLoadingState implements _TmdbLoadingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Movie> popularMovies20)? loaded,
+    TResult Function(List<Movie> movies)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -330,7 +330,7 @@ abstract class _$$_TmdbLoadedStateCopyWith<$Res> {
           _$_TmdbLoadedState value, $Res Function(_$_TmdbLoadedState) then) =
       __$$_TmdbLoadedStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Movie> popularMovies20});
+  $Res call({List<Movie> movies});
 }
 
 /// @nodoc
@@ -344,12 +344,12 @@ class __$$_TmdbLoadedStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? popularMovies20 = null,
+    Object? movies = null,
   }) {
     return _then(_$_TmdbLoadedState(
-      popularMovies20: null == popularMovies20
-          ? _value._popularMovies20
-          : popularMovies20 // ignore: cast_nullable_to_non_nullable
+      movies: null == movies
+          ? _value._movies
+          : movies // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
     ));
   }
@@ -358,20 +358,20 @@ class __$$_TmdbLoadedStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TmdbLoadedState implements _TmdbLoadedState {
-  const _$_TmdbLoadedState({required final List<Movie> popularMovies20})
-      : _popularMovies20 = popularMovies20;
+  const _$_TmdbLoadedState({required final List<Movie> movies})
+      : _movies = movies;
 
-  final List<Movie> _popularMovies20;
+  final List<Movie> _movies;
   @override
-  List<Movie> get popularMovies20 {
-    if (_popularMovies20 is EqualUnmodifiableListView) return _popularMovies20;
+  List<Movie> get movies {
+    if (_movies is EqualUnmodifiableListView) return _movies;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_popularMovies20);
+    return EqualUnmodifiableListView(_movies);
   }
 
   @override
   String toString() {
-    return 'TmdbState.loaded(popularMovies20: $popularMovies20)';
+    return 'TmdbState.loaded(movies: $movies)';
   }
 
   @override
@@ -379,13 +379,12 @@ class _$_TmdbLoadedState implements _TmdbLoadedState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TmdbLoadedState &&
-            const DeepCollectionEquality()
-                .equals(other._popularMovies20, _popularMovies20));
+            const DeepCollectionEquality().equals(other._movies, _movies));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_popularMovies20));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_movies));
 
   @JsonKey(ignore: true)
   @override
@@ -397,29 +396,29 @@ class _$_TmdbLoadedState implements _TmdbLoadedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Movie> popularMovies20) loaded,
+    required TResult Function(List<Movie> movies) loaded,
   }) {
-    return loaded(popularMovies20);
+    return loaded(movies);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Movie> popularMovies20)? loaded,
+    TResult? Function(List<Movie> movies)? loaded,
   }) {
-    return loaded?.call(popularMovies20);
+    return loaded?.call(movies);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Movie> popularMovies20)? loaded,
+    TResult Function(List<Movie> movies)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(popularMovies20);
+      return loaded(movies);
     }
     return orElse();
   }
@@ -457,10 +456,10 @@ class _$_TmdbLoadedState implements _TmdbLoadedState {
 }
 
 abstract class _TmdbLoadedState implements TmdbState {
-  const factory _TmdbLoadedState({required final List<Movie> popularMovies20}) =
+  const factory _TmdbLoadedState({required final List<Movie> movies}) =
       _$_TmdbLoadedState;
 
-  List<Movie> get popularMovies20;
+  List<Movie> get movies;
   @JsonKey(ignore: true)
   _$$_TmdbLoadedStateCopyWith<_$_TmdbLoadedState> get copyWith =>
       throw _privateConstructorUsedError;
