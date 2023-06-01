@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_fade/image_fade.dart';
 
 // Common Widgets
 
@@ -52,7 +51,10 @@ const rightPadding16 = EdgeInsets.only(right: 16.0);
 const bottomPadding16 = EdgeInsets.only(bottom: 16.0);
 
 // Divider
-const divider = Divider(thickness: 1, color: Colors.grey);
+const divider = Padding(
+  padding: horizontalPadding8,
+  child: Divider(thickness: 1, color: Colors.grey),
+);
 
 //LoadingSpinner
 const loadingSpinner = Center(

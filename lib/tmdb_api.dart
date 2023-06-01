@@ -13,4 +13,7 @@ abstract class TMDBApi {
 
   @GET('genre/movie/list?language=en')
   Future<ApiResponseGenres> getMovieGenres();
+
+  @GET('trending/movie/day?language=en-US&page={page}')
+  Future<ApiResponse> getTrendingMovies(@Path('page') int page);
 }
