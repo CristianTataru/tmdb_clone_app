@@ -12,6 +12,7 @@ const horizontalMargin24 = SizedBox(width: 24.0);
 const horizontalMargin32 = SizedBox(width: 32.0);
 
 // Vertical
+const verticalMargin4 = SizedBox(height: 4.0);
 const verticalMargin8 = SizedBox(height: 8.0);
 const verticalMargin12 = SizedBox(height: 12.0);
 const verticalMargin16 = SizedBox(height: 16.0);
@@ -59,28 +60,3 @@ const loadingSpinner = Center(
     color: Colors.green,
   ),
 );
-
-//TmdbImage
-class TmdbImage extends StatelessWidget {
-  final String path;
-  const TmdbImage(this.path, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ImageFade(
-      image: NetworkImage("https://image.tmdb.org/t/p/w400$path"),
-      fit: BoxFit.cover,
-      loadingBuilder: (context, progress, chunkEvent) => Center(
-        child: CircularProgressIndicator(
-          value: progress,
-          color: Colors.green,
-        ),
-      ),
-      errorBuilder: (context, error) => Container(
-        color: const Color(0xFF6F6D6A),
-        alignment: Alignment.center,
-        child: const Icon(Icons.warning, color: Colors.black26, size: 128.0),
-      ),
-    );
-  }
-}

@@ -5,13 +5,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_genre.dart';
 import 'package:tmdb_clone_app/tmdb_api.dart';
-part 'tmdb_event.dart';
-part 'tmdb_state.dart';
-part 'tmdb_bloc.freezed.dart';
+part 'home_event.dart';
+part 'home_state.dart';
+part 'home_bloc.freezed.dart';
 
-class TmdbBloc extends Bloc<TmdbEvent, TmdbState> {
-  TmdbBloc() : super(const _TmdbLoadingState()) {
-    on<_TmdbOnAppStartedEvent>(_onTmdbOnAppStartedEvent);
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  HomeBloc() : super(const _HomeLoadingState()) {
+    on<_HomeOnAppStartedEvent>(_onHomeOnAppStartedEvent);
+    on<_HomeOnPopularMoviesPageOpenedEvent>(_onHomeOnPopularMoviesPageOpenedEvent);
   }
 
   final Dio dio = Dio(
@@ -42,9 +43,11 @@ class TmdbBloc extends Bloc<TmdbEvent, TmdbState> {
     return listInUse;
   }
 
-  FutureOr<void> _onTmdbOnAppStartedEvent(_TmdbOnAppStartedEvent event, Emitter<TmdbState> emit) async {
-    emit(const TmdbState.loading());
+  FutureOr<void> _onHomeOnAppStartedEvent(_HomeOnAppStartedEvent event, Emitter<HomeState> emit) async {
+    emit(const HomeState.loading());
     List<Movie> firstTwentyMovies = await addMovieGenres(1);
-    emit(TmdbState.loaded(movies: [...firstTwentyMovies]));
+    emit(HomeState.loaded(popularMovies: firstTwentyMovies));
   }
+
+  _onHomeOnPopularMoviesPageOpenedEvent(_HomeOnPopularMoviesPageOpenedEvent event, Emitter<HomeState> emit) {}
 }

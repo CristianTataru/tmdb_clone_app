@@ -6,7 +6,9 @@ part 'api_response.g.dart';
 @freezed
 class ApiResponse with _$ApiResponse {
   const factory ApiResponse({
+    required int page,
     required List<Movie> results,
+    @JsonKey(name: "total_pages") required int totalPages,
   }) = _ApiResponse;
 
   factory ApiResponse.fromJson(Map<String, Object?> json) => _$ApiResponseFromJson(json);
