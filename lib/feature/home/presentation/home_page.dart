@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_clone_app/bloc/tmdb_bloc.dart';
+import 'package:tmdb_clone_app/feature/home/bloc/home_bloc.dart';
+import 'package:tmdb_clone_app/feature/popular_movies/presentation/popular_movies_page.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/theme/custom_colors.dart';
 import 'package:tmdb_clone_app/widgets/common.dart';
+import 'package:tmdb_clone_app/widgets/tmdb_image.dart';
 
-final bloc = TmdbBloc();
+final bloc = HomeBloc();
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,14 +20,14 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    bloc.add(const TmdbEvent.onAppStarted());
+    bloc.add(const HomeEvent.onAppStarted());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TmdbBloc, TmdbState>(
+    return BlocBuilder<HomeBloc, HomeState>(
       bloc: bloc,
-      builder: (context, tmdbState) {
+      builder: (context, homeState) {
         return Scaffold(
           backgroundColor: CustomColors.background,
           appBar: AppBar(
@@ -49,8 +51,13 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return const PopularMoviesPage();
+                        }));
+                      },
                       child: const Text(
-                        "See all >",
+                        "See all ❯",
                         style: TextStyle(color: Colors.grey),
                       ),
                     ),
@@ -58,13 +65,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               verticalMargin8,
-              ...tmdbState.map(
+              ...homeState.map(
                 loading: (state) => [
                   const Expanded(
                     child: loadingSpinner,
                   )
                 ],
-                loaded: (state) => [_PopularMoviesCarousel(state.movies)],
+                loaded: (state) => [_PopularMoviesCarousel(state.popularMovies)],
               ),
             ],
           ),
@@ -74,54 +81,54 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class _PopularMoviesCarousel extends StatefulWidget {
-  final List<Movie> movieList;
-  const _PopularMoviesCarousel(this.movieList, {super.key});
+class _MovieEntry extends StatelessWidget {
+  const _MovieEntry({required this.movie});
+
+  final Movie movie;
 
   @override
-  State<_PopularMoviesCarousel> createState() => __PopularMoviesCarouselState();
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: allPadding8,
+      child: SizedBox(
+        width: 110,
+        height: 270,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TmdbImage(height: 146, width: 100, path: movie.posterPath),
+            verticalMargin8,
+            Text(
+              movie.title,
+              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            verticalMargin8,
+            Text(
+              movie.genres.join(', '),
+              style: const TextStyle(color: Colors.grey),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
 
-class __PopularMoviesCarouselState extends State<_PopularMoviesCarousel> {
+class _PopularMoviesCarousel extends StatefulWidget {
+  final List<Movie> movieList;
+  const _PopularMoviesCarousel(this.movieList);
+
+  @override
+  State<_PopularMoviesCarousel> createState() => _PopularMoviesCarouselState();
+}
+
+class _PopularMoviesCarouselState extends State<_PopularMoviesCarousel> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: widget.movieList
-            .map(
-              (e) => Padding(
-                padding: allPadding8,
-                child: SizedBox(
-                  width: 110,
-                  height: 270,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 0.3,
-                            ),
-                          ),
-                          child: TmdbImage(e.posterPath)),
-                      verticalMargin8,
-                      Text(
-                        e.title,
-                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
-                      ),
-                      verticalMargin8,
-                      Text(
-                        e.genres.join(', '),
-                        style: const TextStyle(color: Colors.grey),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            )
-            .toList(),
+        children: widget.movieList.map((movie) => _MovieEntry(movie: movie)).toList(),
       ),
     );
   }

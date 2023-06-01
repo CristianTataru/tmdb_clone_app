@@ -20,7 +20,10 @@ ApiResponse _$ApiResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ApiResponse {
+  int get page => throw _privateConstructorUsedError;
   List<Movie> get results => throw _privateConstructorUsedError;
+  @JsonKey(name: "total_pages")
+  int get totalPages => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +37,10 @@ abstract class $ApiResponseCopyWith<$Res> {
           ApiResponse value, $Res Function(ApiResponse) then) =
       _$ApiResponseCopyWithImpl<$Res, ApiResponse>;
   @useResult
-  $Res call({List<Movie> results});
+  $Res call(
+      {int page,
+      List<Movie> results,
+      @JsonKey(name: "total_pages") int totalPages});
 }
 
 /// @nodoc
@@ -50,13 +56,23 @@ class _$ApiResponseCopyWithImpl<$Res, $Val extends ApiResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? page = null,
     Object? results = null,
+    Object? totalPages = null,
   }) {
     return _then(_value.copyWith(
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -69,7 +85,10 @@ abstract class _$$_ApiResponseCopyWith<$Res>
       __$$_ApiResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Movie> results});
+  $Res call(
+      {int page,
+      List<Movie> results,
+      @JsonKey(name: "total_pages") int totalPages});
 }
 
 /// @nodoc
@@ -83,13 +102,23 @@ class __$$_ApiResponseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? page = null,
     Object? results = null,
+    Object? totalPages = null,
   }) {
     return _then(_$_ApiResponse(
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -97,12 +126,17 @@ class __$$_ApiResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ApiResponse implements _ApiResponse {
-  const _$_ApiResponse({required final List<Movie> results})
+  const _$_ApiResponse(
+      {required this.page,
+      required final List<Movie> results,
+      @JsonKey(name: "total_pages") required this.totalPages})
       : _results = results;
 
   factory _$_ApiResponse.fromJson(Map<String, dynamic> json) =>
       _$$_ApiResponseFromJson(json);
 
+  @override
+  final int page;
   final List<Movie> _results;
   @override
   List<Movie> get results {
@@ -112,8 +146,12 @@ class _$_ApiResponse implements _ApiResponse {
   }
 
   @override
+  @JsonKey(name: "total_pages")
+  final int totalPages;
+
+  @override
   String toString() {
-    return 'ApiResponse(results: $results)';
+    return 'ApiResponse(page: $page, results: $results, totalPages: $totalPages)';
   }
 
   @override
@@ -121,13 +159,16 @@ class _$_ApiResponse implements _ApiResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ApiResponse &&
-            const DeepCollectionEquality().equals(other._results, _results));
+            (identical(other.page, page) || other.page == page) &&
+            const DeepCollectionEquality().equals(other._results, _results) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_results));
+  int get hashCode => Object.hash(runtimeType, page,
+      const DeepCollectionEquality().hash(_results), totalPages);
 
   @JsonKey(ignore: true)
   @override
@@ -144,14 +185,22 @@ class _$_ApiResponse implements _ApiResponse {
 }
 
 abstract class _ApiResponse implements ApiResponse {
-  const factory _ApiResponse({required final List<Movie> results}) =
+  const factory _ApiResponse(
+          {required final int page,
+          required final List<Movie> results,
+          @JsonKey(name: "total_pages") required final int totalPages}) =
       _$_ApiResponse;
 
   factory _ApiResponse.fromJson(Map<String, dynamic> json) =
       _$_ApiResponse.fromJson;
 
   @override
+  int get page;
+  @override
   List<Movie> get results;
+  @override
+  @JsonKey(name: "total_pages")
+  int get totalPages;
   @override
   @JsonKey(ignore: true)
   _$$_ApiResponseCopyWith<_$_ApiResponse> get copyWith =>

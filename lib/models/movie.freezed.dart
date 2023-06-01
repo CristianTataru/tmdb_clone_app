@@ -27,6 +27,10 @@ mixin _$Movie {
   String get posterPath => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, defaultValue: [])
   List<String> get genres => throw _privateConstructorUsedError;
+  @JsonKey(name: "vote_average")
+  double get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: "vote_count")
+  int get voteCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +46,9 @@ abstract class $MovieCopyWith<$Res> {
       {String title,
       @JsonKey(name: 'genre_ids') List<int> genreIds,
       @JsonKey(name: 'poster_path') String posterPath,
-      @JsonKey(includeFromJson: false, defaultValue: []) List<String> genres});
+      @JsonKey(includeFromJson: false, defaultValue: []) List<String> genres,
+      @JsonKey(name: "vote_average") double rating,
+      @JsonKey(name: "vote_count") int voteCount});
 }
 
 /// @nodoc
@@ -62,6 +68,8 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
     Object? genreIds = null,
     Object? posterPath = null,
     Object? genres = null,
+    Object? rating = null,
+    Object? voteCount = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -80,6 +88,14 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      voteCount: null == voteCount
+          ? _value.voteCount
+          : voteCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -94,7 +110,9 @@ abstract class _$$_MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
       {String title,
       @JsonKey(name: 'genre_ids') List<int> genreIds,
       @JsonKey(name: 'poster_path') String posterPath,
-      @JsonKey(includeFromJson: false, defaultValue: []) List<String> genres});
+      @JsonKey(includeFromJson: false, defaultValue: []) List<String> genres,
+      @JsonKey(name: "vote_average") double rating,
+      @JsonKey(name: "vote_count") int voteCount});
 }
 
 /// @nodoc
@@ -110,6 +128,8 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$_Movie>
     Object? genreIds = null,
     Object? posterPath = null,
     Object? genres = null,
+    Object? rating = null,
+    Object? voteCount = null,
   }) {
     return _then(_$_Movie(
       title: null == title
@@ -128,6 +148,14 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$_Movie>
           ? _value._genres
           : genres // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
+      voteCount: null == voteCount
+          ? _value.voteCount
+          : voteCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -142,7 +170,11 @@ class _$_Movie implements _Movie {
       @JsonKey(name: 'poster_path')
           required this.posterPath,
       @JsonKey(includeFromJson: false, defaultValue: [])
-          final List<String> genres = const []})
+          final List<String> genres = const [],
+      @JsonKey(name: "vote_average")
+          required this.rating,
+      @JsonKey(name: "vote_count")
+          required this.voteCount})
       : _genreIds = genreIds,
         _genres = genres;
 
@@ -173,8 +205,15 @@ class _$_Movie implements _Movie {
   }
 
   @override
+  @JsonKey(name: "vote_average")
+  final double rating;
+  @override
+  @JsonKey(name: "vote_count")
+  final int voteCount;
+
+  @override
   String toString() {
-    return 'Movie(title: $title, genreIds: $genreIds, posterPath: $posterPath, genres: $genres)';
+    return 'Movie(title: $title, genreIds: $genreIds, posterPath: $posterPath, genres: $genres, rating: $rating, voteCount: $voteCount)';
   }
 
   @override
@@ -186,7 +225,10 @@ class _$_Movie implements _Movie {
             const DeepCollectionEquality().equals(other._genreIds, _genreIds) &&
             (identical(other.posterPath, posterPath) ||
                 other.posterPath == posterPath) &&
-            const DeepCollectionEquality().equals(other._genres, _genres));
+            const DeepCollectionEquality().equals(other._genres, _genres) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.voteCount, voteCount) ||
+                other.voteCount == voteCount));
   }
 
   @JsonKey(ignore: true)
@@ -196,7 +238,9 @@ class _$_Movie implements _Movie {
       title,
       const DeepCollectionEquality().hash(_genreIds),
       posterPath,
-      const DeepCollectionEquality().hash(_genres));
+      const DeepCollectionEquality().hash(_genres),
+      rating,
+      voteCount);
 
   @JsonKey(ignore: true)
   @override
@@ -220,7 +264,11 @@ abstract class _Movie implements Movie {
       @JsonKey(name: 'poster_path')
           required final String posterPath,
       @JsonKey(includeFromJson: false, defaultValue: [])
-          final List<String> genres}) = _$_Movie;
+          final List<String> genres,
+      @JsonKey(name: "vote_average")
+          required final double rating,
+      @JsonKey(name: "vote_count")
+          required final int voteCount}) = _$_Movie;
 
   factory _Movie.fromJson(Map<String, dynamic> json) = _$_Movie.fromJson;
 
@@ -235,6 +283,12 @@ abstract class _Movie implements Movie {
   @override
   @JsonKey(includeFromJson: false, defaultValue: [])
   List<String> get genres;
+  @override
+  @JsonKey(name: "vote_average")
+  double get rating;
+  @override
+  @JsonKey(name: "vote_count")
+  int get voteCount;
   @override
   @JsonKey(ignore: true)
   _$$_MovieCopyWith<_$_Movie> get copyWith =>
