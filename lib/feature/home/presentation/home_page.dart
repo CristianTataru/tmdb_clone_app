@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_clone_app/feature/home/bloc/home_bloc.dart';
 import 'package:tmdb_clone_app/feature/popular_movies/presentation/popular_movies_page.dart';
+import 'package:tmdb_clone_app/feature/trending_movies/presentation/trending_movies_page.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/theme/custom_colors.dart';
 import 'package:tmdb_clone_app/widgets/common.dart';
@@ -66,13 +67,40 @@ class _HomePageState extends State<HomePage> {
               ),
               verticalMargin8,
               ...homeState.map(
-                loading: (state) => [
-                  const Expanded(
-                    child: loadingSpinner,
-                  )
-                ],
-                loaded: (state) => [_PopularMoviesCarousel(state.popularMovies)],
+                loading: (state) => [const Expanded(child: loadingSpinner)],
+                loaded: (state) => [_MoviesCarousel(state.popularMovies)],
               ),
+              divider,
+              verticalMargin8,
+              Padding(
+                padding: horizontalPadding8,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        "Trending",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return const TrendingMoviesPage();
+                        }));
+                      },
+                      child: const Text(
+                        "See all ❯",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              verticalMargin8,
+              ...homeState.map(
+                loading: (state) => [const Expanded(child: loadingSpinner)],
+                loaded: (state) => [_MoviesCarousel(state.trendingMovies)],
+              )
             ],
           ),
         );
@@ -91,8 +119,8 @@ class _MovieEntry extends StatelessWidget {
     return Padding(
       padding: allPadding8,
       child: SizedBox(
-        width: 110,
-        height: 270,
+        width: 104,
+        height: 216,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -100,12 +128,13 @@ class _MovieEntry extends StatelessWidget {
             verticalMargin8,
             Text(
               movie.title,
-              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
             ),
             verticalMargin8,
             Text(
               movie.genres.join(', '),
-              style: const TextStyle(color: Colors.grey),
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
+              overflow: TextOverflow.ellipsis,
             )
           ],
         ),
@@ -114,15 +143,15 @@ class _MovieEntry extends StatelessWidget {
   }
 }
 
-class _PopularMoviesCarousel extends StatefulWidget {
+class _MoviesCarousel extends StatefulWidget {
   final List<Movie> movieList;
-  const _PopularMoviesCarousel(this.movieList);
+  const _MoviesCarousel(this.movieList);
 
   @override
-  State<_PopularMoviesCarousel> createState() => _PopularMoviesCarouselState();
+  State<_MoviesCarousel> createState() => _MoviesCarouselState();
 }
 
-class _PopularMoviesCarouselState extends State<_PopularMoviesCarousel> {
+class _MoviesCarouselState extends State<_MoviesCarousel> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

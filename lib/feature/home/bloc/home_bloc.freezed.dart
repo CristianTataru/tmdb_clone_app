@@ -296,19 +296,23 @@ mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Movie> popularMovies) loaded,
+    required TResult Function(
+            List<Movie> popularMovies, List<Movie> trendingMovies)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Movie> popularMovies)? loaded,
+    TResult? Function(List<Movie> popularMovies, List<Movie> trendingMovies)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Movie> popularMovies)? loaded,
+    TResult Function(List<Movie> popularMovies, List<Movie> trendingMovies)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -389,7 +393,9 @@ class _$_HomeLoadingState implements _HomeLoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Movie> popularMovies) loaded,
+    required TResult Function(
+            List<Movie> popularMovies, List<Movie> trendingMovies)
+        loaded,
   }) {
     return loading();
   }
@@ -398,7 +404,8 @@ class _$_HomeLoadingState implements _HomeLoadingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Movie> popularMovies)? loaded,
+    TResult? Function(List<Movie> popularMovies, List<Movie> trendingMovies)?
+        loaded,
   }) {
     return loading?.call();
   }
@@ -407,7 +414,8 @@ class _$_HomeLoadingState implements _HomeLoadingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Movie> popularMovies)? loaded,
+    TResult Function(List<Movie> popularMovies, List<Movie> trendingMovies)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -458,7 +466,7 @@ abstract class _$$_HomeLoadedStateCopyWith<$Res> {
           _$_HomeLoadedState value, $Res Function(_$_HomeLoadedState) then) =
       __$$_HomeLoadedStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Movie> popularMovies});
+  $Res call({List<Movie> popularMovies, List<Movie> trendingMovies});
 }
 
 /// @nodoc
@@ -473,11 +481,16 @@ class __$$_HomeLoadedStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? popularMovies = null,
+    Object? trendingMovies = null,
   }) {
     return _then(_$_HomeLoadedState(
       popularMovies: null == popularMovies
           ? _value._popularMovies
           : popularMovies // ignore: cast_nullable_to_non_nullable
+              as List<Movie>,
+      trendingMovies: null == trendingMovies
+          ? _value._trendingMovies
+          : trendingMovies // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
     ));
   }
@@ -486,8 +499,11 @@ class __$$_HomeLoadedStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeLoadedState implements _HomeLoadedState {
-  const _$_HomeLoadedState({required final List<Movie> popularMovies})
-      : _popularMovies = popularMovies;
+  const _$_HomeLoadedState(
+      {required final List<Movie> popularMovies,
+      required final List<Movie> trendingMovies})
+      : _popularMovies = popularMovies,
+        _trendingMovies = trendingMovies;
 
   final List<Movie> _popularMovies;
   @override
@@ -497,9 +513,17 @@ class _$_HomeLoadedState implements _HomeLoadedState {
     return EqualUnmodifiableListView(_popularMovies);
   }
 
+  final List<Movie> _trendingMovies;
+  @override
+  List<Movie> get trendingMovies {
+    if (_trendingMovies is EqualUnmodifiableListView) return _trendingMovies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_trendingMovies);
+  }
+
   @override
   String toString() {
-    return 'HomeState.loaded(popularMovies: $popularMovies)';
+    return 'HomeState.loaded(popularMovies: $popularMovies, trendingMovies: $trendingMovies)';
   }
 
   @override
@@ -508,12 +532,16 @@ class _$_HomeLoadedState implements _HomeLoadedState {
         (other.runtimeType == runtimeType &&
             other is _$_HomeLoadedState &&
             const DeepCollectionEquality()
-                .equals(other._popularMovies, _popularMovies));
+                .equals(other._popularMovies, _popularMovies) &&
+            const DeepCollectionEquality()
+                .equals(other._trendingMovies, _trendingMovies));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_popularMovies));
+      runtimeType,
+      const DeepCollectionEquality().hash(_popularMovies),
+      const DeepCollectionEquality().hash(_trendingMovies));
 
   @JsonKey(ignore: true)
   @override
@@ -525,29 +553,33 @@ class _$_HomeLoadedState implements _HomeLoadedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Movie> popularMovies) loaded,
+    required TResult Function(
+            List<Movie> popularMovies, List<Movie> trendingMovies)
+        loaded,
   }) {
-    return loaded(popularMovies);
+    return loaded(popularMovies, trendingMovies);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Movie> popularMovies)? loaded,
+    TResult? Function(List<Movie> popularMovies, List<Movie> trendingMovies)?
+        loaded,
   }) {
-    return loaded?.call(popularMovies);
+    return loaded?.call(popularMovies, trendingMovies);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Movie> popularMovies)? loaded,
+    TResult Function(List<Movie> popularMovies, List<Movie> trendingMovies)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(popularMovies);
+      return loaded(popularMovies, trendingMovies);
     }
     return orElse();
   }
@@ -585,10 +617,12 @@ class _$_HomeLoadedState implements _HomeLoadedState {
 }
 
 abstract class _HomeLoadedState implements HomeState {
-  const factory _HomeLoadedState({required final List<Movie> popularMovies}) =
-      _$_HomeLoadedState;
+  const factory _HomeLoadedState(
+      {required final List<Movie> popularMovies,
+      required final List<Movie> trendingMovies}) = _$_HomeLoadedState;
 
   List<Movie> get popularMovies;
+  List<Movie> get trendingMovies;
   @JsonKey(ignore: true)
   _$$_HomeLoadedStateCopyWith<_$_HomeLoadedState> get copyWith =>
       throw _privateConstructorUsedError;

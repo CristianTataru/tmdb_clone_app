@@ -27,8 +27,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   late final TMDBApi tmdbApi = TMDBApi(dio);
 
-  Future<List<Movie>> addMovieGenres(int page) async {
-    List<Movie> movieList = (await tmdbApi.getPopularMovies(page)).results;
+  Future<List<Movie>> addMovieGenres(int page, String request) async {
+    List<Movie> movieList = [];
+    if (request == "Popular") {
+      movieList = (await tmdbApi.getPopularMovies(page)).results;
+    } else {
+      movieList = (await tmdbApi.getTrendingMovies(page)).results;
+    }
     List<MovieGenre> genreList = (await tmdbApi.getMovieGenres()).genres;
     List<Movie> listInUse = [];
     for (int i = 0; i < movieList.length; i++) {
@@ -45,8 +50,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _onHomeOnAppStartedEvent(_HomeOnAppStartedEvent event, Emitter<HomeState> emit) async {
     emit(const HomeState.loading());
-    List<Movie> firstTwentyMovies = await addMovieGenres(1);
-    emit(HomeState.loaded(popularMovies: firstTwentyMovies));
+    List<Movie> firstTwentyMovies = await addMovieGenres(1, 'Popular');
+    List<Movie> trendingMovies = await addMovieGenres(1, "Trending");
+    emit(HomeState.loaded(popularMovies: firstTwentyMovies, trendingMovies: trendingMovies));
   }
 
   _onHomeOnPopularMoviesPageOpenedEvent(_HomeOnPopularMoviesPageOpenedEvent event, Emitter<HomeState> emit) {}
