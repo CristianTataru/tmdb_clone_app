@@ -66,9 +66,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               verticalMargin8,
-              ...homeState.map(
-                loading: (state) => [const Expanded(child: loadingSpinner)],
-                loaded: (state) => [_MoviesCarousel(state.popularMovies)],
+              homeState.map(
+                loading: (state) => const Expanded(child: loadingSpinner),
+                loaded: (state) => _MoviesCarousel(state.popularMovies),
               ),
               divider,
               verticalMargin8,
@@ -97,9 +97,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               verticalMargin8,
-              ...homeState.map(
-                loading: (state) => [const Expanded(child: loadingSpinner)],
-                loaded: (state) => [_MoviesCarousel(state.trendingMovies)],
+              homeState.map(
+                loading: (state) => const Expanded(child: loadingSpinner),
+                loaded: (state) => _MoviesCarousel(state.trendingMovies),
               )
             ],
           ),

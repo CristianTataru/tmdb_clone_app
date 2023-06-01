@@ -20,18 +20,21 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() onAppStarted,
     required TResult Function() onPopularMoviesPageOpened,
+    required TResult Function() onTrendingMoviesPageOpened,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onAppStarted,
     TResult? Function()? onPopularMoviesPageOpened,
+    TResult? Function()? onTrendingMoviesPageOpened,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onAppStarted,
     TResult Function()? onPopularMoviesPageOpened,
+    TResult Function()? onTrendingMoviesPageOpened,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +43,8 @@ mixin _$HomeEvent {
     required TResult Function(_HomeOnAppStartedEvent value) onAppStarted,
     required TResult Function(_HomeOnPopularMoviesPageOpenedEvent value)
         onPopularMoviesPageOpened,
+    required TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)
+        onTrendingMoviesPageOpened,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +52,8 @@ mixin _$HomeEvent {
     TResult? Function(_HomeOnAppStartedEvent value)? onAppStarted,
     TResult? Function(_HomeOnPopularMoviesPageOpenedEvent value)?
         onPopularMoviesPageOpened,
+    TResult? Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
+        onTrendingMoviesPageOpened,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +61,8 @@ mixin _$HomeEvent {
     TResult Function(_HomeOnAppStartedEvent value)? onAppStarted,
     TResult Function(_HomeOnPopularMoviesPageOpenedEvent value)?
         onPopularMoviesPageOpened,
+    TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
+        onTrendingMoviesPageOpened,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -116,6 +125,7 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() onAppStarted,
     required TResult Function() onPopularMoviesPageOpened,
+    required TResult Function() onTrendingMoviesPageOpened,
   }) {
     return onAppStarted();
   }
@@ -125,6 +135,7 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onAppStarted,
     TResult? Function()? onPopularMoviesPageOpened,
+    TResult? Function()? onTrendingMoviesPageOpened,
   }) {
     return onAppStarted?.call();
   }
@@ -134,6 +145,7 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onAppStarted,
     TResult Function()? onPopularMoviesPageOpened,
+    TResult Function()? onTrendingMoviesPageOpened,
     required TResult orElse(),
   }) {
     if (onAppStarted != null) {
@@ -148,6 +160,8 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
     required TResult Function(_HomeOnAppStartedEvent value) onAppStarted,
     required TResult Function(_HomeOnPopularMoviesPageOpenedEvent value)
         onPopularMoviesPageOpened,
+    required TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)
+        onTrendingMoviesPageOpened,
   }) {
     return onAppStarted(this);
   }
@@ -158,6 +172,8 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
     TResult? Function(_HomeOnAppStartedEvent value)? onAppStarted,
     TResult? Function(_HomeOnPopularMoviesPageOpenedEvent value)?
         onPopularMoviesPageOpened,
+    TResult? Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
+        onTrendingMoviesPageOpened,
   }) {
     return onAppStarted?.call(this);
   }
@@ -168,6 +184,8 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
     TResult Function(_HomeOnAppStartedEvent value)? onAppStarted,
     TResult Function(_HomeOnPopularMoviesPageOpenedEvent value)?
         onPopularMoviesPageOpened,
+    TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
+        onTrendingMoviesPageOpened,
     required TResult orElse(),
   }) {
     if (onAppStarted != null) {
@@ -225,6 +243,7 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
   TResult when<TResult extends Object?>({
     required TResult Function() onAppStarted,
     required TResult Function() onPopularMoviesPageOpened,
+    required TResult Function() onTrendingMoviesPageOpened,
   }) {
     return onPopularMoviesPageOpened();
   }
@@ -234,6 +253,7 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onAppStarted,
     TResult? Function()? onPopularMoviesPageOpened,
+    TResult? Function()? onTrendingMoviesPageOpened,
   }) {
     return onPopularMoviesPageOpened?.call();
   }
@@ -243,6 +263,7 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onAppStarted,
     TResult Function()? onPopularMoviesPageOpened,
+    TResult Function()? onTrendingMoviesPageOpened,
     required TResult orElse(),
   }) {
     if (onPopularMoviesPageOpened != null) {
@@ -257,6 +278,8 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
     required TResult Function(_HomeOnAppStartedEvent value) onAppStarted,
     required TResult Function(_HomeOnPopularMoviesPageOpenedEvent value)
         onPopularMoviesPageOpened,
+    required TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)
+        onTrendingMoviesPageOpened,
   }) {
     return onPopularMoviesPageOpened(this);
   }
@@ -267,6 +290,8 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
     TResult? Function(_HomeOnAppStartedEvent value)? onAppStarted,
     TResult? Function(_HomeOnPopularMoviesPageOpenedEvent value)?
         onPopularMoviesPageOpened,
+    TResult? Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
+        onTrendingMoviesPageOpened,
   }) {
     return onPopularMoviesPageOpened?.call(this);
   }
@@ -277,6 +302,8 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
     TResult Function(_HomeOnAppStartedEvent value)? onAppStarted,
     TResult Function(_HomeOnPopularMoviesPageOpenedEvent value)?
         onPopularMoviesPageOpened,
+    TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
+        onTrendingMoviesPageOpened,
     required TResult orElse(),
   }) {
     if (onPopularMoviesPageOpened != null) {
@@ -289,6 +316,126 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
 abstract class _HomeOnPopularMoviesPageOpenedEvent implements HomeEvent {
   const factory _HomeOnPopularMoviesPageOpenedEvent() =
       _$_HomeOnPopularMoviesPageOpenedEvent;
+}
+
+/// @nodoc
+abstract class _$$_HomeOnTrendingMoviesPageOpenedEventCopyWith<$Res> {
+  factory _$$_HomeOnTrendingMoviesPageOpenedEventCopyWith(
+          _$_HomeOnTrendingMoviesPageOpenedEvent value,
+          $Res Function(_$_HomeOnTrendingMoviesPageOpenedEvent) then) =
+      __$$_HomeOnTrendingMoviesPageOpenedEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_HomeOnTrendingMoviesPageOpenedEventCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res,
+        _$_HomeOnTrendingMoviesPageOpenedEvent>
+    implements _$$_HomeOnTrendingMoviesPageOpenedEventCopyWith<$Res> {
+  __$$_HomeOnTrendingMoviesPageOpenedEventCopyWithImpl(
+      _$_HomeOnTrendingMoviesPageOpenedEvent _value,
+      $Res Function(_$_HomeOnTrendingMoviesPageOpenedEvent) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_HomeOnTrendingMoviesPageOpenedEvent
+    implements _HomeOnTrendingMoviesPageOpenedEvent {
+  const _$_HomeOnTrendingMoviesPageOpenedEvent();
+
+  @override
+  String toString() {
+    return 'HomeEvent.onTrendingMoviesPageOpened()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HomeOnTrendingMoviesPageOpenedEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onAppStarted,
+    required TResult Function() onPopularMoviesPageOpened,
+    required TResult Function() onTrendingMoviesPageOpened,
+  }) {
+    return onTrendingMoviesPageOpened();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onAppStarted,
+    TResult? Function()? onPopularMoviesPageOpened,
+    TResult? Function()? onTrendingMoviesPageOpened,
+  }) {
+    return onTrendingMoviesPageOpened?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onAppStarted,
+    TResult Function()? onPopularMoviesPageOpened,
+    TResult Function()? onTrendingMoviesPageOpened,
+    required TResult orElse(),
+  }) {
+    if (onTrendingMoviesPageOpened != null) {
+      return onTrendingMoviesPageOpened();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_HomeOnAppStartedEvent value) onAppStarted,
+    required TResult Function(_HomeOnPopularMoviesPageOpenedEvent value)
+        onPopularMoviesPageOpened,
+    required TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)
+        onTrendingMoviesPageOpened,
+  }) {
+    return onTrendingMoviesPageOpened(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_HomeOnAppStartedEvent value)? onAppStarted,
+    TResult? Function(_HomeOnPopularMoviesPageOpenedEvent value)?
+        onPopularMoviesPageOpened,
+    TResult? Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
+        onTrendingMoviesPageOpened,
+  }) {
+    return onTrendingMoviesPageOpened?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_HomeOnAppStartedEvent value)? onAppStarted,
+    TResult Function(_HomeOnPopularMoviesPageOpenedEvent value)?
+        onPopularMoviesPageOpened,
+    TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
+        onTrendingMoviesPageOpened,
+    required TResult orElse(),
+  }) {
+    if (onTrendingMoviesPageOpened != null) {
+      return onTrendingMoviesPageOpened(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HomeOnTrendingMoviesPageOpenedEvent implements HomeEvent {
+  const factory _HomeOnTrendingMoviesPageOpenedEvent() =
+      _$_HomeOnTrendingMoviesPageOpenedEvent;
 }
 
 /// @nodoc
