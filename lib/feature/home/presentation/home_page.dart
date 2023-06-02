@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_clone_app/feature/home/bloc/home_bloc.dart';
+import 'package:tmdb_clone_app/feature/movie_details/presentation/movie_details_page.dart';
 import 'package:tmdb_clone_app/feature/popular_movies/presentation/popular_movies_page.dart';
 import 'package:tmdb_clone_app/feature/trending_movies/presentation/trending_movies_page.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
@@ -124,7 +125,14 @@ class _MovieEntry extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TmdbImage(height: 146, width: 100, path: movie.posterPath),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                  return MovieDetailsPage(movie);
+                }));
+              },
+              child: TmdbImage(height: 146, width: 100, path: movie.posterPath),
+            ),
             verticalMargin8,
             Text(
               movie.title,

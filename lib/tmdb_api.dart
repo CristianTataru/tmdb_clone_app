@@ -2,6 +2,7 @@ import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
 import 'package:tmdb_clone_app/models/api_response.dart';
 import 'package:tmdb_clone_app/models/api_response_genres.dart';
+import 'package:tmdb_clone_app/models/movie_details.dart';
 part 'tmdb_api.g.dart';
 
 @RestApi(baseUrl: 'https://api.themoviedb.org/3/')
@@ -16,4 +17,7 @@ abstract class TMDBApi {
 
   @GET('trending/movie/day?language=en-US&page={page}')
   Future<ApiResponse> getTrendingMovies(@Path('page') int page);
+
+  @GET('movie/{movieId}?language=en-US')
+  Future<MovieDetails> getMovieDetails(@Path('movieId') int movieId);
 }
