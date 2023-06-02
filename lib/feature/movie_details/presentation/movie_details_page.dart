@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rate/rate.dart';
 import 'package:tmdb_clone_app/feature/movie_details/bloc/movie_details_bloc.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
+import 'package:tmdb_clone_app/models/movie_details.dart';
 import 'package:tmdb_clone_app/theme/custom_colors.dart';
 import 'package:tmdb_clone_app/widgets/common.dart';
 import 'package:tmdb_clone_app/widgets/tmdb_background_poster.dart';
@@ -62,145 +63,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
           ),
           body: movieDetailsState.map(
             loading: (state) => loadingSpinner,
-            loaded: (state) => Column(
-              children: [
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Stack(
-                        children: [
-                          ShaderMask(
-                            shaderCallback: (rect) {
-                              return const LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [Colors.black, Colors.transparent],
-                              ).createShader(Rect.fromLTRB(0, 150, rect.width, rect.height));
-                            },
-                            blendMode: BlendMode.dstIn,
-                            child: TmdbBackgroundPoster(path: state.movieDetails.backgroundPosterPath),
-                          ),
-                          Column(
-                            children: [
-                              const SizedBox(height: 200),
-                              Padding(
-                                padding: horizontalPadding8,
-                                child: Row(
-                                  children: [
-                                    TmdbImage(height: 140, width: 96, path: widget.movie.posterPath),
-                                    horizontalMargin8,
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            widget.movie.title,
-                                            style: const TextStyle(
-                                                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-                                          ),
-                                          verticalMargin8,
-                                          Row(
-                                            children: [
-                                              Rate(
-                                                iconSize: 15,
-                                                color: Colors.green,
-                                                allowHalf: true,
-                                                allowClear: true,
-                                                initialValue: widget.movie.rating / 2,
-                                                readOnly: true,
-                                              ),
-                                              horizontalMargin8,
-                                              Text(
-                                                '(${state.movieDetails.voteCount})',
-                                                style: const TextStyle(color: Colors.green),
-                                              ),
-                                              Expanded(
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    const Icon(
-                                                      Icons.star,
-                                                      color: Colors.green,
-                                                      size: 15,
-                                                    ),
-                                                    Text(
-                                                      "${state.movieDetails.voteAverage}",
-                                                      style: const TextStyle(color: Colors.green),
-                                                      textAlign: TextAlign.center,
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          verticalMargin8,
-                                          SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
-                                            child: Row(
-                                              children: [...widget.movie.genres.map((genre) => GenreBox(genre))],
-                                            ),
-                                          ),
-                                          verticalMargin8,
-                                          Text(
-                                            state.movieDetails.overview,
-                                            style: const TextStyle(color: Colors.grey, fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      // Container(
-                      //   width: MediaQuery.of(context).size.width,
-                      //   height: 360,
-                      //   decoration: BoxDecoration(
-                      //     image: DecorationImage(
-                      //         image: NetworkImage(
-                      //             "https://image.tmdb.org/t/p/original${state.movieDetails.backgroundPosterPath}"),
-                      //         fit: BoxFit.fitWidth,
-                      //         alignment: Alignment.topCenter),
-                      //   ),
-                      //   child: Stack(
-                      //     children: [
-                      //       Align(
-                      //         alignment: Alignment.bottomCenter,
-                      //         child: Container(
-                      //           height: 130,
-                      //           decoration: const BoxDecoration(color: CustomColors.background, boxShadow: [
-                      //             BoxShadow(
-                      //                 color: CustomColors.background,
-                      //                 blurRadius: 70,
-                      //                 spreadRadius: 50,
-                      //                 offset: Offset(0, -10))
-                      //           ]),
-                      //         ),
-                      //       ),
-                      //       Align(
-                      //         alignment: Alignment.bottomCenter,
-                      //         child: Padding(
-                      //           padding: allPadding8,
-                      //           child: Container(
-                      //             color: Colors.transparent,
-                      //             height: 152,
-                      //             width: MediaQuery.of(context).size.width,
-                      //             child:
-                      //           ),
-                      //         ),
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
-                      divider,
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            loaded: (state) => _TopSectionWidget(movie: widget.movie, movieDetails: state.movieDetails),
           ),
         );
       },
@@ -208,8 +71,8 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
   }
 }
 
-class GenreBox extends StatelessWidget {
-  const GenreBox(this.genre, {super.key});
+class _GenreBox extends StatelessWidget {
+  const _GenreBox(this.genre);
 
   final String genre;
 
@@ -231,6 +94,111 @@ class GenreBox extends StatelessWidget {
             style: const TextStyle(color: Colors.grey),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _TopSectionWidget extends StatelessWidget {
+  const _TopSectionWidget({required this.movie, required this.movieDetails});
+
+  final Movie movie;
+  final MovieDetails movieDetails;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              ShaderMask(
+                shaderCallback: (rect) {
+                  return const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black, Colors.transparent],
+                  ).createShader(Rect.fromLTRB(0, 150, rect.width, rect.height));
+                },
+                blendMode: BlendMode.dstIn,
+                child: TmdbBackgroundPoster(path: movieDetails.backgroundPosterPath),
+              ),
+              Column(
+                children: [
+                  const SizedBox(height: 200),
+                  Padding(
+                    padding: horizontalPadding8,
+                    child: Row(
+                      children: [
+                        TmdbImage(height: 140, width: 96, path: movie.posterPath),
+                        horizontalMargin8,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                movie.title,
+                                style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              verticalMargin8,
+                              Row(
+                                children: [
+                                  Rate(
+                                    iconSize: 15,
+                                    color: Colors.green,
+                                    allowHalf: true,
+                                    allowClear: true,
+                                    initialValue: movie.rating / 2,
+                                    readOnly: true,
+                                  ),
+                                  horizontalMargin8,
+                                  Text(
+                                    '(${movieDetails.voteCount})',
+                                    style: const TextStyle(color: Colors.green),
+                                  ),
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.star,
+                                          color: Colors.green,
+                                          size: 15,
+                                        ),
+                                        Text(
+                                          "${movieDetails.voteAverage}",
+                                          style: const TextStyle(color: Colors.green),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              verticalMargin8,
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [...movie.genres.map((genre) => _GenreBox(genre))],
+                                ),
+                              ),
+                              verticalMargin8,
+                              Text(
+                                movieDetails.overview,
+                                style: const TextStyle(color: Colors.grey, fontSize: 14),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          divider,
+        ],
       ),
     );
   }
