@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tmdb_clone_app/feature/movie_details/presentation/movie_details_page.dart';
 import 'package:tmdb_clone_app/feature/trending_movies/bloc/trending_movies_bloc.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/theme/custom_colors.dart';
@@ -98,6 +99,11 @@ class _MovieListItem extends StatelessWidget {
     return Padding(
       padding: allPadding8,
       child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return MovieDetailsPage(movie);
+          }));
+        },
         child: Row(
           children: [
             TmdbImage(
