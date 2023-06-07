@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rate/rate.dart';
 import 'package:tmdb_clone_app/feature/movie_details/bloc/movie_details_bloc.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_details.dart';
+import 'package:tmdb_clone_app/models/movie_video.dart';
 import 'package:tmdb_clone_app/models/person.dart';
 import 'package:tmdb_clone_app/theme/custom_colors.dart';
+import 'package:tmdb_clone_app/utility/utils.dart';
 import 'package:tmdb_clone_app/widgets/cast_picture.dart';
 import 'package:tmdb_clone_app/widgets/common.dart';
 import 'package:tmdb_clone_app/widgets/tmdb_background_poster.dart';
@@ -92,7 +95,22 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                     ),
                   ),
                   verticalMargin8,
-                  _CastCarousel(state.cast.length > 1 ? state.cast.sublist(0, 15) : state.cast)
+                  _CastCarousel(state.cast.length > 1 ? state.cast.sublist(0, 15) : state.cast),
+                  divider,
+                  verticalMargin8,
+                  const Padding(
+                    padding: horizontalPadding8,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Videos",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                  verticalMargin8,
+                  _TrailersCarousel(trailers: state.trailers)
                 ],
               ),
             ),
@@ -241,26 +259,97 @@ class _PersonEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: allPadding8,
-      child: SizedBox(
-        width: 104,
-        height: 216,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          GestureDetector(
+            onTap: () {},
+            child: CastPicture(path: person.photoPath),
+          ),
+          verticalMargin8,
+          Text(
+            person.name,
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+          ),
+          Text(
+            person.character,
+            style: const TextStyle(color: Colors.grey, fontSize: 12),
+            overflow: TextOverflow.ellipsis,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _CastCarousel extends StatelessWidget {
+  final List<Person> cast;
+  const _CastCarousel(this.cast);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: cast.map((person) => _PersonEntry(person: person)).toList(),
+      ),
+    );
+  }
+}
+
+class _TrailerEntry extends StatelessWidget {
+  const _TrailerEntry({required this.trailer});
+
+  final MovieVideo trailer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: GestureDetector(
+        onTap: () {
+          Utils.openLink(url: 'https://www.youtube.com/watch?v=${trailer.key}');
+        },
+        child: Stack(
+          alignment: AlignmentDirectional.bottomEnd,
           children: [
-            GestureDetector(
-              onTap: () {},
-              child: CastPicture(path: person.photoPath),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white, width: 1),
+              ),
+              height: 96,
+              width: 168,
+              child: ShaderMask(
+                shaderCallback: (rect) {
+                  return const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black, Colors.transparent],
+                  ).createShader(Rect.fromLTRB(0, 60, rect.width, rect.height));
+                },
+                blendMode: BlendMode.dstIn,
+                child: Image.network(
+                  'https://img.youtube.com/vi/${trailer.key}/0.jpg',
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-            verticalMargin8,
-            Text(
-              person.name,
-              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
-            ),
-            Text(
-              person.character,
-              style: const TextStyle(color: Colors.grey, fontSize: 12),
-              overflow: TextOverflow.ellipsis,
+            Padding(
+              padding: const EdgeInsets.all(4),
+              child: Container(
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(3)),
+                height: 15,
+                width: 20,
+                child: const Align(
+                  alignment: Alignment.center,
+                  child: FaIcon(
+                    FontAwesomeIcons.youtube,
+                    color: Colors.red,
+                    size: 14,
+                  ),
+                ),
+              ),
             )
           ],
         ),
@@ -269,21 +358,17 @@ class _PersonEntry extends StatelessWidget {
   }
 }
 
-class _CastCarousel extends StatefulWidget {
-  final List<Person> cast;
-  const _CastCarousel(this.cast);
+class _TrailersCarousel extends StatelessWidget {
+  const _TrailersCarousel({required this.trailers});
 
-  @override
-  State<_CastCarousel> createState() => _CastCarouselState();
-}
+  final List<MovieVideo> trailers;
 
-class _CastCarouselState extends State<_CastCarousel> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: widget.cast.map((person) => _PersonEntry(person: person)).toList(),
+        children: trailers.map((trailer) => _TrailerEntry(trailer: trailer)).toList(),
       ),
     );
   }

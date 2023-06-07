@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_details.dart';
+import 'package:tmdb_clone_app/models/movie_video.dart';
 import 'package:tmdb_clone_app/models/person.dart';
 import 'package:tmdb_clone_app/tmdb_api.dart';
 part 'movie_details_event.dart';
@@ -32,6 +33,9 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
     emit(const MovieDetailsState.loading());
     MovieDetails movieDetails = await tmdbApi.getMovieDetails(event.movie.id);
     List<Person> cast = (await tmdbApi.getMovieCast(event.movie.id)).cast;
-    emit(MovieDetailsState.loaded(movieDetails: movieDetails, cast: cast));
+    List<MovieVideo> trailers = ((await tmdbApi.getMovieTrailers(event.movie.id)).results)
+        .where((trailer) => trailer.site == "YouTube")
+        .toList();
+    emit(MovieDetailsState.loaded(movieDetails: movieDetails, cast: cast, trailers: trailers));
   }
 }
