@@ -34,6 +34,8 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
     bloc.add(MovieDetailsEvent.onPageOpened(movie: widget.movie));
   }
 
+  RegExp regex = RegExp(r'([.]*0)(?!.*\d)');
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
@@ -121,10 +123,10 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                                 info: state.movieDetails.spokenLanguages.contains(const SpokenLanguage(name: "English"))
                                     ? ["English"]
                                     : [state.movieDetails.spokenLanguages.first.name]),
-                            _InfoText(title: "Budget", info: ["\$${state.movieDetails.budget ~/ 1000000} Million"]),
-                            _InfoText(title: "Revenue", info: [
-                              "\$${double.parse((state.movieDetails.revenue / 1000000).toStringAsFixed(2))} Million"
-                            ]),
+                            _InfoText(
+                                title: "Budget", info: ["\$${state.movieDetails.budget.toMillionString()} Million"]),
+                            _InfoText(
+                                title: "Revenue", info: ["\$${state.movieDetails.revenue.toMillionString()} Million"]),
                             _InfoText(
                                 title: "Production Companies",
                                 info: state.movieDetails.productionCompanies.map((e) => e.name).toList())
