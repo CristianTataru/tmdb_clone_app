@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 
 // Layout Margins
 // Horizontal
+const horizontalMargin4 = SizedBox(width: 4.0);
 const horizontalMargin8 = SizedBox(width: 8.0);
 const horizontalMargin12 = SizedBox(width: 12.0);
 const horizontalMargin16 = SizedBox(width: 16.0);
 const horizontalMargin24 = SizedBox(width: 24.0);
 const horizontalMargin32 = SizedBox(width: 32.0);
+const horizontalMargin72 = SizedBox(width: 72.0);
 
 // Vertical
 const verticalMargin4 = SizedBox(height: 4.0);
@@ -32,6 +34,7 @@ const horizontalPadding16 = EdgeInsets.symmetric(horizontal: 16.0);
 // Vertical
 const verticalPadding16 = EdgeInsets.symmetric(vertical: 16.0);
 const verticalPadding8 = EdgeInsets.symmetric(vertical: 8.0);
+const verticalPadding1 = EdgeInsets.symmetric(vertical: 1.0);
 
 // Horizontal + Vertical
 const allPadding8 = EdgeInsets.all(8.0);

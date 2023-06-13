@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:rate/rate.dart';
 import 'package:tmdb_clone_app/feature/movie_details/bloc/movie_details_bloc.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_details.dart';
 import 'package:tmdb_clone_app/models/movie_video.dart';
 import 'package:tmdb_clone_app/models/person.dart';
+import 'package:tmdb_clone_app/models/spoken_language.dart';
 import 'package:tmdb_clone_app/theme/custom_colors.dart';
 import 'package:tmdb_clone_app/utility/utils.dart';
 import 'package:tmdb_clone_app/widgets/cast_picture.dart';
@@ -98,19 +100,40 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                   _CastCarousel(state.cast.length > 1 ? state.cast.sublist(0, 15) : state.cast),
                   divider,
                   verticalMargin8,
-                  const Padding(
-                    padding: horizontalPadding8,
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Videos",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ),
+                  const _SectionTitle(title: "Videos", size: 18),
                   verticalMargin8,
-                  _TrailersCarousel(trailers: state.trailers)
+                  _TrailersCarousel(trailers: state.trailers),
+                  divider,
+                  verticalMargin8,
+                  const _SectionTitle(title: "Information", size: 16),
+                  verticalMargin8,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            _InfoText(title: "Release Date", info: [
+                              DateFormat('dd MMMM yyyy').format(DateTime.parse(state.movieDetails.releaseDate))
+                            ]),
+                            _InfoText(
+                                title: "Language",
+                                info: state.movieDetails.spokenLanguages.contains(const SpokenLanguage(name: "English"))
+                                    ? ["English"]
+                                    : [state.movieDetails.spokenLanguages.first.name]),
+                            _InfoText(title: "Budget", info: ["\$${state.movieDetails.budget ~/ 1000000} Million"]),
+                            _InfoText(title: "Revenue", info: [
+                              "\$${double.parse((state.movieDetails.revenue / 1000000).toStringAsFixed(2))} Million"
+                            ]),
+                            _InfoText(
+                                title: "Production Companies",
+                                info: state.movieDetails.productionCompanies.map((e) => e.name).toList())
+                          ],
+                        ),
+                      ),
+                      horizontalMargin72
+                    ],
+                  )
                 ],
               ),
             ),
@@ -369,6 +392,76 @@ class _TrailersCarousel extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: trailers.map((trailer) => _TrailerEntry(trailer: trailer)).toList(),
+      ),
+    );
+  }
+}
+
+class _SectionTitle extends StatelessWidget {
+  const _SectionTitle({required this.title, required this.size});
+
+  final String title;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: horizontalPadding8,
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Text(
+          title,
+          style: TextStyle(color: Colors.white, fontSize: size),
+          textAlign: TextAlign.left,
+        ),
+      ),
+    );
+  }
+}
+
+class _InfoText extends StatelessWidget {
+  const _InfoText({required this.title, required this.info});
+
+  final String title;
+  final List<String> info;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: verticalPadding1,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+              ],
+            ),
+          ),
+          horizontalMargin4,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ...info.map((e) => Text(
+                      e,
+                      style: const TextStyle(color: Colors.grey),
+                    ))
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

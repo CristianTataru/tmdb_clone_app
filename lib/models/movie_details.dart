@@ -13,6 +13,7 @@ class MovieDetails with _$MovieDetails {
     required int budget,
     required String overview,
     @JsonKey(name: "production_companies") required List<ProductionCompany> productionCompanies,
+    @JsonKey(name: "release_date") required String releaseDate,
     required int revenue,
     @JsonKey(name: "spoken_languages") required List<SpokenLanguage> spokenLanguages,
     @JsonKey(name: "vote_average") required double voteAverage,
