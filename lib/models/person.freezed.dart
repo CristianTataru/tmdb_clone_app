@@ -24,6 +24,7 @@ mixin _$Person {
   @JsonKey(name: "profile_path")
   String? get photoPath => throw _privateConstructorUsedError;
   String get character => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +39,8 @@ abstract class $PersonCopyWith<$Res> {
   $Res call(
       {String name,
       @JsonKey(name: "profile_path") String? photoPath,
-      String character});
+      String character,
+      int id});
 }
 
 /// @nodoc
@@ -57,6 +59,7 @@ class _$PersonCopyWithImpl<$Res, $Val extends Person>
     Object? name = null,
     Object? photoPath = freezed,
     Object? character = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -71,6 +74,10 @@ class _$PersonCopyWithImpl<$Res, $Val extends Person>
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
               as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -84,7 +91,8 @@ abstract class _$$_PersonCopyWith<$Res> implements $PersonCopyWith<$Res> {
   $Res call(
       {String name,
       @JsonKey(name: "profile_path") String? photoPath,
-      String character});
+      String character,
+      int id});
 }
 
 /// @nodoc
@@ -100,6 +108,7 @@ class __$$_PersonCopyWithImpl<$Res>
     Object? name = null,
     Object? photoPath = freezed,
     Object? character = null,
+    Object? id = null,
   }) {
     return _then(_$_Person(
       name: null == name
@@ -114,6 +123,10 @@ class __$$_PersonCopyWithImpl<$Res>
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
               as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -124,7 +137,8 @@ class _$_Person implements _Person {
   const _$_Person(
       {required this.name,
       @JsonKey(name: "profile_path") required this.photoPath,
-      this.character = ''});
+      this.character = '',
+      required this.id});
 
   factory _$_Person.fromJson(Map<String, dynamic> json) =>
       _$$_PersonFromJson(json);
@@ -137,10 +151,12 @@ class _$_Person implements _Person {
   @override
   @JsonKey()
   final String character;
+  @override
+  final int id;
 
   @override
   String toString() {
-    return 'Person(name: $name, photoPath: $photoPath, character: $character)';
+    return 'Person(name: $name, photoPath: $photoPath, character: $character, id: $id)';
   }
 
   @override
@@ -152,12 +168,13 @@ class _$_Person implements _Person {
             (identical(other.photoPath, photoPath) ||
                 other.photoPath == photoPath) &&
             (identical(other.character, character) ||
-                other.character == character));
+                other.character == character) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, photoPath, character);
+  int get hashCode => Object.hash(runtimeType, name, photoPath, character, id);
 
   @JsonKey(ignore: true)
   @override
@@ -177,7 +194,8 @@ abstract class _Person implements Person {
   const factory _Person(
       {required final String name,
       @JsonKey(name: "profile_path") required final String? photoPath,
-      final String character}) = _$_Person;
+      final String character,
+      required final int id}) = _$_Person;
 
   factory _Person.fromJson(Map<String, dynamic> json) = _$_Person.fromJson;
 
@@ -188,6 +206,8 @@ abstract class _Person implements Person {
   String? get photoPath;
   @override
   String get character;
+  @override
+  int get id;
   @override
   @JsonKey(ignore: true)
   _$$_PersonCopyWith<_$_Person> get copyWith =>

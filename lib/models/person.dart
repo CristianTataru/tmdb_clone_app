@@ -8,6 +8,7 @@ class Person with _$Person {
     required String name,
     @JsonKey(name: "profile_path") required String? photoPath,
     @Default('') String character,
+    required int id,
   }) = _Person;
 
   factory Person.fromJson(Map<String, Object?> json) => _$PersonFromJson(json);

@@ -5,6 +5,7 @@ import 'package:tmdb_clone_app/models/api_response_genres.dart';
 import 'package:tmdb_clone_app/models/api_response_cast.dart';
 import 'package:tmdb_clone_app/models/api_response_movie_video.dart';
 import 'package:tmdb_clone_app/models/movie_details.dart';
+import 'package:tmdb_clone_app/models/person_details.dart';
 part 'tmdb_api.g.dart';
 
 @RestApi(baseUrl: 'https://api.themoviedb.org/3/')
@@ -28,4 +29,7 @@ abstract class TMDBApi {
 
   @GET("movie/{movieId}/videos?language=en-US")
   Future<ApiResponseMovieVideo> getMovieTrailers(@Path('movieId') int movieId);
+
+  @GET("person/{personId}?language=en-US")
+  Future<PersonDetails> getPersonDetails(@Path('personId') int personId);
 }
