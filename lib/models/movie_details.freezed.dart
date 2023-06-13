@@ -29,6 +29,8 @@ mixin _$MovieDetails {
   @JsonKey(name: "production_companies")
   List<ProductionCompany> get productionCompanies =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: "release_date")
+  String get releaseDate => throw _privateConstructorUsedError;
   int get revenue => throw _privateConstructorUsedError;
   @JsonKey(name: "spoken_languages")
   List<SpokenLanguage> get spokenLanguages =>
@@ -59,6 +61,8 @@ abstract class $MovieDetailsCopyWith<$Res> {
       String overview,
       @JsonKey(name: "production_companies")
           List<ProductionCompany> productionCompanies,
+      @JsonKey(name: "release_date")
+          String releaseDate,
       int revenue,
       @JsonKey(name: "spoken_languages")
           List<SpokenLanguage> spokenLanguages,
@@ -88,6 +92,7 @@ class _$MovieDetailsCopyWithImpl<$Res, $Val extends MovieDetails>
     Object? budget = null,
     Object? overview = null,
     Object? productionCompanies = null,
+    Object? releaseDate = null,
     Object? revenue = null,
     Object? spokenLanguages = null,
     Object? voteAverage = null,
@@ -114,6 +119,10 @@ class _$MovieDetailsCopyWithImpl<$Res, $Val extends MovieDetails>
           ? _value.productionCompanies
           : productionCompanies // ignore: cast_nullable_to_non_nullable
               as List<ProductionCompany>,
+      releaseDate: null == releaseDate
+          ? _value.releaseDate
+          : releaseDate // ignore: cast_nullable_to_non_nullable
+              as String,
       revenue: null == revenue
           ? _value.revenue
           : revenue // ignore: cast_nullable_to_non_nullable
@@ -163,6 +172,8 @@ abstract class _$$_MovieDetailsCopyWith<$Res>
       String overview,
       @JsonKey(name: "production_companies")
           List<ProductionCompany> productionCompanies,
+      @JsonKey(name: "release_date")
+          String releaseDate,
       int revenue,
       @JsonKey(name: "spoken_languages")
           List<SpokenLanguage> spokenLanguages,
@@ -191,6 +202,7 @@ class __$$_MovieDetailsCopyWithImpl<$Res>
     Object? budget = null,
     Object? overview = null,
     Object? productionCompanies = null,
+    Object? releaseDate = null,
     Object? revenue = null,
     Object? spokenLanguages = null,
     Object? voteAverage = null,
@@ -217,6 +229,10 @@ class __$$_MovieDetailsCopyWithImpl<$Res>
           ? _value._productionCompanies
           : productionCompanies // ignore: cast_nullable_to_non_nullable
               as List<ProductionCompany>,
+      releaseDate: null == releaseDate
+          ? _value.releaseDate
+          : releaseDate // ignore: cast_nullable_to_non_nullable
+              as String,
       revenue: null == revenue
           ? _value.revenue
           : revenue // ignore: cast_nullable_to_non_nullable
@@ -249,6 +265,8 @@ class _$_MovieDetails implements _MovieDetails {
       required this.overview,
       @JsonKey(name: "production_companies")
           required final List<ProductionCompany> productionCompanies,
+      @JsonKey(name: "release_date")
+          required this.releaseDate,
       required this.revenue,
       @JsonKey(name: "spoken_languages")
           required final List<SpokenLanguage> spokenLanguages,
@@ -283,6 +301,9 @@ class _$_MovieDetails implements _MovieDetails {
   }
 
   @override
+  @JsonKey(name: "release_date")
+  final String releaseDate;
+  @override
   final int revenue;
   final List<SpokenLanguage> _spokenLanguages;
   @override
@@ -302,7 +323,7 @@ class _$_MovieDetails implements _MovieDetails {
 
   @override
   String toString() {
-    return 'MovieDetails(backgroundPosterPath: $backgroundPosterPath, collection: $collection, budget: $budget, overview: $overview, productionCompanies: $productionCompanies, revenue: $revenue, spokenLanguages: $spokenLanguages, voteAverage: $voteAverage, voteCount: $voteCount)';
+    return 'MovieDetails(backgroundPosterPath: $backgroundPosterPath, collection: $collection, budget: $budget, overview: $overview, productionCompanies: $productionCompanies, releaseDate: $releaseDate, revenue: $revenue, spokenLanguages: $spokenLanguages, voteAverage: $voteAverage, voteCount: $voteCount)';
   }
 
   @override
@@ -319,6 +340,8 @@ class _$_MovieDetails implements _MovieDetails {
                 other.overview == overview) &&
             const DeepCollectionEquality()
                 .equals(other._productionCompanies, _productionCompanies) &&
+            (identical(other.releaseDate, releaseDate) ||
+                other.releaseDate == releaseDate) &&
             (identical(other.revenue, revenue) || other.revenue == revenue) &&
             const DeepCollectionEquality()
                 .equals(other._spokenLanguages, _spokenLanguages) &&
@@ -337,6 +360,7 @@ class _$_MovieDetails implements _MovieDetails {
       budget,
       overview,
       const DeepCollectionEquality().hash(_productionCompanies),
+      releaseDate,
       revenue,
       const DeepCollectionEquality().hash(_spokenLanguages),
       voteAverage,
@@ -366,6 +390,8 @@ abstract class _MovieDetails implements MovieDetails {
       required final String overview,
       @JsonKey(name: "production_companies")
           required final List<ProductionCompany> productionCompanies,
+      @JsonKey(name: "release_date")
+          required final String releaseDate,
       required final int revenue,
       @JsonKey(name: "spoken_languages")
           required final List<SpokenLanguage> spokenLanguages,
@@ -390,6 +416,9 @@ abstract class _MovieDetails implements MovieDetails {
   @override
   @JsonKey(name: "production_companies")
   List<ProductionCompany> get productionCompanies;
+  @override
+  @JsonKey(name: "release_date")
+  String get releaseDate;
   @override
   int get revenue;
   @override
