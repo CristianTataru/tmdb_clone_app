@@ -6,5 +6,6 @@ class MovieDetailsState with _$MovieDetailsState {
   const factory MovieDetailsState.loaded({
     required MovieDetails movieDetails,
     required List<Person> cast,
+    required List<MovieVideo> trailers,
   }) = _MovieDetailsLoadedState;
 }

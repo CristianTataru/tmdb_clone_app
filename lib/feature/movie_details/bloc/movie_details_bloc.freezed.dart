@@ -245,20 +245,25 @@ mixin _$MovieDetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(MovieDetails movieDetails, List<Person> cast)
+    required TResult Function(MovieDetails movieDetails, List<Person> cast,
+            List<MovieVideo> trailers)
         loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(MovieDetails movieDetails, List<Person> cast)? loaded,
+    TResult? Function(MovieDetails movieDetails, List<Person> cast,
+            List<MovieVideo> trailers)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(MovieDetails movieDetails, List<Person> cast)? loaded,
+    TResult Function(MovieDetails movieDetails, List<Person> cast,
+            List<MovieVideo> trailers)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -342,7 +347,8 @@ class _$_MovieDetailsLoadingState implements _MovieDetailsLoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(MovieDetails movieDetails, List<Person> cast)
+    required TResult Function(MovieDetails movieDetails, List<Person> cast,
+            List<MovieVideo> trailers)
         loaded,
   }) {
     return loading();
@@ -352,7 +358,9 @@ class _$_MovieDetailsLoadingState implements _MovieDetailsLoadingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(MovieDetails movieDetails, List<Person> cast)? loaded,
+    TResult? Function(MovieDetails movieDetails, List<Person> cast,
+            List<MovieVideo> trailers)?
+        loaded,
   }) {
     return loading?.call();
   }
@@ -361,7 +369,9 @@ class _$_MovieDetailsLoadingState implements _MovieDetailsLoadingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(MovieDetails movieDetails, List<Person> cast)? loaded,
+    TResult Function(MovieDetails movieDetails, List<Person> cast,
+            List<MovieVideo> trailers)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -412,7 +422,10 @@ abstract class _$$_MovieDetailsLoadedStateCopyWith<$Res> {
           $Res Function(_$_MovieDetailsLoadedState) then) =
       __$$_MovieDetailsLoadedStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({MovieDetails movieDetails, List<Person> cast});
+  $Res call(
+      {MovieDetails movieDetails,
+      List<Person> cast,
+      List<MovieVideo> trailers});
 
   $MovieDetailsCopyWith<$Res> get movieDetails;
 }
@@ -430,6 +443,7 @@ class __$$_MovieDetailsLoadedStateCopyWithImpl<$Res>
   $Res call({
     Object? movieDetails = null,
     Object? cast = null,
+    Object? trailers = null,
   }) {
     return _then(_$_MovieDetailsLoadedState(
       movieDetails: null == movieDetails
@@ -440,6 +454,10 @@ class __$$_MovieDetailsLoadedStateCopyWithImpl<$Res>
           ? _value._cast
           : cast // ignore: cast_nullable_to_non_nullable
               as List<Person>,
+      trailers: null == trailers
+          ? _value._trailers
+          : trailers // ignore: cast_nullable_to_non_nullable
+              as List<MovieVideo>,
     ));
   }
 
@@ -456,8 +474,11 @@ class __$$_MovieDetailsLoadedStateCopyWithImpl<$Res>
 
 class _$_MovieDetailsLoadedState implements _MovieDetailsLoadedState {
   const _$_MovieDetailsLoadedState(
-      {required this.movieDetails, required final List<Person> cast})
-      : _cast = cast;
+      {required this.movieDetails,
+      required final List<Person> cast,
+      required final List<MovieVideo> trailers})
+      : _cast = cast,
+        _trailers = trailers;
 
   @override
   final MovieDetails movieDetails;
@@ -469,9 +490,17 @@ class _$_MovieDetailsLoadedState implements _MovieDetailsLoadedState {
     return EqualUnmodifiableListView(_cast);
   }
 
+  final List<MovieVideo> _trailers;
+  @override
+  List<MovieVideo> get trailers {
+    if (_trailers is EqualUnmodifiableListView) return _trailers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_trailers);
+  }
+
   @override
   String toString() {
-    return 'MovieDetailsState.loaded(movieDetails: $movieDetails, cast: $cast)';
+    return 'MovieDetailsState.loaded(movieDetails: $movieDetails, cast: $cast, trailers: $trailers)';
   }
 
   @override
@@ -481,12 +510,16 @@ class _$_MovieDetailsLoadedState implements _MovieDetailsLoadedState {
             other is _$_MovieDetailsLoadedState &&
             (identical(other.movieDetails, movieDetails) ||
                 other.movieDetails == movieDetails) &&
-            const DeepCollectionEquality().equals(other._cast, _cast));
+            const DeepCollectionEquality().equals(other._cast, _cast) &&
+            const DeepCollectionEquality().equals(other._trailers, _trailers));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, movieDetails, const DeepCollectionEquality().hash(_cast));
+      runtimeType,
+      movieDetails,
+      const DeepCollectionEquality().hash(_cast),
+      const DeepCollectionEquality().hash(_trailers));
 
   @JsonKey(ignore: true)
   @override
@@ -500,30 +533,35 @@ class _$_MovieDetailsLoadedState implements _MovieDetailsLoadedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(MovieDetails movieDetails, List<Person> cast)
+    required TResult Function(MovieDetails movieDetails, List<Person> cast,
+            List<MovieVideo> trailers)
         loaded,
   }) {
-    return loaded(movieDetails, cast);
+    return loaded(movieDetails, cast, trailers);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(MovieDetails movieDetails, List<Person> cast)? loaded,
+    TResult? Function(MovieDetails movieDetails, List<Person> cast,
+            List<MovieVideo> trailers)?
+        loaded,
   }) {
-    return loaded?.call(movieDetails, cast);
+    return loaded?.call(movieDetails, cast, trailers);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(MovieDetails movieDetails, List<Person> cast)? loaded,
+    TResult Function(MovieDetails movieDetails, List<Person> cast,
+            List<MovieVideo> trailers)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(movieDetails, cast);
+      return loaded(movieDetails, cast, trailers);
     }
     return orElse();
   }
@@ -563,10 +601,12 @@ class _$_MovieDetailsLoadedState implements _MovieDetailsLoadedState {
 abstract class _MovieDetailsLoadedState implements MovieDetailsState {
   const factory _MovieDetailsLoadedState(
       {required final MovieDetails movieDetails,
-      required final List<Person> cast}) = _$_MovieDetailsLoadedState;
+      required final List<Person> cast,
+      required final List<MovieVideo> trailers}) = _$_MovieDetailsLoadedState;
 
   MovieDetails get movieDetails;
   List<Person> get cast;
+  List<MovieVideo> get trailers;
   @JsonKey(ignore: true)
   _$$_MovieDetailsLoadedStateCopyWith<_$_MovieDetailsLoadedState>
       get copyWith => throw _privateConstructorUsedError;

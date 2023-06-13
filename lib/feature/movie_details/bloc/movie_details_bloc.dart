@@ -2,8 +2,11 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tmdb_clone_app/models/api_response_cast.dart';
+import 'package:tmdb_clone_app/models/api_response_movie_video.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_details.dart';
+import 'package:tmdb_clone_app/models/movie_video.dart';
 import 'package:tmdb_clone_app/models/person.dart';
 import 'package:tmdb_clone_app/tmdb_api.dart';
 part 'movie_details_event.dart';
@@ -28,10 +31,21 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   late final TMDBApi tmdbApi = TMDBApi(dio);
 
   FutureOr<void> _onMovieDetailsOnPageOpenedEvent(
-      _MovieDetailsOnPageOpenedEvent event, Emitter<MovieDetailsState> emit) async {
+    _MovieDetailsOnPageOpenedEvent event,
+    Emitter<MovieDetailsState> emit,
+  ) async {
     emit(const MovieDetailsState.loading());
-    MovieDetails movieDetails = await tmdbApi.getMovieDetails(event.movie.id);
-    List<Person> cast = (await tmdbApi.getMovieCast(event.movie.id)).cast;
-    emit(MovieDetailsState.loaded(movieDetails: movieDetails, cast: cast));
+    List<dynamic> infoList = await Future.wait([
+      tmdbApi.getMovieDetails(event.movie.id),
+      tmdbApi.getMovieCast(event.movie.id),
+      tmdbApi.getMovieTrailers(event.movie.id)
+    ]);
+    emit(
+      MovieDetailsState.loaded(
+        movieDetails: infoList[0],
+        cast: (infoList[1] as ApiResponseCast).cast,
+        trailers: (infoList[2] as ApiResponseMovieVideo).results.where((trailer) => trailer.site == "YouTube").toList(),
+      ),
+    );
   }
 }

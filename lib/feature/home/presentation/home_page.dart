@@ -137,12 +137,15 @@ class _MovieEntry extends StatelessWidget {
             Text(
               movie.title,
               style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
             verticalMargin8,
             Text(
               movie.genres.join(', '),
               style: const TextStyle(color: Colors.grey, fontSize: 12),
               overflow: TextOverflow.ellipsis,
+              maxLines: 2,
             )
           ],
         ),
