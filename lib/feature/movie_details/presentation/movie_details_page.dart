@@ -284,8 +284,9 @@ class _PersonEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      width: MediaQuery.of(context).size.width / 3.3,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -307,10 +308,14 @@ class _PersonEntry extends StatelessWidget {
             person.name,
             style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
           ),
-          Text(
-            person.character,
-            style: const TextStyle(color: Colors.grey, fontSize: 12),
-            overflow: TextOverflow.ellipsis,
+          Padding(
+            padding: horizontalPadding8,
+            child: Text(
+              person.character,
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+            ),
           )
         ],
       ),

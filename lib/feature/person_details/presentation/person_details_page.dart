@@ -104,66 +104,50 @@ class PersonDetailsEntry extends StatelessWidget {
               person.name,
               style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            if (personDetails.knownFor != null)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  verticalMargin8,
-                  const Text(
-                    "known for",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    personDetails.knownFor!,
-                    style: const TextStyle(color: Colors.grey, fontSize: 16),
-                  ),
-                ],
+            if (personDetails.knownFor != null) ...[
+              verticalMargin8,
+              const Text(
+                "known for",
+                style: TextStyle(color: Colors.white),
               ),
-            if (personDetails.birthPlace != null)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  verticalMargin8,
-                  const Text(
-                    "Birthplace",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    personDetails.birthPlace!,
-                    style: const TextStyle(color: Colors.grey, fontSize: 16),
-                  ),
-                ],
+              Text(
+                personDetails.knownFor!,
+                style: const TextStyle(color: Colors.grey, fontSize: 16),
               ),
-            if (personDetails.birthday != null)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  verticalMargin8,
-                  const Text(
-                    "Date of Birth",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    DateFormat('dd MMMM yyyy').format(DateTime.parse(personDetails.birthday!)),
-                    style: const TextStyle(color: Colors.grey, fontSize: 16),
-                  ),
-                ],
+            ],
+            if (personDetails.birthPlace != null) ...[
+              verticalMargin8,
+              const Text(
+                "Birthplace",
+                style: TextStyle(color: Colors.white),
               ),
-            if (personDetails.deathday != null)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  verticalMargin8,
-                  const Text(
-                    "Date of Death",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    DateFormat('dd MMMM yyyy').format(DateTime.parse(personDetails.deathday!)),
-                    style: const TextStyle(color: Colors.grey, fontSize: 16),
-                  ),
-                ],
-              )
+              Text(
+                personDetails.birthPlace!,
+                style: const TextStyle(color: Colors.grey, fontSize: 16),
+              ),
+            ],
+            if (personDetails.birthday != null) ...[
+              verticalMargin8,
+              const Text(
+                "Date of Birth",
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                DateFormat('dd MMMM yyyy').format(DateTime.parse(personDetails.birthday!)),
+                style: const TextStyle(color: Colors.grey, fontSize: 16),
+              ),
+            ],
+            if (personDetails.deathday != null) ...[
+              verticalMargin8,
+              const Text(
+                "Date of Death",
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                DateFormat('dd MMMM yyyy').format(DateTime.parse(personDetails.deathday!)),
+                style: const TextStyle(color: Colors.grey, fontSize: 16),
+              ),
+            ],
           ],
         )
       ],

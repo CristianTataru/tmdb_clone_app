@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:tmdb_clone_app/widgets/tmdb_image.dart';
 
 class CastAvatar extends StatelessWidget {
-  const CastAvatar(
-      {required this.path, required this.outerRadius, required this.innerRadius, required this.iconSize, super.key});
+  const CastAvatar({
+    required this.path,
+    required this.outerRadius,
+    required this.innerRadius,
+    required this.iconSize,
+    super.key,
+  });
 
   final String? path;
   final double outerRadius;
