@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:rate/rate.dart';
 import 'package:tmdb_clone_app/feature/movie_details/bloc/movie_details_bloc.dart';
+import 'package:tmdb_clone_app/feature/person_details/presentation/person_details_page.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_details.dart';
 import 'package:tmdb_clone_app/models/movie_video.dart';
@@ -283,24 +284,38 @@ class _PersonEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      width: MediaQuery.of(context).size.width / 3.3,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: () {},
-            child: CastPicture(path: person.photoPath),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return PersonDetailsPage(person);
+              }));
+            },
+            child: CastAvatar(
+              path: person.photoPath,
+              outerRadius: 40.5,
+              innerRadius: 40,
+              iconSize: 70,
+            ),
           ),
           verticalMargin8,
           Text(
             person.name,
             style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
           ),
-          Text(
-            person.character,
-            style: const TextStyle(color: Colors.grey, fontSize: 12),
-            overflow: TextOverflow.ellipsis,
+          Padding(
+            padding: horizontalPadding8,
+            child: Text(
+              person.character,
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+            ),
           )
         ],
       ),

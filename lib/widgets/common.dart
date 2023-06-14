@@ -29,6 +29,7 @@ const verticalMargin80 = SizedBox(height: 80.0);
 // Layout Paddings
 // Horizontal
 const horizontalPadding8 = EdgeInsets.symmetric(horizontal: 8.0);
+const horizontalPadding12 = EdgeInsets.symmetric(horizontal: 12.0);
 const horizontalPadding16 = EdgeInsets.symmetric(horizontal: 16.0);
 
 // Vertical
