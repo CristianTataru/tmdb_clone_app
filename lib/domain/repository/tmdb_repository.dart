@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:tmdb_clone_app/domain/api/tmdb_api.dart';
 import 'package:tmdb_clone_app/models/api_response.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
@@ -10,17 +9,9 @@ import 'package:tmdb_clone_app/models/person.dart';
 import 'package:tmdb_clone_app/models/person_details.dart';
 
 class TMDBRepository {
-  final Dio dio = Dio(
-    BaseOptions(
-      headers: {
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYmVmZjk2Y2U0YTgyNzEwODlkNzU4NGM2ZjYzMzg5NCIsInN1YiI6IjU5NTI1MGE5OTI1MTQxMmFjNzAyMjkzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IU7uc8yDqiKXH_uAr9sWzaDGe6lSxzBRQHE-Mp56bZQ',
-        "accept": "application/json"
-      },
-    ),
-  );
+  TMDBRepository(this.tmdbApi);
 
-  late final TMDBApi tmdbApi = TMDBApi(dio);
+  final TMDBApi tmdbApi;
   List<MovieGenre> genreList = [];
 
   Future<List<Movie>> addMovieGenres(List<Movie> movieList) async {
