@@ -21,12 +21,13 @@ class TMDBRepository {
   );
 
   late final TMDBApi tmdbApi = TMDBApi(dio);
+  List<MovieGenre> genreList = [];
 
-  Future<MoviesData> getPaginatedPopularMovies(int page) async {
-    ApiResponse response = await tmdbApi.getPopularMovies(page);
-    List<Movie> movieList = response.results;
-    List<MovieGenre> genreList = (await tmdbApi.getMovieGenres()).genres;
-    List<Movie> listInUse = [];
+  Future<List<Movie>> addMovieGenres(List<Movie> movieList) async {
+    if (genreList.isEmpty) {
+      genreList = (await tmdbApi.getMovieGenres()).genres;
+    }
+    List<Movie> finalMovieList = [];
     for (int i = 0; i < movieList.length; i++) {
       List<String> myList = [];
       for (int j = 0; j < genreList.length; j++) {
@@ -34,50 +35,28 @@ class TMDBRepository {
           myList.add(genreList[j].name);
         }
       }
-      listInUse.add(movieList[i].copyWith(genres: myList));
+      finalMovieList.add(movieList[i].copyWith(genres: myList));
     }
-    return MoviesData(listInUse, response.totalPages);
+    return finalMovieList;
+  }
+
+  Future<MoviesData> getPaginatedPopularMovies(int page) async {
+    ApiResponse response = await tmdbApi.getPopularMovies(page);
+    return MoviesData(await addMovieGenres(response.results), response.totalPages);
   }
 
   Future<MoviesData> getPaginatedTrendingMovies(int page) async {
     ApiResponse response = await tmdbApi.getTrendingMovies(page);
-    List<Movie> movieList = response.results;
-    List<MovieGenre> genreList = (await tmdbApi.getMovieGenres()).genres;
-    List<Movie> listInUse = [];
-    for (int i = 0; i < movieList.length; i++) {
-      List<String> myList = [];
-      for (int j = 0; j < genreList.length; j++) {
-        if (movieList[i].genreIds.contains(genreList[j].id)) {
-          myList.add(genreList[j].name);
-        }
-      }
-      listInUse.add(movieList[i].copyWith(genres: myList));
-    }
-    return MoviesData(listInUse, response.totalPages);
+    return MoviesData(await addMovieGenres(response.results), response.totalPages);
   }
 
-  Future<PersonDetails> getPersonDetails(int personId) async {
-    PersonDetails personDetails = await tmdbApi.getPersonDetails(personId);
-    return personDetails;
-  }
+  Future<PersonDetails> getPersonDetails(int personId) => tmdbApi.getPersonDetails(personId);
 
-  Future<MovieDetails> getMovieDetails(int movieId) async {
-    MovieDetails movieDetails = await tmdbApi.getMovieDetails(movieId);
-    return movieDetails;
-  }
+  Future<MovieDetails> getMovieDetails(int movieId) => tmdbApi.getMovieDetails(movieId);
 
-  Future<List<Person>> getMovieCast(int movieId) async {
-    List<Person> cast = (await tmdbApi.getMovieCast(movieId)).cast;
-    return cast;
-  }
+  Future<List<Person>> getMovieCast(int movieId) async => (await tmdbApi.getMovieCast(movieId)).cast;
 
-  Future<List<MovieVideo>> getMovieTrailers(int movieId) async {
-    List<MovieVideo> trailers = (await tmdbApi.getMovieTrailers(movieId)).results;
-    return trailers;
-  }
+  Future<List<MovieVideo>> getMovieTrailers(int movieId) async => (await tmdbApi.getMovieTrailers(movieId)).results;
 
-  Future<List<MovieGenre>> getMovieGenres() async {
-    List<MovieGenre> movieGenres = (await tmdbApi.getMovieGenres()).genres;
-    return movieGenres;
-  }
+  Future<List<MovieGenre>> getMovieGenres() async => (await tmdbApi.getMovieGenres()).genres;
 }

@@ -2,8 +2,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tmdb_clone_app/main.dart';
-import 'package:tmdb_clone_app/models/api_response_cast.dart';
-import 'package:tmdb_clone_app/models/api_response_movie_video.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_details.dart';
 import 'package:tmdb_clone_app/models/movie_video.dart';
