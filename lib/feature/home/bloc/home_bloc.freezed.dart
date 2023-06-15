@@ -21,6 +21,7 @@ mixin _$HomeEvent {
     required TResult Function() onAppStarted,
     required TResult Function() onPopularMoviesPageOpened,
     required TResult Function() onTrendingMoviesPageOpened,
+    required TResult Function(Movie movie) onMovieTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$HomeEvent {
     TResult? Function()? onAppStarted,
     TResult? Function()? onPopularMoviesPageOpened,
     TResult? Function()? onTrendingMoviesPageOpened,
+    TResult? Function(Movie movie)? onMovieTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$HomeEvent {
     TResult Function()? onAppStarted,
     TResult Function()? onPopularMoviesPageOpened,
     TResult Function()? onTrendingMoviesPageOpened,
+    TResult Function(Movie movie)? onMovieTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,6 +48,7 @@ mixin _$HomeEvent {
         onPopularMoviesPageOpened,
     required TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)
         onTrendingMoviesPageOpened,
+    required TResult Function(_HomeOnMovieTappedEvent value) onMovieTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +58,7 @@ mixin _$HomeEvent {
         onPopularMoviesPageOpened,
     TResult? Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
         onTrendingMoviesPageOpened,
+    TResult? Function(_HomeOnMovieTappedEvent value)? onMovieTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$HomeEvent {
         onPopularMoviesPageOpened,
     TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
         onTrendingMoviesPageOpened,
+    TResult Function(_HomeOnMovieTappedEvent value)? onMovieTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,6 +132,7 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
     required TResult Function() onAppStarted,
     required TResult Function() onPopularMoviesPageOpened,
     required TResult Function() onTrendingMoviesPageOpened,
+    required TResult Function(Movie movie) onMovieTapped,
   }) {
     return onAppStarted();
   }
@@ -136,6 +143,7 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
     TResult? Function()? onAppStarted,
     TResult? Function()? onPopularMoviesPageOpened,
     TResult? Function()? onTrendingMoviesPageOpened,
+    TResult? Function(Movie movie)? onMovieTapped,
   }) {
     return onAppStarted?.call();
   }
@@ -146,6 +154,7 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
     TResult Function()? onAppStarted,
     TResult Function()? onPopularMoviesPageOpened,
     TResult Function()? onTrendingMoviesPageOpened,
+    TResult Function(Movie movie)? onMovieTapped,
     required TResult orElse(),
   }) {
     if (onAppStarted != null) {
@@ -162,6 +171,7 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
         onPopularMoviesPageOpened,
     required TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)
         onTrendingMoviesPageOpened,
+    required TResult Function(_HomeOnMovieTappedEvent value) onMovieTapped,
   }) {
     return onAppStarted(this);
   }
@@ -174,6 +184,7 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
         onPopularMoviesPageOpened,
     TResult? Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
         onTrendingMoviesPageOpened,
+    TResult? Function(_HomeOnMovieTappedEvent value)? onMovieTapped,
   }) {
     return onAppStarted?.call(this);
   }
@@ -186,6 +197,7 @@ class _$_HomeOnAppStartedEvent implements _HomeOnAppStartedEvent {
         onPopularMoviesPageOpened,
     TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
         onTrendingMoviesPageOpened,
+    TResult Function(_HomeOnMovieTappedEvent value)? onMovieTapped,
     required TResult orElse(),
   }) {
     if (onAppStarted != null) {
@@ -244,6 +256,7 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
     required TResult Function() onAppStarted,
     required TResult Function() onPopularMoviesPageOpened,
     required TResult Function() onTrendingMoviesPageOpened,
+    required TResult Function(Movie movie) onMovieTapped,
   }) {
     return onPopularMoviesPageOpened();
   }
@@ -254,6 +267,7 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
     TResult? Function()? onAppStarted,
     TResult? Function()? onPopularMoviesPageOpened,
     TResult? Function()? onTrendingMoviesPageOpened,
+    TResult? Function(Movie movie)? onMovieTapped,
   }) {
     return onPopularMoviesPageOpened?.call();
   }
@@ -264,6 +278,7 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
     TResult Function()? onAppStarted,
     TResult Function()? onPopularMoviesPageOpened,
     TResult Function()? onTrendingMoviesPageOpened,
+    TResult Function(Movie movie)? onMovieTapped,
     required TResult orElse(),
   }) {
     if (onPopularMoviesPageOpened != null) {
@@ -280,6 +295,7 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
         onPopularMoviesPageOpened,
     required TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)
         onTrendingMoviesPageOpened,
+    required TResult Function(_HomeOnMovieTappedEvent value) onMovieTapped,
   }) {
     return onPopularMoviesPageOpened(this);
   }
@@ -292,6 +308,7 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
         onPopularMoviesPageOpened,
     TResult? Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
         onTrendingMoviesPageOpened,
+    TResult? Function(_HomeOnMovieTappedEvent value)? onMovieTapped,
   }) {
     return onPopularMoviesPageOpened?.call(this);
   }
@@ -304,6 +321,7 @@ class _$_HomeOnPopularMoviesPageOpenedEvent
         onPopularMoviesPageOpened,
     TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
         onTrendingMoviesPageOpened,
+    TResult Function(_HomeOnMovieTappedEvent value)? onMovieTapped,
     required TResult orElse(),
   }) {
     if (onPopularMoviesPageOpened != null) {
@@ -364,6 +382,7 @@ class _$_HomeOnTrendingMoviesPageOpenedEvent
     required TResult Function() onAppStarted,
     required TResult Function() onPopularMoviesPageOpened,
     required TResult Function() onTrendingMoviesPageOpened,
+    required TResult Function(Movie movie) onMovieTapped,
   }) {
     return onTrendingMoviesPageOpened();
   }
@@ -374,6 +393,7 @@ class _$_HomeOnTrendingMoviesPageOpenedEvent
     TResult? Function()? onAppStarted,
     TResult? Function()? onPopularMoviesPageOpened,
     TResult? Function()? onTrendingMoviesPageOpened,
+    TResult? Function(Movie movie)? onMovieTapped,
   }) {
     return onTrendingMoviesPageOpened?.call();
   }
@@ -384,6 +404,7 @@ class _$_HomeOnTrendingMoviesPageOpenedEvent
     TResult Function()? onAppStarted,
     TResult Function()? onPopularMoviesPageOpened,
     TResult Function()? onTrendingMoviesPageOpened,
+    TResult Function(Movie movie)? onMovieTapped,
     required TResult orElse(),
   }) {
     if (onTrendingMoviesPageOpened != null) {
@@ -400,6 +421,7 @@ class _$_HomeOnTrendingMoviesPageOpenedEvent
         onPopularMoviesPageOpened,
     required TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)
         onTrendingMoviesPageOpened,
+    required TResult Function(_HomeOnMovieTappedEvent value) onMovieTapped,
   }) {
     return onTrendingMoviesPageOpened(this);
   }
@@ -412,6 +434,7 @@ class _$_HomeOnTrendingMoviesPageOpenedEvent
         onPopularMoviesPageOpened,
     TResult? Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
         onTrendingMoviesPageOpened,
+    TResult? Function(_HomeOnMovieTappedEvent value)? onMovieTapped,
   }) {
     return onTrendingMoviesPageOpened?.call(this);
   }
@@ -424,6 +447,7 @@ class _$_HomeOnTrendingMoviesPageOpenedEvent
         onPopularMoviesPageOpened,
     TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
         onTrendingMoviesPageOpened,
+    TResult Function(_HomeOnMovieTappedEvent value)? onMovieTapped,
     required TResult orElse(),
   }) {
     if (onTrendingMoviesPageOpened != null) {
@@ -436,6 +460,169 @@ class _$_HomeOnTrendingMoviesPageOpenedEvent
 abstract class _HomeOnTrendingMoviesPageOpenedEvent implements HomeEvent {
   const factory _HomeOnTrendingMoviesPageOpenedEvent() =
       _$_HomeOnTrendingMoviesPageOpenedEvent;
+}
+
+/// @nodoc
+abstract class _$$_HomeOnMovieTappedEventCopyWith<$Res> {
+  factory _$$_HomeOnMovieTappedEventCopyWith(_$_HomeOnMovieTappedEvent value,
+          $Res Function(_$_HomeOnMovieTappedEvent) then) =
+      __$$_HomeOnMovieTappedEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Movie movie});
+
+  $MovieCopyWith<$Res> get movie;
+}
+
+/// @nodoc
+class __$$_HomeOnMovieTappedEventCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$_HomeOnMovieTappedEvent>
+    implements _$$_HomeOnMovieTappedEventCopyWith<$Res> {
+  __$$_HomeOnMovieTappedEventCopyWithImpl(_$_HomeOnMovieTappedEvent _value,
+      $Res Function(_$_HomeOnMovieTappedEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? movie = null,
+  }) {
+    return _then(_$_HomeOnMovieTappedEvent(
+      movie: null == movie
+          ? _value.movie
+          : movie // ignore: cast_nullable_to_non_nullable
+              as Movie,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MovieCopyWith<$Res> get movie {
+    return $MovieCopyWith<$Res>(_value.movie, (value) {
+      return _then(_value.copyWith(movie: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_HomeOnMovieTappedEvent implements _HomeOnMovieTappedEvent {
+  const _$_HomeOnMovieTappedEvent({required this.movie});
+
+  @override
+  final Movie movie;
+
+  @override
+  String toString() {
+    return 'HomeEvent.onMovieTapped(movie: $movie)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HomeOnMovieTappedEvent &&
+            (identical(other.movie, movie) || other.movie == movie));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, movie);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_HomeOnMovieTappedEventCopyWith<_$_HomeOnMovieTappedEvent> get copyWith =>
+      __$$_HomeOnMovieTappedEventCopyWithImpl<_$_HomeOnMovieTappedEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onAppStarted,
+    required TResult Function() onPopularMoviesPageOpened,
+    required TResult Function() onTrendingMoviesPageOpened,
+    required TResult Function(Movie movie) onMovieTapped,
+  }) {
+    return onMovieTapped(movie);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onAppStarted,
+    TResult? Function()? onPopularMoviesPageOpened,
+    TResult? Function()? onTrendingMoviesPageOpened,
+    TResult? Function(Movie movie)? onMovieTapped,
+  }) {
+    return onMovieTapped?.call(movie);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onAppStarted,
+    TResult Function()? onPopularMoviesPageOpened,
+    TResult Function()? onTrendingMoviesPageOpened,
+    TResult Function(Movie movie)? onMovieTapped,
+    required TResult orElse(),
+  }) {
+    if (onMovieTapped != null) {
+      return onMovieTapped(movie);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_HomeOnAppStartedEvent value) onAppStarted,
+    required TResult Function(_HomeOnPopularMoviesPageOpenedEvent value)
+        onPopularMoviesPageOpened,
+    required TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)
+        onTrendingMoviesPageOpened,
+    required TResult Function(_HomeOnMovieTappedEvent value) onMovieTapped,
+  }) {
+    return onMovieTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_HomeOnAppStartedEvent value)? onAppStarted,
+    TResult? Function(_HomeOnPopularMoviesPageOpenedEvent value)?
+        onPopularMoviesPageOpened,
+    TResult? Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
+        onTrendingMoviesPageOpened,
+    TResult? Function(_HomeOnMovieTappedEvent value)? onMovieTapped,
+  }) {
+    return onMovieTapped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_HomeOnAppStartedEvent value)? onAppStarted,
+    TResult Function(_HomeOnPopularMoviesPageOpenedEvent value)?
+        onPopularMoviesPageOpened,
+    TResult Function(_HomeOnTrendingMoviesPageOpenedEvent value)?
+        onTrendingMoviesPageOpened,
+    TResult Function(_HomeOnMovieTappedEvent value)? onMovieTapped,
+    required TResult orElse(),
+  }) {
+    if (onMovieTapped != null) {
+      return onMovieTapped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HomeOnMovieTappedEvent implements HomeEvent {
+  const factory _HomeOnMovieTappedEvent({required final Movie movie}) =
+      _$_HomeOnMovieTappedEvent;
+
+  Movie get movie;
+  @JsonKey(ignore: true)
+  _$$_HomeOnMovieTappedEventCopyWith<_$_HomeOnMovieTappedEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

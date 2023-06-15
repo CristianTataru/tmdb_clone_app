@@ -2,9 +2,11 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tmdb_clone_app/main.dart';
 import 'package:tmdb_clone_app/models/api_response.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_genre.dart';
+import 'package:tmdb_clone_app/routes/router.gr.dart';
 import 'package:tmdb_clone_app/tmdb_api.dart';
 part 'home_event.dart';
 part 'home_state.dart';
@@ -15,6 +17,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_HomeOnAppStartedEvent>(_onHomeOnAppStartedEvent);
     on<_HomeOnPopularMoviesPageOpenedEvent>(_onHomeOnPopularMoviesPageOpenedEvent);
     on<_HomeOnTrendingMoviesPageOpenedEvent>(_onHomeOnTrendingMoviesPageOpenedEvent);
+    on<_HomeOnMovieTappedEvent>(_onHomeOnMovieTappedEvent);
   }
 
   final Dio dio = Dio(
@@ -52,7 +55,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HomeState.loaded(popularMovies: moviesLists[0], trendingMovies: moviesLists[1]));
   }
 
-  _onHomeOnPopularMoviesPageOpenedEvent(_HomeOnPopularMoviesPageOpenedEvent event, Emitter<HomeState> emit) {}
+  void _onHomeOnPopularMoviesPageOpenedEvent(_HomeOnPopularMoviesPageOpenedEvent event, Emitter<HomeState> emit) {
+    router.push(const PopularMoviesRoute());
+  }
 
-  _onHomeOnTrendingMoviesPageOpenedEvent(_HomeOnTrendingMoviesPageOpenedEvent event, Emitter<HomeState> emit) {}
+  void _onHomeOnTrendingMoviesPageOpenedEvent(_HomeOnTrendingMoviesPageOpenedEvent event, Emitter<HomeState> emit) {
+    router.push(const TrendingMoviesRoute());
+  }
+
+  void _onHomeOnMovieTappedEvent(_HomeOnMovieTappedEvent event, Emitter<HomeState> emit) {
+    router.push(MovieDetailsRoute(movie: event.movie));
+  }
 }

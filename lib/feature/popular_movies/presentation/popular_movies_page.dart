@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_clone_app/feature/movie_details/presentation/movie_details_page.dart';
@@ -10,6 +11,7 @@ import 'package:tmdb_clone_app/widgets/tmdb_image.dart';
 
 final bloc = PopularMoviesBloc();
 
+@RoutePage()
 class PopularMoviesPage extends StatefulWidget {
   const PopularMoviesPage({super.key});
 

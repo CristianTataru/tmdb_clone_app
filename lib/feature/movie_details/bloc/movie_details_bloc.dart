@@ -2,12 +2,14 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tmdb_clone_app/main.dart';
 import 'package:tmdb_clone_app/models/api_response_cast.dart';
 import 'package:tmdb_clone_app/models/api_response_movie_video.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_details.dart';
 import 'package:tmdb_clone_app/models/movie_video.dart';
 import 'package:tmdb_clone_app/models/person.dart';
+import 'package:tmdb_clone_app/routes/router.gr.dart';
 import 'package:tmdb_clone_app/tmdb_api.dart';
 part 'movie_details_event.dart';
 part 'movie_details_state.dart';
@@ -16,6 +18,7 @@ part 'movie_details_bloc.freezed.dart';
 class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   MovieDetailsBloc() : super(const _MovieDetailsLoadingState()) {
     on<_MovieDetailsOnPageOpenedEvent>(_onMovieDetailsOnPageOpenedEvent);
+    on<_MovieDetailsOnPersonTappedEvent>(_onMovieDetailsOnPersonTappedEvent);
   }
 
   final Dio dio = Dio(
@@ -47,5 +50,9 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
         trailers: (infoList[2] as ApiResponseMovieVideo).results.where((trailer) => trailer.site == "YouTube").toList(),
       ),
     );
+  }
+
+  void _onMovieDetailsOnPersonTappedEvent(_MovieDetailsOnPersonTappedEvent event, Emitter<MovieDetailsState> emit) {
+    router.push(PersonDetailsRoute(person: event.person));
   }
 }

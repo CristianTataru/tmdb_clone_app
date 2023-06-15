@@ -32,8 +32,6 @@ mixin _$Movie {
   double get rating => throw _privateConstructorUsedError;
   @JsonKey(name: "vote_count")
   int get voteCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'backdrop_path')
-  String get backgroundPosterPath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,8 +50,7 @@ abstract class $MovieCopyWith<$Res> {
       @JsonKey(name: 'poster_path') String posterPath,
       @JsonKey(includeFromJson: false, defaultValue: []) List<String> genres,
       @JsonKey(name: "vote_average") double rating,
-      @JsonKey(name: "vote_count") int voteCount,
-      @JsonKey(name: 'backdrop_path') String backgroundPosterPath});
+      @JsonKey(name: "vote_count") int voteCount});
 }
 
 /// @nodoc
@@ -76,7 +73,6 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
     Object? genres = null,
     Object? rating = null,
     Object? voteCount = null,
-    Object? backgroundPosterPath = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -107,10 +103,6 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
           ? _value.voteCount
           : voteCount // ignore: cast_nullable_to_non_nullable
               as int,
-      backgroundPosterPath: null == backgroundPosterPath
-          ? _value.backgroundPosterPath
-          : backgroundPosterPath // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -128,8 +120,7 @@ abstract class _$$_MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
       @JsonKey(name: 'poster_path') String posterPath,
       @JsonKey(includeFromJson: false, defaultValue: []) List<String> genres,
       @JsonKey(name: "vote_average") double rating,
-      @JsonKey(name: "vote_count") int voteCount,
-      @JsonKey(name: 'backdrop_path') String backgroundPosterPath});
+      @JsonKey(name: "vote_count") int voteCount});
 }
 
 /// @nodoc
@@ -148,7 +139,6 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$_Movie>
     Object? genres = null,
     Object? rating = null,
     Object? voteCount = null,
-    Object? backgroundPosterPath = null,
   }) {
     return _then(_$_Movie(
       id: null == id
@@ -179,10 +169,6 @@ class __$$_MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res, _$_Movie>
           ? _value.voteCount
           : voteCount // ignore: cast_nullable_to_non_nullable
               as int,
-      backgroundPosterPath: null == backgroundPosterPath
-          ? _value.backgroundPosterPath
-          : backgroundPosterPath // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -202,9 +188,7 @@ class _$_Movie implements _Movie {
       @JsonKey(name: "vote_average")
           required this.rating,
       @JsonKey(name: "vote_count")
-          required this.voteCount,
-      @JsonKey(name: 'backdrop_path')
-          required this.backgroundPosterPath})
+          required this.voteCount})
       : _genreIds = genreIds,
         _genres = genres;
 
@@ -242,13 +226,10 @@ class _$_Movie implements _Movie {
   @override
   @JsonKey(name: "vote_count")
   final int voteCount;
-  @override
-  @JsonKey(name: 'backdrop_path')
-  final String backgroundPosterPath;
 
   @override
   String toString() {
-    return 'Movie(id: $id, title: $title, genreIds: $genreIds, posterPath: $posterPath, genres: $genres, rating: $rating, voteCount: $voteCount, backgroundPosterPath: $backgroundPosterPath)';
+    return 'Movie(id: $id, title: $title, genreIds: $genreIds, posterPath: $posterPath, genres: $genres, rating: $rating, voteCount: $voteCount)';
   }
 
   @override
@@ -264,9 +245,7 @@ class _$_Movie implements _Movie {
             const DeepCollectionEquality().equals(other._genres, _genres) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.voteCount, voteCount) ||
-                other.voteCount == voteCount) &&
-            (identical(other.backgroundPosterPath, backgroundPosterPath) ||
-                other.backgroundPosterPath == backgroundPosterPath));
+                other.voteCount == voteCount));
   }
 
   @JsonKey(ignore: true)
@@ -279,8 +258,7 @@ class _$_Movie implements _Movie {
       posterPath,
       const DeepCollectionEquality().hash(_genres),
       rating,
-      voteCount,
-      backgroundPosterPath);
+      voteCount);
 
   @JsonKey(ignore: true)
   @override
@@ -309,9 +287,7 @@ abstract class _Movie implements Movie {
       @JsonKey(name: "vote_average")
           required final double rating,
       @JsonKey(name: "vote_count")
-          required final int voteCount,
-      @JsonKey(name: 'backdrop_path')
-          required final String backgroundPosterPath}) = _$_Movie;
+          required final int voteCount}) = _$_Movie;
 
   factory _Movie.fromJson(Map<String, dynamic> json) = _$_Movie.fromJson;
 
@@ -334,9 +310,6 @@ abstract class _Movie implements Movie {
   @override
   @JsonKey(name: "vote_count")
   int get voteCount;
-  @override
-  @JsonKey(name: 'backdrop_path')
-  String get backgroundPosterPath;
   @override
   @JsonKey(ignore: true)
   _$$_MovieCopyWith<_$_Movie> get copyWith =>

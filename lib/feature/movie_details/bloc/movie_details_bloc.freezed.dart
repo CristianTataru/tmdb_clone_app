@@ -16,20 +16,22 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MovieDetailsEvent {
-  Movie get movie => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Movie movie) onPageOpened,
+    required TResult Function(Person person) onPersonTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Movie movie)? onPageOpened,
+    TResult? Function(Person person)? onPersonTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Movie movie)? onPageOpened,
+    TResult Function(Person person)? onPersonTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -37,22 +39,22 @@ mixin _$MovieDetailsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_MovieDetailsOnPageOpenedEvent value)
         onPageOpened,
+    required TResult Function(_MovieDetailsOnPersonTappedEvent value)
+        onPersonTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MovieDetailsOnPageOpenedEvent value)? onPageOpened,
+    TResult? Function(_MovieDetailsOnPersonTappedEvent value)? onPersonTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MovieDetailsOnPageOpenedEvent value)? onPageOpened,
+    TResult Function(_MovieDetailsOnPersonTappedEvent value)? onPersonTapped,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $MovieDetailsEventCopyWith<MovieDetailsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,10 +63,6 @@ abstract class $MovieDetailsEventCopyWith<$Res> {
   factory $MovieDetailsEventCopyWith(
           MovieDetailsEvent value, $Res Function(MovieDetailsEvent) then) =
       _$MovieDetailsEventCopyWithImpl<$Res, MovieDetailsEvent>;
-  @useResult
-  $Res call({Movie movie});
-
-  $MovieCopyWith<$Res> get movie;
 }
 
 /// @nodoc
@@ -76,41 +74,17 @@ class _$MovieDetailsEventCopyWithImpl<$Res, $Val extends MovieDetailsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? movie = null,
-  }) {
-    return _then(_value.copyWith(
-      movie: null == movie
-          ? _value.movie
-          : movie // ignore: cast_nullable_to_non_nullable
-              as Movie,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MovieCopyWith<$Res> get movie {
-    return $MovieCopyWith<$Res>(_value.movie, (value) {
-      return _then(_value.copyWith(movie: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_MovieDetailsOnPageOpenedEventCopyWith<$Res>
-    implements $MovieDetailsEventCopyWith<$Res> {
+abstract class _$$_MovieDetailsOnPageOpenedEventCopyWith<$Res> {
   factory _$$_MovieDetailsOnPageOpenedEventCopyWith(
           _$_MovieDetailsOnPageOpenedEvent value,
           $Res Function(_$_MovieDetailsOnPageOpenedEvent) then) =
       __$$_MovieDetailsOnPageOpenedEventCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Movie movie});
 
-  @override
   $MovieCopyWith<$Res> get movie;
 }
 
@@ -135,6 +109,14 @@ class __$$_MovieDetailsOnPageOpenedEventCopyWithImpl<$Res>
           : movie // ignore: cast_nullable_to_non_nullable
               as Movie,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MovieCopyWith<$Res> get movie {
+    return $MovieCopyWith<$Res>(_value.movie, (value) {
+      return _then(_value.copyWith(movie: value));
+    });
   }
 }
 
@@ -174,6 +156,7 @@ class _$_MovieDetailsOnPageOpenedEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Movie movie) onPageOpened,
+    required TResult Function(Person person) onPersonTapped,
   }) {
     return onPageOpened(movie);
   }
@@ -182,6 +165,7 @@ class _$_MovieDetailsOnPageOpenedEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Movie movie)? onPageOpened,
+    TResult? Function(Person person)? onPersonTapped,
   }) {
     return onPageOpened?.call(movie);
   }
@@ -190,6 +174,7 @@ class _$_MovieDetailsOnPageOpenedEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Movie movie)? onPageOpened,
+    TResult Function(Person person)? onPersonTapped,
     required TResult orElse(),
   }) {
     if (onPageOpened != null) {
@@ -203,6 +188,8 @@ class _$_MovieDetailsOnPageOpenedEvent
   TResult map<TResult extends Object?>({
     required TResult Function(_MovieDetailsOnPageOpenedEvent value)
         onPageOpened,
+    required TResult Function(_MovieDetailsOnPersonTappedEvent value)
+        onPersonTapped,
   }) {
     return onPageOpened(this);
   }
@@ -211,6 +198,7 @@ class _$_MovieDetailsOnPageOpenedEvent
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_MovieDetailsOnPageOpenedEvent value)? onPageOpened,
+    TResult? Function(_MovieDetailsOnPersonTappedEvent value)? onPersonTapped,
   }) {
     return onPageOpened?.call(this);
   }
@@ -219,6 +207,7 @@ class _$_MovieDetailsOnPageOpenedEvent
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MovieDetailsOnPageOpenedEvent value)? onPageOpened,
+    TResult Function(_MovieDetailsOnPersonTappedEvent value)? onPersonTapped,
     required TResult orElse(),
   }) {
     if (onPageOpened != null) {
@@ -232,11 +221,162 @@ abstract class _MovieDetailsOnPageOpenedEvent implements MovieDetailsEvent {
   const factory _MovieDetailsOnPageOpenedEvent({required final Movie movie}) =
       _$_MovieDetailsOnPageOpenedEvent;
 
-  @override
   Movie get movie;
-  @override
   @JsonKey(ignore: true)
   _$$_MovieDetailsOnPageOpenedEventCopyWith<_$_MovieDetailsOnPageOpenedEvent>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_MovieDetailsOnPersonTappedEventCopyWith<$Res> {
+  factory _$$_MovieDetailsOnPersonTappedEventCopyWith(
+          _$_MovieDetailsOnPersonTappedEvent value,
+          $Res Function(_$_MovieDetailsOnPersonTappedEvent) then) =
+      __$$_MovieDetailsOnPersonTappedEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Person person});
+
+  $PersonCopyWith<$Res> get person;
+}
+
+/// @nodoc
+class __$$_MovieDetailsOnPersonTappedEventCopyWithImpl<$Res>
+    extends _$MovieDetailsEventCopyWithImpl<$Res,
+        _$_MovieDetailsOnPersonTappedEvent>
+    implements _$$_MovieDetailsOnPersonTappedEventCopyWith<$Res> {
+  __$$_MovieDetailsOnPersonTappedEventCopyWithImpl(
+      _$_MovieDetailsOnPersonTappedEvent _value,
+      $Res Function(_$_MovieDetailsOnPersonTappedEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? person = null,
+  }) {
+    return _then(_$_MovieDetailsOnPersonTappedEvent(
+      person: null == person
+          ? _value.person
+          : person // ignore: cast_nullable_to_non_nullable
+              as Person,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PersonCopyWith<$Res> get person {
+    return $PersonCopyWith<$Res>(_value.person, (value) {
+      return _then(_value.copyWith(person: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_MovieDetailsOnPersonTappedEvent
+    implements _MovieDetailsOnPersonTappedEvent {
+  const _$_MovieDetailsOnPersonTappedEvent({required this.person});
+
+  @override
+  final Person person;
+
+  @override
+  String toString() {
+    return 'MovieDetailsEvent.onPersonTapped(person: $person)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_MovieDetailsOnPersonTappedEvent &&
+            (identical(other.person, person) || other.person == person));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, person);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_MovieDetailsOnPersonTappedEventCopyWith<
+          _$_MovieDetailsOnPersonTappedEvent>
+      get copyWith => __$$_MovieDetailsOnPersonTappedEventCopyWithImpl<
+          _$_MovieDetailsOnPersonTappedEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Movie movie) onPageOpened,
+    required TResult Function(Person person) onPersonTapped,
+  }) {
+    return onPersonTapped(person);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Movie movie)? onPageOpened,
+    TResult? Function(Person person)? onPersonTapped,
+  }) {
+    return onPersonTapped?.call(person);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Movie movie)? onPageOpened,
+    TResult Function(Person person)? onPersonTapped,
+    required TResult orElse(),
+  }) {
+    if (onPersonTapped != null) {
+      return onPersonTapped(person);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MovieDetailsOnPageOpenedEvent value)
+        onPageOpened,
+    required TResult Function(_MovieDetailsOnPersonTappedEvent value)
+        onPersonTapped,
+  }) {
+    return onPersonTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MovieDetailsOnPageOpenedEvent value)? onPageOpened,
+    TResult? Function(_MovieDetailsOnPersonTappedEvent value)? onPersonTapped,
+  }) {
+    return onPersonTapped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MovieDetailsOnPageOpenedEvent value)? onPageOpened,
+    TResult Function(_MovieDetailsOnPersonTappedEvent value)? onPersonTapped,
+    required TResult orElse(),
+  }) {
+    if (onPersonTapped != null) {
+      return onPersonTapped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MovieDetailsOnPersonTappedEvent implements MovieDetailsEvent {
+  const factory _MovieDetailsOnPersonTappedEvent(
+      {required final Person person}) = _$_MovieDetailsOnPersonTappedEvent;
+
+  Person get person;
+  @JsonKey(ignore: true)
+  _$$_MovieDetailsOnPersonTappedEventCopyWith<
+          _$_MovieDetailsOnPersonTappedEvent>
       get copyWith => throw _privateConstructorUsedError;
 }
 
