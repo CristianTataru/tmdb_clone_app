@@ -1,13 +1,11 @@
 import 'dart:async';
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tmdb_clone_app/main.dart';
-import 'package:tmdb_clone_app/models/api_response.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_genre.dart';
+import 'package:tmdb_clone_app/models/movies_data.dart';
 import 'package:tmdb_clone_app/routes/router.gr.dart';
-import 'package:tmdb_clone_app/tmdb_api.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 part 'home_bloc.freezed.dart';
@@ -20,20 +18,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_HomeOnMovieTappedEvent>(_onHomeOnMovieTappedEvent);
   }
 
-  final Dio dio = Dio(
-    BaseOptions(
-      headers: {
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYmVmZjk2Y2U0YTgyNzEwODlkNzU4NGM2ZjYzMzg5NCIsInN1YiI6IjU5NTI1MGE5OTI1MTQxMmFjNzAyMjkzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IU7uc8yDqiKXH_uAr9sWzaDGe6lSxzBRQHE-Mp56bZQ',
-        "accept": "application/json"
-      },
-    ),
-  );
-
-  late final TMDBApi tmdbApi = TMDBApi(dio);
-
   Future<List<Movie>> addMovieGenres(List<Movie> movieList) async {
-    List<MovieGenre> genreList = (await tmdbApi.getMovieGenres()).genres;
+    List<MovieGenre> genreList = (await tmdbRepository.getMovieGenres());
     List<Movie> finalMovieList = [];
     for (int i = 0; i < movieList.length; i++) {
       List<String> myList = [];
@@ -49,9 +35,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _onHomeOnAppStartedEvent(_HomeOnAppStartedEvent event, Emitter<HomeState> emit) async {
     emit(const HomeState.loading());
-    List<ApiResponse> responseList = await Future.wait([tmdbApi.getPopularMovies(1), tmdbApi.getTrendingMovies(1)]);
+    List<MoviesData> responseList =
+        await Future.wait([tmdbRepository.getPaginatedPopularMovies(1), tmdbRepository.getPaginatedTrendingMovies(1)]);
     List<List<Movie>> moviesLists =
-        await Future.wait([addMovieGenres(responseList[0].results), addMovieGenres(responseList[1].results)]);
+        await Future.wait([addMovieGenres(responseList[0].movies), addMovieGenres(responseList[1].movies)]);
     emit(HomeState.loaded(popularMovies: moviesLists[0], trendingMovies: moviesLists[1]));
   }
 

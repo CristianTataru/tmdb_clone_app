@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tmdb_clone_app/domain/repository/tmdb_repository.dart';
 import 'package:tmdb_clone_app/routes/router.dart';
 
 final router = AppRouter();
+final tmdbRepository = TMDBRepository();
 void main() {
   runApp(const MyApp());
 }
