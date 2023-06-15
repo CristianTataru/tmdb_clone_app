@@ -1,7 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_clone_app/feature/home/bloc/home_bloc.dart';
-import 'package:tmdb_clone_app/feature/movie_details/presentation/movie_details_page.dart';
 import 'package:tmdb_clone_app/feature/popular_movies/presentation/popular_movies_page.dart';
 import 'package:tmdb_clone_app/feature/trending_movies/presentation/trending_movies_page.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
@@ -11,6 +11,7 @@ import 'package:tmdb_clone_app/widgets/tmdb_image.dart';
 
 final bloc = HomeBloc();
 
+@RoutePage()
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -54,9 +55,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return const PopularMoviesPage();
-                        }));
+                        bloc.add(const HomeEvent.onPopularMoviesPageOpened());
                       },
                       child: const Text(
                         "See all ❯",
@@ -85,9 +84,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return const TrendingMoviesPage();
-                        }));
+                        bloc.add(const HomeEvent.onTrendingMoviesPageOpened());
                       },
                       child: const Text(
                         "See all ❯",
@@ -127,9 +124,7 @@ class _MovieEntry extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                  return MovieDetailsPage(movie);
-                }));
+                bloc.add(HomeEvent.onMovieTapped(movie: movie));
               },
               child: TmdbImage(height: 146, width: 100, path: movie.posterPath),
             ),

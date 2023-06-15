@@ -12,7 +12,6 @@ class Movie with _$Movie {
     @Default([]) @JsonKey(includeFromJson: false, defaultValue: []) List<String> genres,
     @JsonKey(name: "vote_average") required double rating,
     @JsonKey(name: "vote_count") required int voteCount,
-    @JsonKey(name: 'backdrop_path') required String backgroundPosterPath,
   }) = _Movie;
 
   factory Movie.fromJson(Map<String, Object?> json) => _$MovieFromJson(json);
