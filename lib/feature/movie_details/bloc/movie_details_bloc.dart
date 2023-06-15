@@ -32,8 +32,8 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
     emit(
       MovieDetailsState.loaded(
         movieDetails: infoList[0],
-        cast: (infoList[1] as ApiResponseCast).cast,
-        trailers: (infoList[2] as ApiResponseMovieVideo).results.where((trailer) => trailer.site == "YouTube").toList(),
+        cast: infoList[1],
+        trailers: infoList[2].where((trailer) => trailer.site == "YouTube").toList(),
       ),
     );
   }
