@@ -1,16 +1,12 @@
 import 'dart:async';
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tmdb_clone_app/main.dart';
-import 'package:tmdb_clone_app/models/api_response_cast.dart';
-import 'package:tmdb_clone_app/models/api_response_movie_video.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_details.dart';
 import 'package:tmdb_clone_app/models/movie_video.dart';
 import 'package:tmdb_clone_app/models/person.dart';
 import 'package:tmdb_clone_app/routes/router.gr.dart';
-import 'package:tmdb_clone_app/tmdb_api.dart';
 part 'movie_details_event.dart';
 part 'movie_details_state.dart';
 part 'movie_details_bloc.freezed.dart';
@@ -21,33 +17,21 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
     on<_MovieDetailsOnPersonTappedEvent>(_onMovieDetailsOnPersonTappedEvent);
   }
 
-  final Dio dio = Dio(
-    BaseOptions(
-      headers: {
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYmVmZjk2Y2U0YTgyNzEwODlkNzU4NGM2ZjYzMzg5NCIsInN1YiI6IjU5NTI1MGE5OTI1MTQxMmFjNzAyMjkzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IU7uc8yDqiKXH_uAr9sWzaDGe6lSxzBRQHE-Mp56bZQ',
-        "accept": "application/json"
-      },
-    ),
-  );
-
-  late final TMDBApi tmdbApi = TMDBApi(dio);
-
   FutureOr<void> _onMovieDetailsOnPageOpenedEvent(
     _MovieDetailsOnPageOpenedEvent event,
     Emitter<MovieDetailsState> emit,
   ) async {
     emit(const MovieDetailsState.loading());
     List<dynamic> infoList = await Future.wait([
-      tmdbApi.getMovieDetails(event.movie.id),
-      tmdbApi.getMovieCast(event.movie.id),
-      tmdbApi.getMovieTrailers(event.movie.id)
+      tmdbRepository.getMovieDetails(event.movie.id),
+      tmdbRepository.getMovieCast(event.movie.id),
+      tmdbRepository.getMovieTrailers(event.movie.id)
     ]);
     emit(
       MovieDetailsState.loaded(
         movieDetails: infoList[0],
-        cast: (infoList[1] as ApiResponseCast).cast,
-        trailers: (infoList[2] as ApiResponseMovieVideo).results.where((trailer) => trailer.site == "YouTube").toList(),
+        cast: infoList[1],
+        trailers: infoList[2].where((trailer) => trailer.site == "YouTube").toList(),
       ),
     );
   }

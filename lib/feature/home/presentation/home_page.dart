@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_clone_app/feature/home/bloc/home_bloc.dart';
-import 'package:tmdb_clone_app/feature/popular_movies/presentation/popular_movies_page.dart';
-import 'package:tmdb_clone_app/feature/trending_movies/presentation/trending_movies_page.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/theme/custom_colors.dart';
 import 'package:tmdb_clone_app/widgets/common.dart';
