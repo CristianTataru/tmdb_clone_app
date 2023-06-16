@@ -28,7 +28,7 @@ void main() {
       MovieGenre(id: 3, name: "Sports")
     ];
 
-    const personDetails = PersonDetails(
+    const stubPersonDetails = PersonDetails(
       knownFor: "Acting",
       birthPlace: "New York",
       birthday: "12-05-2022",
@@ -36,7 +36,7 @@ void main() {
       biography: "Stub Biography",
     );
 
-    const movieDetails = MovieDetails(
+    const stubMovieDetails = MovieDetails(
       backgroundPosterPath: "",
       collection: null,
       budget: 1000000,
@@ -49,12 +49,14 @@ void main() {
       voteCount: 2500,
     );
 
-    const movieCast = [
+    const stubMovieCast = [
       Person(name: "Person One", photoPath: "", id: 1),
       Person(name: "Person Two", photoPath: "", id: 2),
     ];
 
-    const movieTrailers = [MovieVideo(key: "Stub Key", site: "Youtube")];
+    const stubMovieTrailers = [
+      MovieVideo(key: "Stub Key", site: "Youtube"),
+    ];
 
     late MockTMDBApi mockApi;
     late TMDBRepository subject;
@@ -73,11 +75,12 @@ void main() {
       when(() => mockApi.getMovieGenres()).thenAnswer((_) async {
         return const ApiResponseGenres(genres: stubMovieGenres);
       });
-      final data = await subject.getPaginatedPopularMovies(1);
-      expect(data.movies.length, 1);
-      expect(data.movies.first.genres.first, 'Comedy');
-      expect(data.movies.first.genres.length, 2);
-      expect(data.totalPages, 2);
+      final result = await subject.getPaginatedPopularMovies(1);
+      final expectedMovies = [
+        stubMovieList[0].copyWith(genres: ["Comedy", "Action"])
+      ];
+      expect(result.totalPages, 2);
+      expect(result.movies, expectedMovies);
     });
     test("Get paginated trending movies", () async {
       when(() => mockApi.getTrendingMovies(1)).thenAnswer((_) async {
@@ -90,46 +93,41 @@ void main() {
       when(() => mockApi.getMovieGenres()).thenAnswer((_) async {
         return const ApiResponseGenres(genres: stubMovieGenres);
       });
-      final data = await subject.getPaginatedTrendingMovies(1);
-      expect(data.movies.length, 2);
-      expect(data.movies.last.genres.first, "Action");
-      expect(data.movies.first.genres.length, 2);
-      expect(data.totalPages, 1000);
+      final result = await subject.getPaginatedTrendingMovies(1);
+      final expectedMovies = [
+        stubMovieList[0].copyWith(genres: ["Comedy", "Action"]),
+        stubMovieList[1].copyWith(genres: ["Action", "Sports"])
+      ];
+      expect(result.totalPages, 1000);
+      expect(result.movies, expectedMovies);
     });
     test("Get person details", () async {
       when(() => mockApi.getPersonDetails(1)).thenAnswer((_) async {
-        return personDetails;
+        return stubPersonDetails;
       });
-      final data = await mockApi.getPersonDetails(1);
-      expect(data.deathday, null);
-      expect(data.knownFor, "Acting");
-      expect(data.biography, "Stub Biography");
+      final result = await subject.getPersonDetails(1);
+      expect(result, stubPersonDetails);
     });
     test("Get movie details", () async {
       when(() => mockApi.getMovieDetails(1)).thenAnswer((_) async {
-        return movieDetails;
+        return stubMovieDetails;
       });
-      final data = await mockApi.getMovieDetails(1);
-      expect(data.budget, 1000000);
-      expect(data.revenue, 5000000);
-      expect(data.overview, "Stub Overview");
+      final result = await subject.getMovieDetails(1);
+      expect(result, stubMovieDetails);
     });
     test("Get movie cast", () async {
       when(() => mockApi.getMovieCast(1)).thenAnswer((_) async {
-        return const ApiResponseCast(cast: movieCast);
+        return const ApiResponseCast(cast: stubMovieCast);
       });
-      final data = await mockApi.getMovieCast(1);
-      expect(data.cast.length, 2);
-      expect(data.cast.first.name, "Person One");
-      expect(data.cast.last.id, 2);
+      final result = await subject.getMovieCast(1);
+      expect(result, stubMovieCast);
     });
     test("Get movie trailers", () async {
       when(() => mockApi.getMovieTrailers(1)).thenAnswer((_) async {
-        return const ApiResponseMovieVideo(results: movieTrailers);
+        return const ApiResponseMovieVideo(results: stubMovieTrailers);
       });
-      final data = await mockApi.getMovieTrailers(1);
-      expect(data.results.length, 1);
-      expect(data.results.first.site, "Youtube");
+      final result = await subject.getMovieTrailers(1);
+      expect(result, stubMovieTrailers);
     });
   });
 }
