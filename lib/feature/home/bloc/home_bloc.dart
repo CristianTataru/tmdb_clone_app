@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tmdb_clone_app/main.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
-import 'package:tmdb_clone_app/models/movie_genre.dart';
 import 'package:tmdb_clone_app/models/movies_data.dart';
 import 'package:tmdb_clone_app/routes/router.gr.dart';
 part 'home_event.dart';
