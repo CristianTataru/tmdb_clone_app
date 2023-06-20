@@ -5,6 +5,7 @@ import 'package:tmdb_clone_app/main.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movies_data.dart';
 import 'package:tmdb_clone_app/routes/router.gr.dart';
+
 part 'home_event.dart';
 part 'home_state.dart';
 part 'home_bloc.freezed.dart';

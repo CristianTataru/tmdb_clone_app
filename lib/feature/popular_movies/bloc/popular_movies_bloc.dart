@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tmdb_clone_app/main.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movies_data.dart';
+
 part 'popular_movies_event.dart';
 part 'popular_movies_state.dart';
 part 'popular_movies_bloc.freezed.dart';

@@ -32,27 +32,32 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
       bloc: bloc,
       builder: (context, tmdbState) {
         return Scaffold(
-            backgroundColor: CustomColors.background,
-            appBar: AppBar(
-              backgroundColor: const Color.fromARGB(255, 1, 13, 7),
-              title: const Text("Popular", style: TextStyle(fontSize: 24)),
-              leading: const BackButton(color: Colors.green),
+          backgroundColor: CustomColors.background,
+          appBar: AppBar(
+            backgroundColor: const Color.fromARGB(255, 1, 13, 7),
+            title: const Text("Popular", style: TextStyle(fontSize: 24)),
+            leading: const BackButton(color: Colors.green),
+          ),
+          body: tmdbState.map(
+            loading: (state) => loadingSpinner,
+            loaded: (state) => _MovieList(
+              movies: state.movies,
+              canLoadMore: state.canLoadMore,
             ),
-            body: tmdbState.map(
-              loading: (state) => loadingSpinner,
-              loaded: (state) => _MovieList(movies: state.movies),
-              moreLoading: (state) => _MovieList(movies: state.movies, showSpinner: true),
-            ));
+            moreLoading: (state) => _MovieList(movies: state.movies, canLoadMore: null, showSpinner: true),
+          ),
+        );
       },
     );
   }
 }
 
 class _MovieList extends StatefulWidget {
-  const _MovieList({required this.movies, this.showSpinner = false});
+  const _MovieList({required this.movies, required this.canLoadMore, this.showSpinner = false});
 
   final List<Movie> movies;
   final bool showSpinner;
+  final bool? canLoadMore;
 
   @override
   State<_MovieList> createState() => _MovieListState();
@@ -65,7 +70,7 @@ class _MovieListState extends State<_MovieList> {
   void initState() {
     super.initState();
     scrollController.addListener(() {
-      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+      if (scrollController.position.pixels == scrollController.position.maxScrollExtent && widget.canLoadMore == true) {
         bloc.add(const PopularMoviesEvent.onMoreDataLoading());
       }
     });
@@ -80,11 +85,18 @@ class _MovieListState extends State<_MovieList> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      key: const Key("popularMoviesScrollKey"),
       controller: scrollController,
       child: Column(
         children: [
           ...widget.movies.map((movie) => _MovieListItem(movie)),
-          if (widget.showSpinner) const SizedBox(height: 96, child: loadingSpinner) else const SizedBox(height: 96)
+          if (widget.showSpinner)
+            const SizedBox(
+              height: 96,
+              child: loadingSpinner,
+            )
+          else
+            const SizedBox(height: 96)
         ],
       ),
     );

@@ -1,0 +1,206 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "adult": false,
+            "backdrop_path": "/2e7fc8eNwLXZ5Uvehvl3xj8wVyv.jpg",
+            "genre_ids": [
+                28,
+                80,
+                53
+            ],
+            "id": 385687,
+            "original_language": "en",
+            "original_title": "Fast X",
+            "overview": "Over many missions and against impossible odds, Dom Toretto and his family have outsmarted, out-nerved and outdriven every foe in their path. Now, they confront the most lethal opponent they've ever faced: A terrifying threat emerging from the shadows of the past who's fueled by blood revenge, and who is determined to shatter this family and destroy everything—and everyone—that Dom loves, forever.",
+            "popularity": 11557.896,
+            "poster_path": "/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",
+            "release_date": "2023-05-17",
+            "title": "Fast X",
+            "video": false,
+            "vote_average": 7.4,
+            "vote_count": 1540
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/1inZm0xxXrpRfN0LxwE2TXzyLN6.jpg",
+            "genre_ids": [
+                28,
+                53,
+                80
+            ],
+            "id": 603692,
+            "original_language": "en",
+            "original_title": "John Wick: Chapter 4",
+            "overview": "With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
+            "popularity": 3046.463,
+            "poster_path": "/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
+            "release_date": "2023-03-22",
+            "title": "John Wick: Chapter 4",
+            "video": false,
+            "vote_average": 7.9,
+            "vote_count": 2990
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/9n2tJBplPbgR2ca05hS5CKXwP2c.jpg",
+            "genre_ids": [
+                16,
+                10751,
+                12,
+                14,
+                35
+            ],
+            "id": 502356,
+            "original_language": "en",
+            "original_title": "The Super Mario Bros. Movie",
+            "overview": "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.",
+            "popularity": 2386.685,
+            "poster_path": "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
+            "release_date": "2023-04-05",
+            "title": "The Super Mario Bros. Movie",
+            "video": false,
+            "vote_average": 7.8,
+            "vote_count": 4737
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/nGxUxi3PfXDRm7Vg95VBNgNM8yc.jpg",
+            "genre_ids": [
+                28,
+                12,
+                16,
+                878
+            ],
+            "id": 569094,
+            "original_language": "en",
+            "original_title": "Spider-Man: Across the Spider-Verse",
+            "overview": "After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse’s very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders and must set out on his own to save those he loves most.",
+            "popularity": 2410.54,
+            "poster_path": "/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+            "release_date": "2023-05-31",
+            "title": "Spider-Man: Across the Spider-Verse",
+            "video": false,
+            "vote_average": 8.7,
+            "vote_count": 1339
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/pNOccytgkGuyofTLmh1sqEfTJuE.jpg",
+            "genre_ids": [
+                10749,
+                18
+            ],
+            "id": 1010581,
+            "original_language": "es",
+            "original_title": "Culpa mía",
+            "overview": "Noah must leave her city, boyfriend, and friends to move into William Leister's mansion, the flashy and wealthy husband of her mother Rafaela. As a proud and independent 17 year old, Noah resists living in a mansion surrounded by luxury. However, it is there where she meets Nick, her new stepbrother, and the clash of their strong personalities becomes evident from the very beginning.",
+            "popularity": 3107.558,
+            "poster_path": "/w46Vw536HwNnEzOa7J24YH9DPRS.jpg",
+            "release_date": "2023-06-08",
+            "title": "My Fault",
+            "video": false,
+            "vote_average": 8.4,
+            "vote_count": 462
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/94TIUEhuwv8PhdIADEvSuwPljS5.jpg",
+            "genre_ids": [
+                28,
+                10752
+            ],
+            "id": 840326,
+            "original_language": "fi",
+            "original_title": "Sisu",
+            "overview": "Deep in the wilderness of Lapland, Aatami Korpi is searching for gold but after he stumbles upon Nazi patrol, a breathtaking and gold-hungry chase through the destroyed and mined Lapland wilderness begins.",
+            "popularity": 1070.082,
+            "poster_path": "/ygO9lowFMXWymATCrhoQXd6gCEh.jpg",
+            "release_date": "2023-01-27",
+            "title": "Sisu",
+            "video": false,
+            "vote_average": 7.4,
+            "vote_count": 701
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/gMJngTNfaqCSCqGD4y8lVMZXKDn.jpg",
+            "genre_ids": [
+                28,
+                12,
+                878
+            ],
+            "id": 640146,
+            "original_language": "en",
+            "original_title": "Ant-Man and the Wasp: Quantumania",
+            "overview": "Super-Hero partners Scott Lang and Hope van Dyne, along with with Hope's parents Janet van Dyne and Hank Pym, and Scott's daughter Cassie Lang, find themselves exploring the Quantum Realm, interacting with strange new creatures and embarking on an adventure that will push them beyond the limits of what they thought possible.",
+            "popularity": 1144.621,
+            "poster_path": "/qnqGbB22YJ7dSs4o6M7exTpNxPz.jpg",
+            "release_date": "2023-02-15",
+            "title": "Ant-Man and the Wasp: Quantumania",
+            "video": false,
+            "vote_average": 6.5,
+            "vote_count": 3311
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/hiHGRbyTcbZoLsYYkO4QiCLYe34.jpg",
+            "genre_ids": [
+                27,
+                53
+            ],
+            "id": 758323,
+            "original_language": "en",
+            "original_title": "The Pope's Exorcist",
+            "overview": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
+            "popularity": 891.245,
+            "poster_path": "/gNPqcv1tAifbN7PRNgqpzY8sEJZ.jpg",
+            "release_date": "2023-04-05",
+            "title": "The Pope's Exorcist",
+            "video": false,
+            "vote_average": 7.2,
+            "vote_count": 1415
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/wRxLAw4l17LqiFcPLkobriPTZAw.jpg",
+            "genre_ids": [
+                28,
+                53
+            ],
+            "id": 697843,
+            "original_language": "en",
+            "original_title": "Extraction 2",
+            "overview": "Tasked with extracting a family who is at the mercy of a Georgian gangster, Tyler Rake infiltrates one of the world's deadliest prisons in order to save them. But when the extraction gets hot, and the gangster dies in the heat of battle, his equally ruthless brother tracks down Rake and his team to Sydney, in order to get revenge.",
+            "popularity": 843.563,
+            "poster_path": "/7gKI9hpEMcZUQpNgKrkDzJpbnNS.jpg",
+            "release_date": "2023-06-12",
+            "title": "Extraction 2",
+            "video": false,
+            "vote_average": 7.9,
+            "vote_count": 377
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/28WypBR9DhbHyhmDhgxQLmkf5aQ.jpg",
+            "genre_ids": [
+                35,
+                28,
+                14
+            ],
+            "id": 594767,
+            "original_language": "en",
+            "original_title": "Shazam! Fury of the Gods",
+            "overview": "Billy Batson and his foster siblings, who transform into superheroes by saying \"Shazam!\", are forced to get back into action and fight the Daughters of Atlas, who they must stop from using a weapon that could destroy the world.",
+            "popularity": 814.095,
+            "poster_path": "/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg",
+            "release_date": "2023-03-15",
+            "title": "Shazam! Fury of the Gods",
+            "video": false,
+            "vote_average": 6.7,
+            "vote_count": 1972
+        }
+    ],
+    "total_pages": 2,
+    "total_results": 15
+}

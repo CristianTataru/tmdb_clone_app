@@ -43,11 +43,20 @@ class TMDBRepository {
 
   Future<PersonDetails> getPersonDetails(int personId) => tmdbApi.getPersonDetails(personId);
 
-  Future<MovieDetails> getMovieDetails(int movieId) => tmdbApi.getMovieDetails(movieId);
+  Future<MovieDetails> getMovieDetails(int movieId) async {
+    final result = await tmdbApi.getMovieDetails(movieId);
+    return result;
+  }
 
-  Future<List<Person>> getMovieCast(int movieId) async => (await tmdbApi.getMovieCast(movieId)).cast;
+  Future<List<Person>> getMovieCast(int movieId) async {
+    final result = (await tmdbApi.getMovieCast(movieId)).cast;
+    return result;
+  }
 
-  Future<List<MovieVideo>> getMovieTrailers(int movieId) async => (await tmdbApi.getMovieTrailers(movieId)).results;
+  Future<List<MovieVideo>> getMovieTrailers(int movieId) async {
+    final result = (await tmdbApi.getMovieTrailers(movieId)).results;
+    return result;
+  }
 
   Future<List<MovieGenre>> getMovieGenres() async => (await tmdbApi.getMovieGenres()).genres;
 }

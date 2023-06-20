@@ -38,66 +38,69 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 24),
             ),
           ),
-          body: Column(
-            children: [
-              verticalMargin24,
-              Padding(
-                padding: horizontalPadding8,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text(
-                        "Popular",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                verticalMargin24,
+                Padding(
+                  padding: horizontalPadding8,
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        child: Text(
+                          "Popular",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        bloc.add(const HomeEvent.onPopularMoviesPageOpened());
-                      },
-                      child: const Text(
-                        "See all ❯",
-                        style: TextStyle(color: Colors.grey),
+                      GestureDetector(
+                        onTap: () {
+                          bloc.add(const HomeEvent.onPopularMoviesPageOpened());
+                        },
+                        key: const Key("seeAllPopularMoviesKey"),
+                        child: const Text(
+                          "See all >",
+                          style: TextStyle(color: Colors.grey),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              verticalMargin8,
-              homeState.map(
-                loading: (state) => const Expanded(child: loadingSpinner),
-                loaded: (state) => _MoviesCarousel(state.popularMovies),
-              ),
-              divider,
-              verticalMargin8,
-              Padding(
-                padding: horizontalPadding8,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Text(
-                        "Trending",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        bloc.add(const HomeEvent.onTrendingMoviesPageOpened());
-                      },
-                      child: const Text(
-                        "See all ❯",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ),
-                  ],
+                verticalMargin8,
+                homeState.map(
+                  loading: (state) => loadingSpinner,
+                  loaded: (state) => _MoviesCarousel(state.popularMovies),
                 ),
-              ),
-              verticalMargin8,
-              homeState.map(
-                loading: (state) => const Expanded(child: loadingSpinner),
-                loaded: (state) => _MoviesCarousel(state.trendingMovies),
-              )
-            ],
+                divider,
+                verticalMargin8,
+                Padding(
+                  padding: horizontalPadding8,
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        child: Text(
+                          "Trending",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          bloc.add(const HomeEvent.onTrendingMoviesPageOpened());
+                        },
+                        child: const Text(
+                          "See all >",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                verticalMargin8,
+                homeState.map(
+                  loading: (state) => loadingSpinner,
+                  loaded: (state) => _MoviesCarousel(state.trendingMovies),
+                )
+              ],
+            ),
           ),
         );
       },
@@ -124,6 +127,7 @@ class _MovieEntry extends StatelessWidget {
               onTap: () {
                 bloc.add(HomeEvent.onMovieTapped(movie: movie));
               },
+              key: const Key("movieEntryKey"),
               child: TmdbImage(height: 146, width: 100, path: movie.posterPath),
             ),
             verticalMargin8,

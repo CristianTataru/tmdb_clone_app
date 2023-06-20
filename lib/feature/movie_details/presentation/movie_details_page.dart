@@ -75,6 +75,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
           body: movieDetailsState.map(
             loading: (state) => loadingSpinner,
             loaded: (state) => SingleChildScrollView(
+              key: const Key("movieDetailsPageScrollKey"),
               child: Column(
                 children: [
                   _TopSectionWidget(movie: widget.movie, movieDetails: state.movieDetails),
@@ -101,7 +102,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                     ),
                   ),
                   verticalMargin8,
-                  _CastCarousel(state.cast.length > 1 ? state.cast.sublist(0, 15) : state.cast),
+                  _CastCarousel(state.cast.length > 15 ? state.cast.sublist(0, 15) : state.cast),
                   divider,
                   verticalMargin8,
                   const _SectionTitle(title: "Videos", size: 18),
@@ -117,19 +118,19 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            _InfoText(title: "Release Date", info: [
+                            InfoText(title: "Release Date", info: [
                               DateFormat('dd MMMM yyyy').format(DateTime.parse(state.movieDetails.releaseDate))
                             ]),
-                            _InfoText(
+                            InfoText(
                                 title: "Language",
                                 info: state.movieDetails.spokenLanguages.contains(const SpokenLanguage(name: "English"))
                                     ? ["English"]
                                     : [state.movieDetails.spokenLanguages.first.name]),
-                            _InfoText(
+                            InfoText(
                                 title: "Budget", info: ["\$${state.movieDetails.budget.toMillionString()} Million"]),
-                            _InfoText(
+                            InfoText(
                                 title: "Revenue", info: ["\$${state.movieDetails.revenue.toMillionString()} Million"]),
-                            _InfoText(
+                            InfoText(
                                 title: "Production Companies",
                                 info: state.movieDetails.productionCompanies.map((e) => e.name).toList())
                           ],
@@ -292,6 +293,7 @@ class _PersonEntry extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
+            key: Key("${person.id}"),
             onTap: () {
               bloc.add(MovieDetailsEvent.onPersonTapped(person: person));
             },
@@ -329,6 +331,7 @@ class _CastCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      key: const Key("castCarouselScrollKey"),
       scrollDirection: Axis.horizontal,
       child: Row(
         children: cast.map((person) => _PersonEntry(person: person)).toList(),
@@ -371,6 +374,11 @@ class _TrailerEntry extends StatelessWidget {
                 child: Image.network(
                   'https://img.youtube.com/vi/${trailer.key}/0.jpg',
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stack) => Container(
+                    color: const Color(0xFF6F6D6A),
+                    alignment: Alignment.center,
+                    child: const Icon(Icons.warning, color: Colors.black26, size: 128.0),
+                  ),
                 ),
               ),
             ),
@@ -435,8 +443,8 @@ class _SectionTitle extends StatelessWidget {
   }
 }
 
-class _InfoText extends StatelessWidget {
-  const _InfoText({required this.title, required this.info});
+class InfoText extends StatelessWidget {
+  const InfoText({super.key, required this.title, required this.info});
 
   final String title;
   final List<String> info;

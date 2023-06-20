@@ -44,34 +44,35 @@ class _PersonDetailsPageState extends State<PersonDetailsPage> {
             ),
           ),
           body: personDetailsState.map(
-              loading: (state) => loadingSpinner,
-              loaded: (state) => SingleChildScrollView(
-                    child: Padding(
-                      padding: horizontalPadding12,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          verticalMargin32,
-                          PersonDetailsEntry(person: widget.person, personDetails: state.personDetails),
-                          verticalMargin8,
-                          divider,
-                          verticalMargin12,
-                          Visibility(
-                            visible: state.personDetails.biography != '',
-                            child: const Text(
-                              "Biography",
-                              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          verticalMargin8,
-                          Text(
-                            "${state.personDetails.biography}",
-                            style: const TextStyle(color: Colors.grey, fontSize: 13),
-                          )
-                        ],
+            loading: (state) => loadingSpinner,
+            loaded: (state) => SingleChildScrollView(
+              child: Padding(
+                padding: horizontalPadding12,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    verticalMargin32,
+                    PersonDetailsEntry(person: widget.person, personDetails: state.personDetails),
+                    verticalMargin8,
+                    divider,
+                    verticalMargin12,
+                    Visibility(
+                      visible: state.personDetails.biography != '',
+                      child: const Text(
+                        "Biography",
+                        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
                       ),
                     ),
-                  )),
+                    verticalMargin8,
+                    Text(
+                      "${state.personDetails.biography}",
+                      style: const TextStyle(color: Colors.grey, fontSize: 13),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
         );
       },
     );
