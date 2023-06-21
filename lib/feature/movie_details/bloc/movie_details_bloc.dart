@@ -7,6 +7,7 @@ import 'package:tmdb_clone_app/models/movie_details.dart';
 import 'package:tmdb_clone_app/models/movie_video.dart';
 import 'package:tmdb_clone_app/models/person.dart';
 import 'package:tmdb_clone_app/routes/router.gr.dart';
+
 part 'movie_details_event.dart';
 part 'movie_details_state.dart';
 part 'movie_details_bloc.freezed.dart';

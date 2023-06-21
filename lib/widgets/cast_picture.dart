@@ -33,6 +33,11 @@ class CastAvatar extends StatelessWidget {
           : CircleAvatar(
               radius: innerRadius,
               backgroundImage: NetworkImage("https://image.tmdb.org/t/p/w400$path"),
+              onBackgroundImageError: (exception, stackTrace) => Container(
+                color: const Color(0xFF6F6D6A),
+                alignment: Alignment.center,
+                child: const Icon(Icons.warning, color: Colors.black26, size: 128.0),
+              ),
               backgroundColor: Colors.black,
             ),
     );

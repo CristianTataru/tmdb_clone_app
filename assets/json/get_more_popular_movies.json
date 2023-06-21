@@ -1,0 +1,107 @@
+{
+    "page": 2,
+    "results": [
+        {
+            "adult": false,
+            "backdrop_path": "/35OoC3JxHXrAOg4FAa2DrPCzUX9.jpg",
+            "genre_ids": [
+                10749,
+                18
+            ],
+            "id": 1010581,
+            "original_language": "es",
+            "original_title": "Culpa mía",
+            "overview": "Noah must leave her city, boyfriend, and friends to move into William Leister's mansion, the flashy and wealthy husband of her mother Rafaela. As a proud and independent 17 year old, Noah resists living in a mansion surrounded by luxury. However, it is there where she meets Nick, her new stepbrother, and the clash of their strong personalities becomes evident from the very beginning.",
+            "popularity": 1857.31,
+            "poster_path": "/w46Vw536HwNnEzOa7J24YH9DPRS.jpg",
+            "release_date": "2023-06-08",
+            "title": "My Fault",
+            "video": false,
+            "vote_average": 8.4,
+            "vote_count": 598
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/kIX6VS5FTMURcK3WlNNkPss60e4.jpg",
+            "genre_ids": [
+                878,
+                28,
+                12
+            ],
+            "id": 298618,
+            "original_language": "en",
+            "original_title": "The Flash",
+            "overview": "When his attempt to save his family inadvertently alters the future, Barry Allen becomes trapped in a reality in which General Zod has returned and there are no Super Heroes to turn to. In order to save the world that he is in and return to the future that he knows, Barry's only hope is to race for his life. But will making the ultimate sacrifice be enough to reset the universe?",
+            "popularity": 1807.078,
+            "poster_path": "/rktDFPbfHfUbArZ6OOOKsXcv0Bm.jpg",
+            "release_date": "2023-06-13",
+            "title": "The Flash",
+            "video": false,
+            "vote_average": 6.9,
+            "vote_count": 334
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/vQ5T84t8h4N2xAswNFW9fkVIyZq.jpg",
+            "genre_ids": [
+                9648,
+                53,
+                878
+            ],
+            "id": 536437,
+            "original_language": "en",
+            "original_title": "Hypnotic",
+            "overview": "A detective becomes entangled in a mystery involving his missing daughter and a secret government program while investigating a string of reality-bending crimes.",
+            "popularity": 2032.074,
+            "poster_path": "/3IhGkkalwXguTlceGSl8XUJZOVI.jpg",
+            "release_date": "2023-05-11",
+            "title": "Hypnotic",
+            "video": false,
+            "vote_average": 6.5,
+            "vote_count": 187
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/8rpDcsfLJypbO6vREc0547VKqEv.jpg",
+            "genre_ids": [
+                878,
+                12,
+                28
+            ],
+            "id": 76600,
+            "original_language": "en",
+            "original_title": "Avatar: The Way of Water",
+            "overview": "Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.",
+            "popularity": 1322.791,
+            "poster_path": "/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
+            "release_date": "2022-12-14",
+            "title": "Avatar: The Way of Water",
+            "video": false,
+            "vote_average": 7.7,
+            "vote_count": 8624
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/ribiMu3iINPxDkofErPxe8jQ8L0.jpg",
+            "genre_ids": [
+                12,
+                10751,
+                14,
+                10749
+            ],
+            "id": 447277,
+            "original_language": "en",
+            "original_title": "The Little Mermaid",
+            "overview": "The youngest of King Triton’s daughters, and the most defiant, Ariel longs to find out more about the world beyond the sea, and while visiting the surface, falls for the dashing Prince Eric. With mermaids forbidden to interact with humans, Ariel makes a deal with the evil sea witch, Ursula, which gives her a chance to experience life on land, but ultimately places her life – and her father’s crown – in jeopardy.",
+            "popularity": 1246.928,
+            "poster_path": "/ym1dxyOk4jFcSl4Q2zmRrA5BEEN.jpg",
+            "release_date": "2023-05-18",
+            "title": "The Little Mermaid",
+            "video": false,
+            "vote_average": 6.2,
+            "vote_count": 683
+        }
+    ],
+    "total_pages": 2,
+    "total_results": 15
+}
