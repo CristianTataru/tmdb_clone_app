@@ -1,22 +1,29 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tmdb_clone_app/main.dart';
+import 'package:injectable/injectable.dart';
+import 'package:tmdb_clone_app/domain/repository/tmdb_repository.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movies_data.dart';
+import 'package:tmdb_clone_app/routes/router.dart';
 import 'package:tmdb_clone_app/routes/router.gr.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
 part 'home_bloc.freezed.dart';
 
+@injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(const _HomeLoadingState()) {
+  HomeBloc(this.tmdbRepository, this.router) : super(const _HomeLoadingState()) {
     on<_HomeOnAppStartedEvent>(_onHomeOnAppStartedEvent);
     on<_HomeOnPopularMoviesPageOpenedEvent>(_onHomeOnPopularMoviesPageOpenedEvent);
     on<_HomeOnTrendingMoviesPageOpenedEvent>(_onHomeOnTrendingMoviesPageOpenedEvent);
     on<_HomeOnMovieTappedEvent>(_onHomeOnMovieTappedEvent);
+    add(const HomeEvent.onAppStarted());
   }
+
+  final TMDBRepository tmdbRepository;
+  final AppRouter router;
 
   FutureOr<void> _onHomeOnAppStartedEvent(_HomeOnAppStartedEvent event, Emitter<HomeState> emit) async {
     emit(const HomeState.loading());

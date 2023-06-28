@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tmdb_clone_app/di/di_container.dart';
 import 'package:tmdb_clone_app/feature/movie_details/presentation/movie_details_page.dart';
 import 'package:tmdb_clone_app/feature/popular_movies/bloc/popular_movies_bloc.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
@@ -8,8 +9,6 @@ import 'package:tmdb_clone_app/theme/custom_colors.dart';
 import 'package:tmdb_clone_app/widgets/common.dart';
 import 'package:rate/rate.dart';
 import 'package:tmdb_clone_app/widgets/tmdb_image.dart';
-
-final bloc = PopularMoviesBloc();
 
 @RoutePage()
 class PopularMoviesPage extends StatefulWidget {
@@ -21,33 +20,29 @@ class PopularMoviesPage extends StatefulWidget {
 
 class _PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
-  void initState() {
-    super.initState();
-    bloc.add(const PopularMoviesEvent.onPageOpened());
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
-      bloc: bloc,
-      builder: (context, tmdbState) {
-        return Scaffold(
-          backgroundColor: CustomColors.background,
-          appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 1, 13, 7),
-            title: const Text("Popular", style: TextStyle(fontSize: 24)),
-            leading: const BackButton(color: Colors.green),
-          ),
-          body: tmdbState.map(
-            loading: (state) => loadingSpinner,
-            loaded: (state) => _MovieList(
-              movies: state.movies,
-              canLoadMore: state.canLoadMore,
+    return BlocProvider<PopularMoviesBloc>(
+      create: (context) => diContainer.get(),
+      child: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
+        builder: (context, tmdbState) {
+          return Scaffold(
+            backgroundColor: CustomColors.background,
+            appBar: AppBar(
+              backgroundColor: const Color.fromARGB(255, 1, 13, 7),
+              title: const Text("Popular", style: TextStyle(fontSize: 24)),
+              leading: const BackButton(color: Colors.green),
             ),
-            moreLoading: (state) => _MovieList(movies: state.movies, canLoadMore: null, showSpinner: true),
-          ),
-        );
-      },
+            body: tmdbState.map(
+              loading: (state) => loadingSpinner,
+              loaded: (state) => _MovieList(
+                movies: state.movies,
+                canLoadMore: state.canLoadMore,
+              ),
+              moreLoading: (state) => _MovieList(movies: state.movies, canLoadMore: null, showSpinner: true),
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -71,7 +66,7 @@ class _MovieListState extends State<_MovieList> {
     super.initState();
     scrollController.addListener(() {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent && widget.canLoadMore == true) {
-        bloc.add(const PopularMoviesEvent.onMoreDataLoading());
+        context.read<PopularMoviesBloc>().add(const PopularMoviesEvent.onMoreDataLoading());
       }
     });
   }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tmdb_clone_app/di/di_container.dart';
 import 'package:tmdb_clone_app/feature/movie_details/presentation/movie_details_page.dart';
 import 'package:tmdb_clone_app/feature/trending_movies/bloc/trending_movies_bloc.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
@@ -8,8 +9,6 @@ import 'package:tmdb_clone_app/theme/custom_colors.dart';
 import 'package:tmdb_clone_app/widgets/common.dart';
 import 'package:rate/rate.dart';
 import 'package:tmdb_clone_app/widgets/tmdb_image.dart';
-
-final bloc = TrendingMoviesBloc();
 
 @RoutePage()
 class TrendingMoviesPage extends StatefulWidget {
@@ -21,29 +20,25 @@ class TrendingMoviesPage extends StatefulWidget {
 
 class _TrendingMoviesPageState extends State<TrendingMoviesPage> {
   @override
-  void initState() {
-    super.initState();
-    bloc.add(const TrendingMoviesEvent.onPageOpened());
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrendingMoviesBloc, TrendingMoviesState>(
-      bloc: bloc,
-      builder: (context, tmdbState) {
-        return Scaffold(
-            backgroundColor: CustomColors.background,
-            appBar: AppBar(
-              backgroundColor: const Color.fromARGB(255, 1, 13, 7),
-              title: const Text("Trending", style: TextStyle(fontSize: 24)),
-              leading: const BackButton(color: Colors.green),
-            ),
-            body: tmdbState.map(
-              loading: (state) => loadingSpinner,
-              loaded: (state) => _MovieList(movies: state.movies),
-              moreLoading: (state) => _MovieList(movies: state.movies, showSpinner: true),
-            ));
-      },
+    return BlocProvider<TrendingMoviesBloc>(
+      create: (context) => diContainer.get(),
+      child: BlocBuilder<TrendingMoviesBloc, TrendingMoviesState>(
+        builder: (context, tmdbState) {
+          return Scaffold(
+              backgroundColor: CustomColors.background,
+              appBar: AppBar(
+                backgroundColor: const Color.fromARGB(255, 1, 13, 7),
+                title: const Text("Trending", style: TextStyle(fontSize: 24)),
+                leading: const BackButton(color: Colors.green),
+              ),
+              body: tmdbState.map(
+                loading: (state) => loadingSpinner,
+                loaded: (state) => _MovieList(movies: state.movies),
+                moreLoading: (state) => _MovieList(movies: state.movies, showSpinner: true),
+              ));
+        },
+      ),
     );
   }
 }
@@ -66,7 +61,7 @@ class _MovieListState extends State<_MovieList> {
     super.initState();
     scrollController.addListener(() {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-        bloc.add(const TrendingMoviesEvent.onMoreDataLoading());
+        context.read<TrendingMoviesBloc>().add(const TrendingMoviesEvent.onMoreDataLoading());
       }
     });
   }

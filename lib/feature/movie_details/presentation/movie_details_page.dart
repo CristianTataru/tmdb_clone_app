@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:rate/rate.dart';
+import 'package:tmdb_clone_app/di/di_container.dart';
 import 'package:tmdb_clone_app/feature/movie_details/bloc/movie_details_bloc.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movie_details.dart';
@@ -17,8 +18,6 @@ import 'package:tmdb_clone_app/widgets/common.dart';
 import 'package:tmdb_clone_app/widgets/tmdb_background_poster.dart';
 import 'package:tmdb_clone_app/widgets/tmdb_image.dart';
 
-final bloc = MovieDetailsBloc();
-
 @RoutePage()
 class MovieDetailsPage extends StatefulWidget {
   const MovieDetailsPage(this.movie, {super.key});
@@ -30,121 +29,119 @@ class MovieDetailsPage extends StatefulWidget {
 }
 
 class _MovieDetailsPageState extends State<MovieDetailsPage> {
-  @override
-  void initState() {
-    super.initState();
-    bloc.add(MovieDetailsEvent.onPageOpened(movie: widget.movie));
-  }
-
   RegExp regex = RegExp(r'([.]*0)(?!.*\d)');
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
-      bloc: bloc,
-      builder: (context, movieDetailsState) {
-        return Scaffold(
-          backgroundColor: CustomColors.background,
-          appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 1, 13, 7),
-            title: Text(widget.movie.title),
-            leading: const BackButton(
-              color: Colors.green,
+    return BlocProvider<MovieDetailsBloc>(
+      create: (context) => diContainer.get()..add(MovieDetailsEvent.onPageOpened(movie: widget.movie)),
+      child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
+        builder: (context, movieDetailsState) {
+          return Scaffold(
+            backgroundColor: CustomColors.background,
+            appBar: AppBar(
+              backgroundColor: const Color.fromARGB(255, 1, 13, 7),
+              title: Text(widget.movie.title),
+              leading: const BackButton(
+                color: Colors.green,
+              ),
+              actions: [
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.favorite_border,
+                      color: Colors.green,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.star_border_outlined,
+                      color: Colors.green,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.bookmark_border_outlined,
+                      color: Colors.green,
+                    ))
+              ],
             ),
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite_border,
-                    color: Colors.green,
-                  )),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.star_border_outlined,
-                    color: Colors.green,
-                  )),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.bookmark_border_outlined,
-                    color: Colors.green,
-                  ))
-            ],
-          ),
-          body: movieDetailsState.map(
-            loading: (state) => loadingSpinner,
-            loaded: (state) => SingleChildScrollView(
-              key: const Key("movieDetailsPageScrollKey"),
-              child: Column(
-                children: [
-                  _TopSectionWidget(movie: widget.movie, movieDetails: state.movieDetails),
-                  divider,
-                  verticalMargin8,
-                  Padding(
-                    padding: horizontalPadding8,
-                    child: Row(
-                      children: [
-                        const Expanded(
-                          child: Text(
-                            "Cast & Crew",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+            body: movieDetailsState.map(
+              loading: (state) => loadingSpinner,
+              loaded: (state) => SingleChildScrollView(
+                key: const Key("movieDetailsPageScrollKey"),
+                child: Column(
+                  children: [
+                    _TopSectionWidget(movie: widget.movie, movieDetails: state.movieDetails),
+                    divider,
+                    verticalMargin8,
+                    Padding(
+                      padding: horizontalPadding8,
+                      child: Row(
+                        children: [
+                          const Expanded(
+                            child: Text(
+                              "Cast & Crew",
+                              style: TextStyle(color: Colors.white, fontSize: 18),
+                            ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: const Text(
-                            "See all ❯",
-                            style: TextStyle(color: Colors.grey),
+                          GestureDetector(
+                            onTap: () {},
+                            child: const Text(
+                              "See all ❯",
+                              style: TextStyle(color: Colors.grey),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  verticalMargin8,
-                  _CastCarousel(state.cast.length > 15 ? state.cast.sublist(0, 15) : state.cast),
-                  divider,
-                  verticalMargin8,
-                  const _SectionTitle(title: "Videos", size: 18),
-                  verticalMargin8,
-                  _TrailersCarousel(trailers: state.trailers),
-                  divider,
-                  verticalMargin8,
-                  const _SectionTitle(title: "Information", size: 16),
-                  verticalMargin8,
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            InfoText(title: "Release Date", info: [
-                              DateFormat('dd MMMM yyyy').format(DateTime.parse(state.movieDetails.releaseDate))
-                            ]),
-                            InfoText(
-                                title: "Language",
-                                info: state.movieDetails.spokenLanguages.contains(const SpokenLanguage(name: "English"))
-                                    ? ["English"]
-                                    : [state.movieDetails.spokenLanguages.first.name]),
-                            InfoText(
-                                title: "Budget", info: ["\$${state.movieDetails.budget.toMillionString()} Million"]),
-                            InfoText(
-                                title: "Revenue", info: ["\$${state.movieDetails.revenue.toMillionString()} Million"]),
-                            InfoText(
-                                title: "Production Companies",
-                                info: state.movieDetails.productionCompanies.map((e) => e.name).toList())
-                          ],
-                        ),
+                        ],
                       ),
-                      horizontalMargin72
-                    ],
-                  )
-                ],
+                    ),
+                    verticalMargin8,
+                    _CastCarousel(state.cast.length > 15 ? state.cast.sublist(0, 15) : state.cast),
+                    divider,
+                    verticalMargin8,
+                    const _SectionTitle(title: "Videos", size: 18),
+                    verticalMargin8,
+                    _TrailersCarousel(trailers: state.trailers),
+                    divider,
+                    verticalMargin8,
+                    const _SectionTitle(title: "Information", size: 16),
+                    verticalMargin8,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              InfoText(title: "Release Date", info: [
+                                DateFormat('dd MMMM yyyy').format(DateTime.parse(state.movieDetails.releaseDate))
+                              ]),
+                              InfoText(
+                                  title: "Language",
+                                  info:
+                                      state.movieDetails.spokenLanguages.contains(const SpokenLanguage(name: "English"))
+                                          ? ["English"]
+                                          : [state.movieDetails.spokenLanguages.first.name]),
+                              InfoText(
+                                  title: "Budget", info: ["\$${state.movieDetails.budget.toMillionString()} Million"]),
+                              InfoText(
+                                  title: "Revenue",
+                                  info: ["\$${state.movieDetails.revenue.toMillionString()} Million"]),
+                              InfoText(
+                                  title: "Production Companies",
+                                  info: state.movieDetails.productionCompanies.map((e) => e.name).toList())
+                            ],
+                          ),
+                        ),
+                        horizontalMargin72
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
@@ -295,7 +292,7 @@ class _PersonEntry extends StatelessWidget {
           GestureDetector(
             key: Key("${person.id}"),
             onTap: () {
-              bloc.add(MovieDetailsEvent.onPersonTapped(person: person));
+              context.read<MovieDetailsBloc>().add(MovieDetailsEvent.onPersonTapped(person: person));
             },
             child: CastAvatar(
               path: person.photoPath,
@@ -478,10 +475,12 @@ class InfoText extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...info.map((e) => Text(
-                      e,
-                      style: const TextStyle(color: Colors.grey),
-                    ))
+                ...info.map(
+                  (e) => Text(
+                    e,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                )
               ],
             ),
           )

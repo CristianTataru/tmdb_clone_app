@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
 import 'package:tmdb_clone_app/models/api_response.dart';
@@ -8,8 +9,10 @@ import 'package:tmdb_clone_app/models/movie_details.dart';
 import 'package:tmdb_clone_app/models/person_details.dart';
 part 'tmdb_api.g.dart';
 
+@injectable
 @RestApi(baseUrl: 'https://api.themoviedb.org/3/')
 abstract class TMDBApi {
+  @factoryMethod
   factory TMDBApi(Dio dio) = _TMDBApi;
 
   @GET('movie/popular?language=en-US&page={page}')
