@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:tmdb_clone_app/domain/api/tmdb_api.dart';
 import 'package:tmdb_clone_app/models/api_response.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
@@ -8,6 +9,7 @@ import 'package:tmdb_clone_app/models/movies_data.dart';
 import 'package:tmdb_clone_app/models/person.dart';
 import 'package:tmdb_clone_app/models/person_details.dart';
 
+@singleton
 class TMDBRepository {
   TMDBRepository(this.tmdbApi);
 
