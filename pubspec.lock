@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.1.1"
+  bdd_widget_test:
+    dependency: "direct dev"
+    description:
+      name: bdd_widget_test
+      sha256: "02a8980571ef3a79e1dead843f409ab367696980dcde9750006c8df00d0a4c97"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.0"
   bloc:
     dependency: transitive
     description:
@@ -201,6 +209,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
+  diacritic:
+    dependency: transitive
+    description:
+      name: diacritic
+      sha256: c09a420e737dc036122121fea9f774767e95068f34a17894ee9db30c5bda3075
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.3"
   dio:
     dependency: "direct main"
     description:
@@ -488,6 +504,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.0"
+  mocktail_image_network:
+    dependency: "direct dev"
+    description:
+      name: mocktail_image_network
+      sha256: a13cb88a8e199c797ad9ddce80880821781c164a9693ddb58104c07915f60877
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.1"
   nested:
     dependency: transitive
     description:
