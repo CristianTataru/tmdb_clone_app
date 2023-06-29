@@ -1,8 +1,7 @@
 import 'package:tmdb_clone_app/feature/home/presentation/home_page.dart';
 
 Feature: PersonDetailsPage
-
-    Scenario: I am on MovieDetailsPage
+    Scenario: Open PersonDetailsPage and load data successfully
         Given MovieDetailsPage is opened
         And I scroll until cast carousel
         And I scroll until last cast member

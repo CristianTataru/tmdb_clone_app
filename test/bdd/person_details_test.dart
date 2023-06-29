@@ -3,8 +3,6 @@
 
 import 'package:tmdb_clone_app/feature/home/presentation/home_page.dart';
 
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -18,7 +16,7 @@ import 'package:bdd_widget_test/step/i_see_text.dart';
 
 void main() {
   group('''PersonDetailsPage''', () {
-    testWidgets('''I am on MovieDetailsPage''', (tester) async {
+    testWidgets('''Open PersonDetailsPage and load data successfully''', (tester) async {
       await moviedetailspageIsOpened(tester);
       await iScrollUntilCastCarousel(tester);
       await iScrollUntilLastCastMember(tester);

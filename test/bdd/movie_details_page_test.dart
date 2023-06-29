@@ -4,7 +4,6 @@
 import 'package:tmdb_clone_app/feature/home/presentation/home_page.dart';
 import 'package:tmdb_clone_app/feature/movie_details/presentation/movie_details_page.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -17,7 +16,7 @@ import 'package:bdd_widget_test/step/i_see_text.dart';
 
 void main() {
   group('''MovieDetailsPage''', () {
-    testWidgets('''I am on HomePage''', (tester) async {
+    testWidgets('''Open MovieDetailsPage and load data successfully''', (tester) async {
       await homepageIsOpened(tester);
       await iSeeExactlyWidgets(tester, 15, MovieEntry);
       await iTapOnWidgetAtIndex(tester, MovieEntry, 0);

@@ -1,9 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_import, directives_ordering
 
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -15,7 +12,7 @@ import 'package:bdd_widget_test/step/i_see_text.dart';
 
 void main() {
   group('''PopularMoviesPage''', () {
-    testWidgets('''I am on HomePage''', (tester) async {
+    testWidgets('''Open PopularMoviesPage and load paginated data successfully''', (tester) async {
       await homepageIsOpened(tester);
       await iTapOnTextAtIndex(tester, 'See all >', 0);
       await iWait(tester);

@@ -1,28 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tmdb_clone_app/di/di_container.dart';
 import 'package:tmdb_clone_app/feature/movie_details/presentation/movie_details_page.dart';
 import 'package:tmdb_clone_app/feature/popular_movies/presentation/popular_movies_page.dart';
 import 'package:tmdb_clone_app/main.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
-  testWidgets("See all popular movies", (tester) async {
-    await tester.pumpWidget(const MyApp());
-    await tester.pumpAndSettle();
-    expect(find.byKey(const Key("seeAllPopularMoviesKey")), findsOneWidget);
-    await tester.tap(find.byKey(const Key("seeAllPopularMoviesKey")));
-    await tester.pumpAndSettle();
-    expect(find.byType(PopularMoviesPage), findsOneWidget);
-    await tester.drag(find.byKey(const Key("popularMoviesScrollKey")), const Offset(0, -3000));
-    await tester.pumpAndSettle();
-    await tester.dragUntilVisible(
-        find.text("The Little Mermaid"), find.byKey(const Key("popularMoviesScrollKey")), const Offset(0, 50));
-    expect(find.text("The Little Mermaid"), findsOneWidget);
-  });
-  testWidgets("seeMovieDetails", (tester) async {
-    mockNetworkImagesFor(() async {
+  Future<void> pumpMyApp(WidgetTester tester) async {
+    await mockNetworkImagesFor(() async {
       await tester.pumpWidget(const MyApp());
       await tester.pumpAndSettle();
+    });
+  }
+
+  group("Widget Tests", () {
+    setUp(() async {
+      await diContainer.reset();
+      configureDependencies();
+    });
+    testWidgets("See all popular movies", (tester) async {
+      await pumpMyApp(tester);
+      expect(find.byKey(const Key("seeAllPopularMoviesKey")), findsOneWidget);
+      await tester.tap(find.byKey(const Key("seeAllPopularMoviesKey")));
+      await tester.pumpAndSettle();
+      expect(find.byType(PopularMoviesPage), findsOneWidget);
+      await tester.drag(find.byKey(const Key("popularMoviesScrollKey")), const Offset(0, -3000));
+      await tester.pumpAndSettle();
+      await tester.dragUntilVisible(
+          find.text("The Little Mermaid"), find.byKey(const Key("popularMoviesScrollKey")), const Offset(0, 50));
+      expect(find.text("The Little Mermaid"), findsOneWidget);
+    });
+    testWidgets("seeMovieDetails", (tester) async {
+      await pumpMyApp(tester);
       expect(find.byKey(const Key("movieEntryKey")), findsWidgets);
       await tester.tap(find.byKey(const Key("movieEntryKey")).first);
       await tester.pumpAndSettle();

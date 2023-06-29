@@ -1,7 +1,5 @@
-
 Feature: PopularMoviesPage
-
-    Scenario: PopularMoviesPage pagination test
+    Scenario: Open PopularMoviesPage and load paginated data successfully
         Given HomePage is opened
         When I tap on {'See all >'} text at index {0}
         And I wait
