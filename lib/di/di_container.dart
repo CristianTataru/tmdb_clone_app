@@ -7,7 +7,7 @@ final diContainer = GetIt.instance;
 @InjectableInit()
 void configureDependencies() => diContainer.init();
 
-// void setupDI() {
+// void configureDependencies() {
 //   diContainer.registerSingleton<Dio>(
 //     Dio()
 //       ..interceptors.addAll(

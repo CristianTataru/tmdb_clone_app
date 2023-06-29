@@ -25,7 +25,7 @@ class _PersonDetailsPageState extends State<PersonDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<PersonDetailsBloc>(
-      create: (context) => diContainer.get(),
+      create: (context) => diContainer.get()..add(PersonDetailsEvent.onPageOpened(person: widget.person)),
       child: BlocBuilder<PersonDetailsBloc, PersonDetailsState>(
         builder: (context, personDetailsState) {
           return Scaffold(

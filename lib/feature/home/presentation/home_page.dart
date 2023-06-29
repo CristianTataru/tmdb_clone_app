@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                   verticalMargin8,
                   homeState.map(
                     loading: (state) => loadingSpinner,
-                    loaded: (state) => _MoviesCarousel(state.popularMovies),
+                    loaded: (state) => MoviesCarousel(state.popularMovies),
                   ),
                   divider,
                   verticalMargin8,
@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
                   verticalMargin8,
                   homeState.map(
                     loading: (state) => loadingSpinner,
-                    loaded: (state) => _MoviesCarousel(state.trendingMovies),
+                    loaded: (state) => MoviesCarousel(state.trendingMovies),
                   )
                 ],
               ),
@@ -98,8 +98,8 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _MovieEntry extends StatelessWidget {
-  const _MovieEntry({required this.movie});
+class MovieEntry extends StatelessWidget {
+  const MovieEntry({super.key, required this.movie});
 
   final Movie movie;
 
@@ -141,21 +141,21 @@ class _MovieEntry extends StatelessWidget {
   }
 }
 
-class _MoviesCarousel extends StatefulWidget {
+class MoviesCarousel extends StatefulWidget {
   final List<Movie> movieList;
-  const _MoviesCarousel(this.movieList);
+  const MoviesCarousel(this.movieList, {super.key});
 
   @override
-  State<_MoviesCarousel> createState() => _MoviesCarouselState();
+  State<MoviesCarousel> createState() => MoviesCarouselState();
 }
 
-class _MoviesCarouselState extends State<_MoviesCarousel> {
+class MoviesCarouselState extends State<MoviesCarousel> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: widget.movieList.map((movie) => _MovieEntry(movie: movie)).toList(),
+        children: widget.movieList.map((movie) => MovieEntry(movie: movie)).toList(),
       ),
     );
   }
