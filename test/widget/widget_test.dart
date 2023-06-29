@@ -19,7 +19,8 @@ void main() {
       await diContainer.reset();
       configureDependencies();
     });
-    testWidgets("See all popular movies", (tester) async {
+
+    testWidgets("Open PopularMoviesPage and load paginated data successfully", (tester) async {
       await pumpMyApp(tester);
       expect(find.byKey(const Key("seeAllPopularMoviesKey")), findsOneWidget);
       await tester.tap(find.byKey(const Key("seeAllPopularMoviesKey")));
@@ -31,7 +32,8 @@ void main() {
           find.text("The Little Mermaid"), find.byKey(const Key("popularMoviesScrollKey")), const Offset(0, 50));
       expect(find.text("The Little Mermaid"), findsOneWidget);
     });
-    testWidgets("seeMovieDetails", (tester) async {
+
+    testWidgets("Open MovieDetailsPage and load data successfully", (tester) async {
       await pumpMyApp(tester);
       expect(find.byKey(const Key("movieEntryKey")), findsWidgets);
       await tester.tap(find.byKey(const Key("movieEntryKey")).first);
