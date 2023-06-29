@@ -20,18 +20,21 @@ mixin _$TrendingMoviesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() onPageOpened,
     required TResult Function() onMoreDataLoading,
+    required TResult Function(Movie movie) onMovieTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onPageOpened,
     TResult? Function()? onMoreDataLoading,
+    TResult? Function(Movie movie)? onMovieTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onPageOpened,
     TResult Function()? onMoreDataLoading,
+    TResult Function(Movie movie)? onMovieTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -41,6 +44,8 @@ mixin _$TrendingMoviesEvent {
         onPageOpened,
     required TResult Function(_TrendingMoviesMoreDataLoadingEvent value)
         onMoreDataLoading,
+    required TResult Function(_TrendingMoviesOnMovieTappedEvent value)
+        onMovieTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,6 +53,7 @@ mixin _$TrendingMoviesEvent {
     TResult? Function(_TrendingMoviesOnPageOpenedEvent value)? onPageOpened,
     TResult? Function(_TrendingMoviesMoreDataLoadingEvent value)?
         onMoreDataLoading,
+    TResult? Function(_TrendingMoviesOnMovieTappedEvent value)? onMovieTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +61,7 @@ mixin _$TrendingMoviesEvent {
     TResult Function(_TrendingMoviesOnPageOpenedEvent value)? onPageOpened,
     TResult Function(_TrendingMoviesMoreDataLoadingEvent value)?
         onMoreDataLoading,
+    TResult Function(_TrendingMoviesOnMovieTappedEvent value)? onMovieTapped,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,6 +130,7 @@ class _$_TrendingMoviesOnPageOpenedEvent
   TResult when<TResult extends Object?>({
     required TResult Function() onPageOpened,
     required TResult Function() onMoreDataLoading,
+    required TResult Function(Movie movie) onMovieTapped,
   }) {
     return onPageOpened();
   }
@@ -132,6 +140,7 @@ class _$_TrendingMoviesOnPageOpenedEvent
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onPageOpened,
     TResult? Function()? onMoreDataLoading,
+    TResult? Function(Movie movie)? onMovieTapped,
   }) {
     return onPageOpened?.call();
   }
@@ -141,6 +150,7 @@ class _$_TrendingMoviesOnPageOpenedEvent
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onPageOpened,
     TResult Function()? onMoreDataLoading,
+    TResult Function(Movie movie)? onMovieTapped,
     required TResult orElse(),
   }) {
     if (onPageOpened != null) {
@@ -156,6 +166,8 @@ class _$_TrendingMoviesOnPageOpenedEvent
         onPageOpened,
     required TResult Function(_TrendingMoviesMoreDataLoadingEvent value)
         onMoreDataLoading,
+    required TResult Function(_TrendingMoviesOnMovieTappedEvent value)
+        onMovieTapped,
   }) {
     return onPageOpened(this);
   }
@@ -166,6 +178,7 @@ class _$_TrendingMoviesOnPageOpenedEvent
     TResult? Function(_TrendingMoviesOnPageOpenedEvent value)? onPageOpened,
     TResult? Function(_TrendingMoviesMoreDataLoadingEvent value)?
         onMoreDataLoading,
+    TResult? Function(_TrendingMoviesOnMovieTappedEvent value)? onMovieTapped,
   }) {
     return onPageOpened?.call(this);
   }
@@ -176,6 +189,7 @@ class _$_TrendingMoviesOnPageOpenedEvent
     TResult Function(_TrendingMoviesOnPageOpenedEvent value)? onPageOpened,
     TResult Function(_TrendingMoviesMoreDataLoadingEvent value)?
         onMoreDataLoading,
+    TResult Function(_TrendingMoviesOnMovieTappedEvent value)? onMovieTapped,
     required TResult orElse(),
   }) {
     if (onPageOpened != null) {
@@ -235,6 +249,7 @@ class _$_TrendingMoviesMoreDataLoadingEvent
   TResult when<TResult extends Object?>({
     required TResult Function() onPageOpened,
     required TResult Function() onMoreDataLoading,
+    required TResult Function(Movie movie) onMovieTapped,
   }) {
     return onMoreDataLoading();
   }
@@ -244,6 +259,7 @@ class _$_TrendingMoviesMoreDataLoadingEvent
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onPageOpened,
     TResult? Function()? onMoreDataLoading,
+    TResult? Function(Movie movie)? onMovieTapped,
   }) {
     return onMoreDataLoading?.call();
   }
@@ -253,6 +269,7 @@ class _$_TrendingMoviesMoreDataLoadingEvent
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onPageOpened,
     TResult Function()? onMoreDataLoading,
+    TResult Function(Movie movie)? onMovieTapped,
     required TResult orElse(),
   }) {
     if (onMoreDataLoading != null) {
@@ -268,6 +285,8 @@ class _$_TrendingMoviesMoreDataLoadingEvent
         onPageOpened,
     required TResult Function(_TrendingMoviesMoreDataLoadingEvent value)
         onMoreDataLoading,
+    required TResult Function(_TrendingMoviesOnMovieTappedEvent value)
+        onMovieTapped,
   }) {
     return onMoreDataLoading(this);
   }
@@ -278,6 +297,7 @@ class _$_TrendingMoviesMoreDataLoadingEvent
     TResult? Function(_TrendingMoviesOnPageOpenedEvent value)? onPageOpened,
     TResult? Function(_TrendingMoviesMoreDataLoadingEvent value)?
         onMoreDataLoading,
+    TResult? Function(_TrendingMoviesOnMovieTappedEvent value)? onMovieTapped,
   }) {
     return onMoreDataLoading?.call(this);
   }
@@ -288,6 +308,7 @@ class _$_TrendingMoviesMoreDataLoadingEvent
     TResult Function(_TrendingMoviesOnPageOpenedEvent value)? onPageOpened,
     TResult Function(_TrendingMoviesMoreDataLoadingEvent value)?
         onMoreDataLoading,
+    TResult Function(_TrendingMoviesOnMovieTappedEvent value)? onMovieTapped,
     required TResult orElse(),
   }) {
     if (onMoreDataLoading != null) {
@@ -301,6 +322,169 @@ abstract class _TrendingMoviesMoreDataLoadingEvent
     implements TrendingMoviesEvent {
   const factory _TrendingMoviesMoreDataLoadingEvent() =
       _$_TrendingMoviesMoreDataLoadingEvent;
+}
+
+/// @nodoc
+abstract class _$$_TrendingMoviesOnMovieTappedEventCopyWith<$Res> {
+  factory _$$_TrendingMoviesOnMovieTappedEventCopyWith(
+          _$_TrendingMoviesOnMovieTappedEvent value,
+          $Res Function(_$_TrendingMoviesOnMovieTappedEvent) then) =
+      __$$_TrendingMoviesOnMovieTappedEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Movie movie});
+
+  $MovieCopyWith<$Res> get movie;
+}
+
+/// @nodoc
+class __$$_TrendingMoviesOnMovieTappedEventCopyWithImpl<$Res>
+    extends _$TrendingMoviesEventCopyWithImpl<$Res,
+        _$_TrendingMoviesOnMovieTappedEvent>
+    implements _$$_TrendingMoviesOnMovieTappedEventCopyWith<$Res> {
+  __$$_TrendingMoviesOnMovieTappedEventCopyWithImpl(
+      _$_TrendingMoviesOnMovieTappedEvent _value,
+      $Res Function(_$_TrendingMoviesOnMovieTappedEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? movie = null,
+  }) {
+    return _then(_$_TrendingMoviesOnMovieTappedEvent(
+      movie: null == movie
+          ? _value.movie
+          : movie // ignore: cast_nullable_to_non_nullable
+              as Movie,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MovieCopyWith<$Res> get movie {
+    return $MovieCopyWith<$Res>(_value.movie, (value) {
+      return _then(_value.copyWith(movie: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_TrendingMoviesOnMovieTappedEvent
+    implements _TrendingMoviesOnMovieTappedEvent {
+  const _$_TrendingMoviesOnMovieTappedEvent({required this.movie});
+
+  @override
+  final Movie movie;
+
+  @override
+  String toString() {
+    return 'TrendingMoviesEvent.onMovieTapped(movie: $movie)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TrendingMoviesOnMovieTappedEvent &&
+            (identical(other.movie, movie) || other.movie == movie));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, movie);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TrendingMoviesOnMovieTappedEventCopyWith<
+          _$_TrendingMoviesOnMovieTappedEvent>
+      get copyWith => __$$_TrendingMoviesOnMovieTappedEventCopyWithImpl<
+          _$_TrendingMoviesOnMovieTappedEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onPageOpened,
+    required TResult Function() onMoreDataLoading,
+    required TResult Function(Movie movie) onMovieTapped,
+  }) {
+    return onMovieTapped(movie);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onPageOpened,
+    TResult? Function()? onMoreDataLoading,
+    TResult? Function(Movie movie)? onMovieTapped,
+  }) {
+    return onMovieTapped?.call(movie);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onPageOpened,
+    TResult Function()? onMoreDataLoading,
+    TResult Function(Movie movie)? onMovieTapped,
+    required TResult orElse(),
+  }) {
+    if (onMovieTapped != null) {
+      return onMovieTapped(movie);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TrendingMoviesOnPageOpenedEvent value)
+        onPageOpened,
+    required TResult Function(_TrendingMoviesMoreDataLoadingEvent value)
+        onMoreDataLoading,
+    required TResult Function(_TrendingMoviesOnMovieTappedEvent value)
+        onMovieTapped,
+  }) {
+    return onMovieTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TrendingMoviesOnPageOpenedEvent value)? onPageOpened,
+    TResult? Function(_TrendingMoviesMoreDataLoadingEvent value)?
+        onMoreDataLoading,
+    TResult? Function(_TrendingMoviesOnMovieTappedEvent value)? onMovieTapped,
+  }) {
+    return onMovieTapped?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TrendingMoviesOnPageOpenedEvent value)? onPageOpened,
+    TResult Function(_TrendingMoviesMoreDataLoadingEvent value)?
+        onMoreDataLoading,
+    TResult Function(_TrendingMoviesOnMovieTappedEvent value)? onMovieTapped,
+    required TResult orElse(),
+  }) {
+    if (onMovieTapped != null) {
+      return onMovieTapped(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TrendingMoviesOnMovieTappedEvent
+    implements TrendingMoviesEvent {
+  const factory _TrendingMoviesOnMovieTappedEvent(
+      {required final Movie movie}) = _$_TrendingMoviesOnMovieTappedEvent;
+
+  Movie get movie;
+  @JsonKey(ignore: true)
+  _$$_TrendingMoviesOnMovieTappedEventCopyWith<
+          _$_TrendingMoviesOnMovieTappedEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

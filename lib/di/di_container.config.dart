@@ -42,8 +42,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i4.Dio>(() => appModule.dio());
     gh.factory<_i5.TMDBApi>(() => _i5.TMDBApi(gh<_i4.Dio>()));
     gh.singleton<_i6.TMDBRepository>(_i6.TMDBRepository(gh<_i5.TMDBApi>()));
-    gh.factory<_i7.TrendingMoviesBloc>(
-        () => _i7.TrendingMoviesBloc(gh<_i6.TMDBRepository>()));
+    gh.factory<_i7.TrendingMoviesBloc>(() => _i7.TrendingMoviesBloc(
+          gh<_i6.TMDBRepository>(),
+          gh<_i3.AppRouter>(),
+        ));
     gh.factory<_i8.HomeBloc>(() => _i8.HomeBloc(
           gh<_i6.TMDBRepository>(),
           gh<_i3.AppRouter>(),
@@ -56,8 +58,10 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i6.TMDBRepository>(),
           gh<_i3.AppRouter>(),
         ));
-    gh.factory<_i11.PopularMoviesBloc>(
-        () => _i11.PopularMoviesBloc(gh<_i6.TMDBRepository>()));
+    gh.factory<_i11.PopularMoviesBloc>(() => _i11.PopularMoviesBloc(
+          gh<_i6.TMDBRepository>(),
+          gh<_i3.AppRouter>(),
+        ));
     return this;
   }
 }

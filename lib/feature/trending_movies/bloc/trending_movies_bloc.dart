@@ -5,19 +5,22 @@ import 'package:injectable/injectable.dart';
 import 'package:tmdb_clone_app/domain/repository/tmdb_repository.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/models/movies_data.dart';
+import 'package:tmdb_clone_app/routes/router.dart';
+import 'package:tmdb_clone_app/routes/router.gr.dart';
 part 'trending_movies_event.dart';
 part 'trending_movies_state.dart';
 part 'trending_movies_bloc.freezed.dart';
 
 @injectable
 class TrendingMoviesBloc extends Bloc<TrendingMoviesEvent, TrendingMoviesState> {
-  TrendingMoviesBloc(this.tmdbRepository) : super(const _TrendingMoviesLoadingState()) {
+  TrendingMoviesBloc(this.tmdbRepository, this.router) : super(const _TrendingMoviesLoadingState()) {
     on<_TrendingMoviesOnPageOpenedEvent>(_onTrendingMoviesOnPageOpenedEvent);
     on<_TrendingMoviesMoreDataLoadingEvent>(_onTrendingMoviesMoreDataLoadingEvent);
-    add(const TrendingMoviesEvent.onPageOpened());
+    on<_TrendingMoviesOnMovieTappedEvent>(_onTrendingMoviesOnMovieTappedEvent);
   }
 
   final TMDBRepository tmdbRepository;
+  final AppRouter router;
 
   @factoryMethod
   FutureOr<void> _onTrendingMoviesOnPageOpenedEvent(
@@ -42,5 +45,10 @@ class TrendingMoviesBloc extends Bloc<TrendingMoviesEvent, TrendingMoviesState> 
             movies: [...movies, ...moviesData.movies]));
       },
     );
+  }
+
+  FutureOr<void> _onTrendingMoviesOnMovieTappedEvent(
+      _TrendingMoviesOnMovieTappedEvent event, Emitter<TrendingMoviesState> emit) {
+    router.push(MovieDetailsRoute(movie: event.movie));
   }
 }

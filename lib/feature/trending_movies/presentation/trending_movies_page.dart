@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_clone_app/di/di_container.dart';
-import 'package:tmdb_clone_app/feature/movie_details/presentation/movie_details_page.dart';
 import 'package:tmdb_clone_app/feature/trending_movies/bloc/trending_movies_bloc.dart';
 import 'package:tmdb_clone_app/models/movie.dart';
 import 'package:tmdb_clone_app/theme/custom_colors.dart';
@@ -22,7 +21,7 @@ class _TrendingMoviesPageState extends State<TrendingMoviesPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<TrendingMoviesBloc>(
-      create: (context) => diContainer.get(),
+      create: (context) => diContainer.get()..add(const TrendingMoviesEvent.onPageOpened()),
       child: BlocBuilder<TrendingMoviesBloc, TrendingMoviesState>(
         builder: (context, tmdbState) {
           return Scaffold(
@@ -97,9 +96,7 @@ class _MovieListItem extends StatelessWidget {
       padding: allPadding8,
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return MovieDetailsPage(movie);
-          }));
+          context.read<TrendingMoviesBloc>().add(TrendingMoviesEvent.onMovieTapped(movie: movie));
         },
         child: Row(
           children: [
