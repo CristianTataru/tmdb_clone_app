@@ -41,6 +41,7 @@ dev_dependencies:
   injectable_generator: ^2.1.6
   bdd_widget_test: ^1.6.0
   mocktail_image_network: ^0.3.1
+  bloc_test: ^9.1.3
 
 flutter:
   uses-material-design: true
