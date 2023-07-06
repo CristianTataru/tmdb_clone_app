@@ -28,5 +28,5 @@ jobs:
       - name: Upload apk
         uses: actions/upload-artifact@v1
         with:
-         name: marvel-apk
+         name: tmdb-apk
          path: build/app/outputs/apk/release/app-release.apk
