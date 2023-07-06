@@ -1,17 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tmdb_clone_app/di/di_container.dart';
 import 'package:tmdb_clone_app/feature/movie_details/presentation/movie_details_page.dart';
 import 'package:tmdb_clone_app/feature/popular_movies/presentation/popular_movies_page.dart';
 import 'package:tmdb_clone_app/main.dart';
-import 'package:network_image_mock/network_image_mock.dart';
+
+import '../helpers/mock_http_overrides.dart';
 
 void main() {
   Future<void> pumpMyApp(WidgetTester tester) async {
-    await mockNetworkImagesFor(() async {
-      await tester.pumpWidget(const MyApp());
-      await tester.pumpAndSettle();
-    });
+    HttpOverrides.global = MockHttpOverrides();
+    await tester.pumpWidget(const MyApp());
+    await tester.pumpAndSettle();
   }
 
   group("Widget Tests", () {
